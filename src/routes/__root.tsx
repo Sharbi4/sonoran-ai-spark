@@ -72,14 +72,21 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "Sonoran Systems & AI — Modern AI systems for Arizona businesses" },
+      {
+        name: "description",
+        content:
+          "Tucson-based AI consulting for small businesses in Tucson, Phoenix, and across Arizona. Websites, branding, workflow automation, and practical AI systems.",
+      },
+      { name: "author", content: "Sonoran Systems & AI" },
+      { property: "og:title", content: "Sonoran Systems & AI" },
+      {
+        property: "og:description",
+        content:
+          "Practical AI, websites, and automation for Arizona small businesses — based in Tucson, serving Phoenix and beyond.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
-      { name: "twitter:site", content: "@Lovable" },
     ],
     links: [
       {
