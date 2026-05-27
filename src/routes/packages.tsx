@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Check, Sparkles } from "lucide-react";
-import { SiteLayout, Section, CopperButton } from "@/components/site-layout";
+import { SiteLayout, Section, CopperButton, Accent } from "@/components/site-layout";
 
 export const Route = createFileRoute("/packages")({
   head: () => ({
@@ -107,8 +107,8 @@ function Packages() {
       <Section className="pt-16 sm:pt-24 pb-8">
         <div className="max-w-3xl">
           <p className="text-sm font-medium text-copper uppercase tracking-wider">Packages</p>
-          <h1 className="mt-3 font-serif text-4xl sm:text-5xl leading-[1.05]">
-            Simple, honest pricing — built around what your business actually needs.
+          <h1 className="mt-3 font-serif font-bold text-4xl sm:text-5xl leading-[1.05]">
+            Honest <Accent>pricing</Accent> built around what your business actually <Accent color="sage">needs</Accent>.
           </h1>
           <p className="mt-6 text-lg text-muted-foreground leading-relaxed">
             Every project starts with a conversation. You'll never be locked into something that
