@@ -127,3 +127,27 @@
 @utility font-sans {
   font-family: var(--font-sans);
 }
+
+@utility diagonal-bands {
+  background:
+    linear-gradient(135deg, transparent 0 8%, var(--copper) 8% 22%, transparent 22% 30%,
+      var(--rose) 30% 44%, transparent 44% 52%, var(--sand) 52% 66%,
+      transparent 66% 74%, var(--sage) 74% 86%, transparent 86% 92%,
+      var(--foreground) 92% 100%);
+}
+
+@utility text-terracotta {
+  color: var(--copper);
+}
+
+@utility text-sage {
+  color: var(--sage);
+}
+
+@utility text-rose {
+  color: var(--rose);
+}
+
+@utility bg-charcoal {
+  background-color: var(--foreground);
+}
