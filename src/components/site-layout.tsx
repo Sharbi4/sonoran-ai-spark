@@ -35,6 +35,73 @@ function HeaderBrand() {
   );
 }
 
+function ServicesMegaMenu() {
+  return (
+    <div className="relative group">
+      <Link
+        to="/services"
+        className="text-sm font-medium text-foreground/75 hover:text-copper transition-colors inline-flex items-center gap-1"
+        activeProps={{ className: "text-copper" }}
+      >
+        Services
+      </Link>
+      <div
+        className="invisible opacity-0 translate-y-1 group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 focus-within:visible focus-within:opacity-100 focus-within:translate-y-0 transition-all duration-150 absolute left-1/2 -translate-x-1/2 top-full pt-3 z-50"
+      >
+        <div className="w-[640px] rounded-2xl bg-card border border-sand shadow-[0_20px_50px_-20px_rgba(31,31,31,0.25)] overflow-hidden">
+          <div className="grid grid-cols-2 gap-8 p-7">
+            <div>
+              <p className="text-[10px] font-semibold tracking-[0.22em] uppercase text-muted-foreground mb-3">
+                Core Services
+              </p>
+              <ul className="space-y-2">
+                {CORE_SERVICES.map((s) => (
+                  <li key={s.slug}>
+                    <a
+                      href={`/services#${s.slug}`}
+                      className="block text-sm text-foreground/85 hover:text-copper"
+                    >
+                      {s.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <p className="text-[10px] font-semibold tracking-[0.22em] uppercase text-muted-foreground mb-3">
+                Advanced Systems
+              </p>
+              <ul className="space-y-2">
+                {ADVANCED_SERVICES.map((s) => (
+                  <li key={s.slug + s.label}>
+                    <a
+                      href={`/services#${s.slug}`}
+                      className="block text-sm text-foreground/85 hover:text-copper"
+                    >
+                      {s.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+          <div className="bg-sand/70 px-7 py-4 flex items-center justify-between gap-4">
+            <p className="text-sm font-medium text-foreground">
+              Start with an <span className="text-copper">AI Business Audit</span> — $297
+            </p>
+            <Link
+              to="/ai-audit"
+              className="inline-flex items-center gap-1.5 rounded-full bg-copper text-copper-foreground px-4 py-2 text-xs font-medium hover:bg-copper/90"
+            >
+              Book Your Audit <ArrowRight className="h-3.5 w-3.5" />
+            </Link>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export function SiteLayout({ children }: { children: React.ReactNode }) {
   const [open, setOpen] = useState(false);
 
