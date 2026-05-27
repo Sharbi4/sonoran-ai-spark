@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Check, Compass, Wrench, ListChecks, MessageCircle } from "lucide-react";
-import { SiteLayout, Section, CopperButton } from "@/components/site-layout";
+import { SiteLayout, Section, CopperButton, Accent } from "@/components/site-layout";
 
 export const Route = createFileRoute("/ai-audit")({
   head: () => ({
@@ -56,8 +56,8 @@ function AIAudit() {
           <span className="inline-flex items-center rounded-full bg-copper/10 px-3 py-1 text-xs font-semibold text-copper uppercase tracking-wider">
             Start Here
           </span>
-          <h1 className="mt-4 font-serif text-4xl sm:text-5xl leading-[1.05]">
-            Not sure where AI fits into your business? Start here.
+          <h1 className="mt-4 font-serif font-bold text-4xl sm:text-5xl leading-[1.05]">
+            Not sure where <Accent>AI</Accent> fits into your business? Start <Accent color="sage">here</Accent>.
           </h1>
           <p className="mt-5 text-lg text-muted-foreground leading-relaxed">
             The AI Business Audit gives you clarity — not a sales pitch.
