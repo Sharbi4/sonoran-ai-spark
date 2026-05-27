@@ -9,7 +9,9 @@ import {
   CalendarCheck2,
   TrendingUp,
 } from "lucide-react";
-import { SiteLayout, Section, FinalCTA } from "@/components/site-layout";
+import { ArrowRight } from "lucide-react";
+import { Link } from "@tanstack/react-router";
+import { SiteLayout, Section, FinalCTA, Accent } from "@/components/site-layout";
 
 export const Route = createFileRoute("/services")({
   head: () => ({
@@ -74,7 +76,9 @@ function Services() {
       <Section className="pt-16 sm:pt-24">
         <div className="max-w-3xl">
           <p className="text-sm font-medium text-copper uppercase tracking-wider">Services</p>
-          <h1 className="mt-3 font-serif text-4xl sm:text-5xl">What we do</h1>
+          <h1 className="mt-3 font-serif font-bold text-4xl sm:text-5xl leading-[1.05]">
+            Practical <Accent>systems</Accent> for the way you actually <Accent color="sage">work</Accent>.
+          </h1>
           <p className="mt-6 text-lg text-muted-foreground leading-relaxed">
             Sonoran Systems &amp; AI is a business systems partner — not just a web design shop. We
             look at your entire operation and build the tools and automations that help you capture
@@ -88,13 +92,19 @@ function Services() {
           {SERVICES.map((s) => (
             <div
               key={s.name}
-              className="rounded-2xl bg-card border border-sand p-8 shadow-[0_1px_2px_rgba(28,28,30,0.03),0_10px_30px_-18px_rgba(28,28,30,0.12)]"
+              className="rounded-2xl bg-card border border-sand p-8 shadow-[0_1px_2px_rgba(31,31,31,0.03),0_10px_30px_-18px_rgba(31,31,31,0.10)] hover:-translate-y-0.5 transition-all"
             >
-              <div className="h-12 w-12 rounded-xl bg-copper/10 text-copper flex items-center justify-center">
-                <s.icon className="h-6 w-6" strokeWidth={1.5} />
+              <div className="h-12 w-12 rounded-xl border border-sand bg-cream flex items-center justify-center text-foreground">
+                <s.icon className="h-5 w-5" strokeWidth={1.5} />
               </div>
-              <h2 className="mt-5 font-serif text-2xl">{s.name}</h2>
+              <h2 className="mt-5 font-serif font-bold text-2xl">{s.name}</h2>
               <p className="mt-3 text-muted-foreground leading-relaxed">{s.desc}</p>
+              <Link
+                to="/contact"
+                className="mt-5 inline-flex items-center gap-1 text-sm font-medium text-copper hover:underline"
+              >
+                Talk it through <ArrowRight className="h-3.5 w-3.5" />
+              </Link>
             </div>
           ))}
         </div>

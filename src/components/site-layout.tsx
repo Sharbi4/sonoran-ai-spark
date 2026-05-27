@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { Link } from "@tanstack/react-router";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ArrowRight, Instagram, Linkedin } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { LogoLockup } from "./logo";
 
 const NAV = [
   { to: "/", label: "Home" },
@@ -12,15 +13,10 @@ const NAV = [
   { to: "/contact", label: "Contact" },
 ];
 
-function Wordmark() {
+function HeaderBrand() {
   return (
-    <Link to="/" className="flex items-baseline gap-1 group">
-      <span className="font-serif text-xl sm:text-2xl font-semibold text-foreground tracking-tight">
-        Sonoran Systems
-      </span>
-      <span className="font-serif text-xl sm:text-2xl font-semibold text-copper">
-        &amp; AI
-      </span>
+    <Link to="/" aria-label="Sonoran Systems & AI home">
+      <LogoLockup />
     </Link>
   );
 }
@@ -31,9 +27,9 @@ export function SiteLayout({ children }: { children: React.ReactNode }) {
   return (
     <div className="min-h-screen flex flex-col bg-background text-foreground">
       <header className="sticky top-0 z-40 backdrop-blur bg-background/85 border-b border-sand/80">
-        <div className="mx-auto max-w-7xl px-5 sm:px-8 h-16 flex items-center justify-between">
-          <Wordmark />
-          <nav className="hidden md:flex items-center gap-8">
+        <div className="mx-auto max-w-7xl px-5 sm:px-8 h-[72px] flex items-center justify-between">
+          <HeaderBrand />
+          <nav className="hidden md:flex items-center gap-7">
             {NAV.map((n) => (
               <Link
                 key={n.to}
@@ -48,9 +44,9 @@ export function SiteLayout({ children }: { children: React.ReactNode }) {
           <div className="hidden md:block">
             <Link
               to="/contact"
-              className="inline-flex items-center rounded-full bg-copper px-5 py-2.5 text-sm font-medium text-copper-foreground hover:bg-copper/90 transition-colors"
+              className="inline-flex items-center gap-2 rounded-full bg-copper px-5 py-2.5 text-sm font-medium text-copper-foreground hover:bg-copper/90 transition-colors"
             >
-              Book a Free Call
+              Let's Talk <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
           <button
@@ -79,9 +75,9 @@ export function SiteLayout({ children }: { children: React.ReactNode }) {
               <Link
                 to="/contact"
                 onClick={() => setOpen(false)}
-                className="mt-3 inline-flex justify-center items-center rounded-full bg-copper px-5 py-3 text-sm font-medium text-copper-foreground"
+                className="mt-3 inline-flex justify-center items-center gap-2 rounded-full bg-copper px-5 py-3 text-sm font-medium text-copper-foreground"
               >
-                Book a Free Call
+                Let's Talk <ArrowRight className="h-4 w-4" />
               </Link>
             </div>
           </div>
@@ -90,40 +86,93 @@ export function SiteLayout({ children }: { children: React.ReactNode }) {
 
       <main className="flex-1">{children}</main>
 
-      <footer className="mt-24 border-t border-sand bg-card/60">
-        <div className="mx-auto max-w-7xl px-5 sm:px-8 py-14 grid gap-10 md:grid-cols-3">
-          <div>
-            <Wordmark />
-            <p className="mt-4 text-sm text-muted-foreground max-w-xs leading-relaxed">
-              Practical AI, websites, and automation for small businesses across Arizona.
-            </p>
-          </div>
-          <div>
-            <h4 className="text-sm font-semibold text-foreground font-sans mb-3">Explore</h4>
-            <ul className="space-y-2 text-sm">
-              {NAV.map((n) => (
-                <li key={n.to}>
-                  <Link to={n.to} className="text-muted-foreground hover:text-copper">
-                    {n.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div>
-            <h4 className="text-sm font-semibold text-foreground font-sans mb-3">Service area</h4>
-            <p className="text-sm text-muted-foreground leading-relaxed">
-              Based in Tucson, Arizona. Serving Tucson, Phoenix, and businesses across Arizona.
-            </p>
+      <SiteFooter />
+    </div>
+  );
+}
+
+function SiteFooter() {
+  return (
+    <footer className="mt-24 border-t border-sand bg-card">
+      <div className="mx-auto max-w-7xl px-5 sm:px-8 py-14 grid gap-10 md:grid-cols-12">
+        <div className="md:col-span-4">
+          <Link to="/" aria-label="Home">
+            <LogoLockup />
+          </Link>
+          <p className="mt-5 text-sm text-muted-foreground max-w-xs leading-relaxed">
+            Modern systems and AI tools for Arizona businesses ready to grow.
+          </p>
+        </div>
+        <FooterCol
+          title="Services"
+          links={[
+            { to: "/services", label: "Websites" },
+            { to: "/services", label: "Automation" },
+            { to: "/services", label: "AI Chatbots" },
+            { to: "/services", label: "Dashboards" },
+          ]}
+        />
+        <FooterCol
+          title="Company"
+          links={[
+            { to: "/about", label: "About" },
+            { to: "/case-studies", label: "Case Studies" },
+            { to: "/packages", label: "Packages" },
+            { to: "/contact", label: "Contact" },
+          ]}
+        />
+        <div className="md:col-span-4">
+          <p className="font-serif text-xl text-foreground">Let's build something great.</p>
+          <div className="mt-4 flex items-center gap-3">
+            <PrimaryButton to="/contact">Let's Talk</PrimaryButton>
+            <a
+              href="#"
+              className="h-10 w-10 rounded-full border border-sand inline-flex items-center justify-center text-foreground/70 hover:text-copper hover:border-copper transition"
+              aria-label="Instagram"
+            >
+              <Instagram className="h-4 w-4" />
+            </a>
+            <a
+              href="#"
+              className="h-10 w-10 rounded-full border border-sand inline-flex items-center justify-center text-foreground/70 hover:text-copper hover:border-copper transition"
+              aria-label="LinkedIn"
+            >
+              <Linkedin className="h-4 w-4" />
+            </a>
           </div>
         </div>
-        <div className="border-t border-sand">
-          <div className="mx-auto max-w-7xl px-5 sm:px-8 py-5 text-xs text-muted-foreground flex flex-col sm:flex-row justify-between gap-2">
-            <span>© {new Date().getFullYear()} Sonoran Systems &amp; AI. All rights reserved.</span>
-            <span>Tucson · Phoenix · Arizona</span>
-          </div>
+      </div>
+      <div className="border-t border-sand">
+        <div className="mx-auto max-w-7xl px-5 sm:px-8 py-5 text-xs text-muted-foreground flex flex-col sm:flex-row justify-between gap-2">
+          <span>© {new Date().getFullYear()} Sonoran Systems &amp; AI. All rights reserved.</span>
+          <span>Tucson · Phoenix · Scottsdale · Flagstaff</span>
         </div>
-      </footer>
+      </div>
+    </footer>
+  );
+}
+
+function FooterCol({
+  title,
+  links,
+}: {
+  title: string;
+  links: { to: string; label: string }[];
+}) {
+  return (
+    <div className="md:col-span-2">
+      <h4 className="text-xs font-semibold text-foreground uppercase tracking-wider mb-4">
+        {title}
+      </h4>
+      <ul className="space-y-2.5 text-sm">
+        {links.map((l) => (
+          <li key={l.label}>
+            <Link to={l.to} className="text-muted-foreground hover:text-copper">
+              {l.label}
+            </Link>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
@@ -156,7 +205,7 @@ export function CopperButton({
   className?: string;
 }) {
   const base =
-    "inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-medium transition-colors";
+    "inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-medium transition-colors";
   const styles =
     variant === "filled"
       ? "bg-copper text-copper-foreground hover:bg-copper/90"
@@ -164,7 +213,75 @@ export function CopperButton({
   return (
     <Link to={to} className={cn(base, styles, className)}>
       {children}
+      <ArrowRight className="h-4 w-4" />
     </Link>
+  );
+}
+
+export function PrimaryButton({
+  to,
+  children,
+  className,
+}: {
+  to: string;
+  children: React.ReactNode;
+  className?: string;
+}) {
+  return <CopperButton to={to} className={className}>{children}</CopperButton>;
+}
+
+export function SecondaryButton({
+  to,
+  children,
+  className,
+}: {
+  to: string;
+  children: React.ReactNode;
+  className?: string;
+}) {
+  return (
+    <CopperButton to={to} variant="outlined" className={className}>
+      {children}
+    </CopperButton>
+  );
+}
+
+// Accent-colored words in a headline. Wrap target words with <Accent>.
+export function Accent({
+  children,
+  color = "terracotta",
+}: {
+  children: React.ReactNode;
+  color?: "terracotta" | "sage" | "rose";
+}) {
+  const c =
+    color === "sage" ? "text-sage" : color === "rose" ? "text-rose" : "text-copper";
+  return <span className={c}>{children}</span>;
+}
+
+// Decorative diagonal color bands used in hero compositions.
+export function DiagonalBands({ className }: { className?: string }) {
+  return (
+    <div
+      aria-hidden
+      className={cn("absolute inset-0 overflow-hidden rounded-3xl", className)}
+    >
+      <div className="absolute inset-0">
+        {[
+          { c: "#C24F34", top: "10%" },
+          { c: "#E07A6B", top: "28%" },
+          { c: "#E9DFCF", top: "46%" },
+          { c: "#8BA395", top: "64%" },
+          { c: "#1F1F1F", top: "82%" },
+        ].map((b, i) => (
+          <div
+            key={i}
+            className="absolute -left-10 -right-10 h-12 rotate-[-12deg] rounded-full"
+            style={{ backgroundColor: b.c, top: b.top }}
+          />
+        ))}
+      </div>
+    </div>
   );
 }
 
@@ -178,11 +295,12 @@ export function FinalCTA({
   return (
     <section className="py-20 sm:py-24">
       <div className="mx-auto max-w-5xl px-5 sm:px-8">
-        <div className="rounded-3xl bg-gradient-to-br from-cream via-card to-sand/60 border border-sand p-10 sm:p-16 text-center shadow-sm">
+        <div className="rounded-3xl bg-card border border-sand p-10 sm:p-16 text-center shadow-[0_1px_2px_rgba(31,31,31,0.04),0_20px_50px_-26px_rgba(194,79,52,0.25)]">
           <h2 className="font-serif text-3xl sm:text-4xl text-foreground">{headline}</h2>
           <p className="mt-4 text-base sm:text-lg text-muted-foreground">{sub}</p>
-          <div className="mt-8 flex justify-center">
-            <CopperButton to="/contact">Book a Free Consultation</CopperButton>
+          <div className="mt-8 flex justify-center gap-3 flex-wrap">
+            <PrimaryButton to="/contact">Book a Free Consultation</PrimaryButton>
+            <SecondaryButton to="/packages">View Packages</SecondaryButton>
           </div>
         </div>
       </div>

@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { User } from "lucide-react";
-import { SiteLayout, Section, FinalCTA } from "@/components/site-layout";
+import { SiteLayout, Section, FinalCTA, Accent } from "@/components/site-layout";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -29,8 +29,8 @@ function About() {
         <div className="grid md:grid-cols-5 gap-12 items-start">
           <div className="md:col-span-3">
             <p className="text-sm font-medium text-copper uppercase tracking-wider">About</p>
-            <h1 className="mt-3 font-serif text-4xl sm:text-5xl leading-[1.05]">
-              We help Arizona businesses modernize — practically.
+            <h1 className="mt-3 font-serif font-bold text-4xl sm:text-5xl leading-[1.05]">
+              Built in <Accent>Tucson</Accent>. For <Accent color="sage">Arizona</Accent> businesses.
             </h1>
             <div className="mt-7 space-y-5 text-lg text-muted-foreground leading-relaxed">
               <p>

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { z } from "zod";
 import { Mail, Phone, MapPin, CalendarCheck2, CheckCircle2 } from "lucide-react";
-import { SiteLayout, Section } from "@/components/site-layout";
+import { SiteLayout, Section, Accent } from "@/components/site-layout";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
@@ -129,8 +129,8 @@ function Contact() {
       <Section className="pt-16 sm:pt-24 pb-10">
         <div className="max-w-3xl">
           <p className="text-sm font-medium text-copper uppercase tracking-wider">Contact</p>
-          <h1 className="mt-3 font-serif text-4xl sm:text-5xl leading-[1.05]">
-            Let's talk about your business.
+          <h1 className="mt-3 font-serif font-bold text-4xl sm:text-5xl leading-[1.05]">
+            Let's <Accent>talk</Accent> about your <Accent color="sage">business</Accent>.
           </h1>
           <p className="mt-5 text-lg text-muted-foreground leading-relaxed">
             Book a free phone consultation — fill out the short form below and pick a time that

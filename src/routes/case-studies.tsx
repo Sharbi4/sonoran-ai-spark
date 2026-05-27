@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Sparkles } from "lucide-react";
-import { SiteLayout, Section, FinalCTA } from "@/components/site-layout";
+import { SiteLayout, Section, FinalCTA, Accent } from "@/components/site-layout";
 
 export const Route = createFileRoute("/case-studies")({
   head: () => ({
@@ -22,8 +22,8 @@ function CaseStudies() {
       <Section className="pt-16 sm:pt-24">
         <div className="max-w-3xl">
           <p className="text-sm font-medium text-copper uppercase tracking-wider">Case Studies</p>
-          <h1 className="mt-3 font-serif text-4xl sm:text-5xl leading-[1.05]">
-            Real results from real Arizona businesses.
+          <h1 className="mt-3 font-serif font-bold text-4xl sm:text-5xl leading-[1.05]">
+            Real <Accent>results</Accent> from real Arizona <Accent color="sage">businesses</Accent>.
           </h1>
           <p className="mt-5 text-lg text-muted-foreground leading-relaxed">
             Case studies coming soon — we're currently working with our first clients to build
