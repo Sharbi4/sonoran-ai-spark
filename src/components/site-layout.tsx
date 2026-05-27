@@ -6,11 +6,25 @@ import { LogoLockup } from "./logo";
 
 const NAV = [
   { to: "/", label: "Home" },
-  { to: "/services", label: "Services" },
   { to: "/packages", label: "Packages" },
   { to: "/case-studies", label: "Case Studies" },
   { to: "/about", label: "About" },
   { to: "/contact", label: "Contact" },
+];
+
+const CORE_SERVICES = [
+  { slug: "ai-consulting", label: "AI Consulting" },
+  { slug: "websites", label: "Website Design" },
+  { slug: "brand", label: "Brand & Logo Design" },
+  { slug: "workflow", label: "Workflow Automation" },
+  { slug: "chatbots", label: "AI Chatbots & Voice Agents" },
+];
+
+const ADVANCED_SERVICES = [
+  { slug: "dashboards", label: "Business Intelligence Dashboards" },
+  { slug: "email", label: "Email Automation" },
+  { slug: "lead-capture", label: "Lead Capture & Follow-Up" },
+  { slug: "dashboards", label: "Industry Dashboards" },
 ];
 
 function HeaderBrand() {
@@ -30,7 +44,15 @@ export function SiteLayout({ children }: { children: React.ReactNode }) {
         <div className="mx-auto max-w-7xl px-5 sm:px-8 h-[72px] flex items-center justify-between">
           <HeaderBrand />
           <nav className="hidden md:flex items-center gap-7">
-            {NAV.map((n) => (
+            <Link
+              to="/"
+              className="text-sm font-medium text-foreground/75 hover:text-copper transition-colors"
+              activeProps={{ className: "text-copper" }}
+            >
+              Home
+            </Link>
+            <ServicesMegaMenu />
+            {NAV.filter((n) => n.to !== "/").map((n) => (
               <Link
                 key={n.to}
                 to={n.to}
@@ -61,7 +83,35 @@ export function SiteLayout({ children }: { children: React.ReactNode }) {
         {open && (
           <div className="md:hidden border-t border-sand bg-background">
             <div className="px-5 py-4 flex flex-col gap-1">
-              {NAV.map((n) => (
+              <Link
+                to="/"
+                onClick={() => setOpen(false)}
+                className="py-2.5 text-base font-medium text-foreground/80"
+                activeProps={{ className: "text-copper" }}
+              >
+                Home
+              </Link>
+              <Link
+                to="/services"
+                onClick={() => setOpen(false)}
+                className="py-2.5 text-base font-medium text-foreground/80"
+                activeProps={{ className: "text-copper" }}
+              >
+                Services
+              </Link>
+              <div className="pl-3 pb-2 flex flex-col gap-1.5">
+                {[...CORE_SERVICES, ...ADVANCED_SERVICES.slice(0, 3)].map((s) => (
+                  <a
+                    key={s.slug + s.label}
+                    href={`/services#${s.slug}`}
+                    onClick={() => setOpen(false)}
+                    className="text-sm text-muted-foreground hover:text-copper"
+                  >
+                    {s.label}
+                  </a>
+                ))}
+              </div>
+              {NAV.filter((n) => n.to !== "/").map((n) => (
                 <Link
                   key={n.to}
                   to={n.to}
