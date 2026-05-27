@@ -8,6 +8,10 @@ import {
   Bot,
   CheckCircle2,
   TrendingUp,
+  PenTool,
+  MailPlus,
+  Magnet,
+  Lightbulb,
 } from "lucide-react";
 import {
   SiteLayout,
@@ -39,22 +43,50 @@ const BUILDS = [
   {
     icon: Monitor,
     name: "Websites",
-    desc: "Modern, fast, and built to convert. Designed to reflect your brand and drive results.",
+    slug: "websites",
+    desc: "Modern, fast, and built to convert. Professional websites that capture leads, book appointments, and reflect your brand — connected from day one.",
   },
   {
     icon: Workflow,
     name: "Workflow Automation",
-    desc: "Save time with smart automations that handle the busywork and keep your business moving.",
+    slug: "workflow",
+    desc: "Stop doing the same manual tasks every week. We map your workflow and build automations for intake, follow-up, and reminders.",
   },
   {
     icon: MessageSquare,
     name: "AI Chatbots",
-    desc: "24/7 AI assistants that answer questions, qualify leads, and book more appointments.",
+    slug: "chatbots",
+    desc: "Answer questions, capture leads, and book appointments 24/7 with AI chat and voice agents on your website and phone line.",
   },
   {
     icon: BarChart3,
     name: "Dashboards",
-    desc: "See what matters in real time. Beautiful dashboards that help you make smart calls.",
+    slug: "dashboards",
+    desc: "Connect QuickBooks, Toast, Clio, Jobber, and 50+ tools into one AI-powered dashboard. See your whole business at a glance.",
+  },
+  {
+    icon: PenTool,
+    name: "Brand & Logo Design",
+    slug: "brand",
+    desc: "Logos, color systems, font pairings, and messaging guides that make your business look established and ready to grow.",
+  },
+  {
+    icon: MailPlus,
+    name: "Email Automation",
+    slug: "email",
+    desc: "AI systems that read incoming email, draft smart replies in your voice, and follow up automatically on every inquiry.",
+  },
+  {
+    icon: Magnet,
+    name: "Lead Capture & Follow-Up",
+    slug: "lead-capture",
+    desc: "Intake forms, lead funnels, and automated follow-up sequences that make sure every inquiry gets a fast, professional response.",
+  },
+  {
+    icon: Lightbulb,
+    name: "AI Consulting",
+    slug: "ai-consulting",
+    desc: "Cut through the noise. We identify the highest-value AI opportunities for your business and build a practical roadmap.",
   },
 ];
 
@@ -216,9 +248,14 @@ function WhatWeBuild() {
       <p className="text-[11px] font-semibold tracking-[0.2em] text-muted-foreground uppercase">
         What we build
       </p>
-      <h2 className="mt-2 font-serif font-bold text-3xl sm:text-4xl">
-        Systems that work <Accent color="sage">together</Accent>.
+      <h2 className="mt-2 font-serif font-bold text-3xl sm:text-4xl max-w-2xl">
+        Systems that work <Accent>together</Accent>.
       </h2>
+      <p className="mt-4 max-w-2xl text-muted-foreground leading-relaxed">
+        We don't build websites or set up automations in isolation. We look at your entire
+        business and build connected systems that work together — so every part of your operation
+        runs cleaner and smarter.
+      </p>
       <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
         {BUILDS.map((b) => (
           <div
@@ -226,18 +263,26 @@ function WhatWeBuild() {
             className="rounded-2xl bg-card border border-sand p-6 hover:-translate-y-0.5 hover:shadow-[0_18px_36px_-22px_rgba(194,79,52,0.35)] transition-all"
           >
             <div className="h-10 w-10 rounded-lg border border-sand bg-cream flex items-center justify-center">
-              <b.icon className="h-5 w-5 text-foreground" strokeWidth={1.5} />
+              <b.icon className="h-5 w-5 text-sage" strokeWidth={1.5} />
             </div>
             <h3 className="mt-5 font-serif font-bold text-lg">{b.name}</h3>
             <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{b.desc}</p>
-            <Link
-              to="/services"
+            <a
+              href={`/services#${b.slug}`}
               className="mt-5 inline-flex items-center gap-1 text-sm font-medium text-copper hover:underline"
             >
               Learn More <ArrowRight className="h-3.5 w-3.5" />
-            </Link>
+            </a>
           </div>
         ))}
+      </div>
+      <div className="mt-14 text-center">
+        <p className="text-base text-foreground/80">
+          Not sure which service fits your business?
+        </p>
+        <div className="mt-5 inline-flex">
+          <PrimaryButton to="/contact">Book a Free Call</PrimaryButton>
+        </div>
       </div>
     </Section>
   );
