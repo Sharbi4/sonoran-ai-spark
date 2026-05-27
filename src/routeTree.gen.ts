@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as PackagesRouteImport } from './routes/packages'
+import { Route as AiAuditRouteImport } from './routes/ai-audit'
 import { Route as IndexRouteImport } from './routes/index'
 
 const ServicesRoute = ServicesRouteImport.update({
@@ -23,6 +24,11 @@ const PackagesRoute = PackagesRouteImport.update({
   path: '/packages',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AiAuditRoute = AiAuditRouteImport.update({
+  id: '/ai-audit',
+  path: '/ai-audit',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -31,30 +37,34 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/ai-audit': typeof AiAuditRoute
   '/packages': typeof PackagesRoute
   '/services': typeof ServicesRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/ai-audit': typeof AiAuditRoute
   '/packages': typeof PackagesRoute
   '/services': typeof ServicesRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/ai-audit': typeof AiAuditRoute
   '/packages': typeof PackagesRoute
   '/services': typeof ServicesRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/packages' | '/services'
+  fullPaths: '/' | '/ai-audit' | '/packages' | '/services'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/packages' | '/services'
-  id: '__root__' | '/' | '/packages' | '/services'
+  to: '/' | '/ai-audit' | '/packages' | '/services'
+  id: '__root__' | '/' | '/ai-audit' | '/packages' | '/services'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AiAuditRoute: typeof AiAuditRoute
   PackagesRoute: typeof PackagesRoute
   ServicesRoute: typeof ServicesRoute
 }
@@ -75,6 +85,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PackagesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/ai-audit': {
+      id: '/ai-audit'
+      path: '/ai-audit'
+      fullPath: '/ai-audit'
+      preLoaderRoute: typeof AiAuditRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -87,6 +104,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AiAuditRoute: AiAuditRoute,
   PackagesRoute: PackagesRoute,
   ServicesRoute: ServicesRoute,
 }
