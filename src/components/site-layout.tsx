@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { Menu, X, ArrowRight, Instagram, Linkedin } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { LogoLockup, LogoMark } from "./logo";
+import { LogoLockup } from "./logo";
 
 const NAV = [
   { to: "/", label: "Home" },
