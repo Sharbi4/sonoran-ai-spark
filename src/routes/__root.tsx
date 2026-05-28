@@ -73,14 +73,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Sonoran Systems & AI — Modern AI systems for Arizona businesses" },
+      { title: "Sonoran Systems & AI | Websites & Automation" },
       {
         name: "description",
         content:
           "Tucson-based AI consulting for small businesses in Tucson, Phoenix, and across Arizona. Websites, branding, workflow automation, and practical AI systems.",
       },
       { name: "author", content: "Sonoran Systems & AI" },
-      { property: "og:title", content: "Sonoran Systems & AI" },
+      { property: "og:title", content: "Sonoran Systems & AI | Websites & Automation" },
       {
         property: "og:description",
         content:
@@ -88,6 +88,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
+      { name: "twitter:title", content: "Sonoran Systems & AI | Websites & Automation" },
+      { name: "description", content: "Premium AI consulting, websites, automation, dashboards, and workflow systems for Arizona businesses ready to grow smarter." },
+      { property: "og:description", content: "Premium AI consulting, websites, automation, dashboards, and workflow systems for Arizona businesses ready to grow smarter." },
+      { name: "twitter:description", content: "Premium AI consulting, websites, automation, dashboards, and workflow systems for Arizona businesses ready to grow smarter." },
+      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/72sQ9XBmTVhiTu6nV7r0PRXIYVH3/social-images/social-1779932400133-196988.webp" },
+      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/72sQ9XBmTVhiTu6nV7r0PRXIYVH3/social-images/social-1779932400133-196988.webp" },
     ],
     links: [
       {
