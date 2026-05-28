@@ -334,11 +334,15 @@ function Contact() {
                   </Field>
                 </div>
 
+                {submitError && (
+                  <p className="text-sm text-destructive">{submitError}</p>
+                )}
                 <button
                   type="submit"
-                  className="w-full sm:w-auto inline-flex items-center justify-center rounded-full bg-copper px-7 py-3.5 text-sm font-medium text-copper-foreground hover:bg-copper/90 transition-colors"
+                  disabled={submitting}
+                  className="w-full sm:w-auto inline-flex items-center justify-center rounded-full bg-copper px-7 py-3.5 text-sm font-medium text-copper-foreground hover:bg-copper/90 transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
                 >
-                  Send & Book My Consultation
+                  {submitting ? "Sending…" : "Send Inquiry"}
                 </button>
               </form>
             )}
