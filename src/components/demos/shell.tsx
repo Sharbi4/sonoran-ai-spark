@@ -2,7 +2,8 @@ import { Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import type { LucideIcon } from "lucide-react";
-import type { ReactNode } from "react";
+import { useState, type ReactNode } from "react";
+import { Menu, X } from "lucide-react";
 
 export interface DemoShellTheme {
   /** Tailwind text color for primary accent (e.g. "text-amber-700") */
@@ -71,6 +72,7 @@ function googleFontsHref(...stacks: (string | undefined)[]): string | null {
 export function DemoShell(props: DemoShellProps) {
   const { slug, brandName, tagline, phone, city, navLinks, primaryCta, secondaryCta, logo, theme, children } = props;
   const fontsHref = googleFontsHref(theme.fontBody, theme.fontHeading, theme.fontDisplay);
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
     <div
@@ -98,12 +100,12 @@ export function DemoShell(props: DemoShellProps) {
       {/* Nav */}
       <nav
         className="sticky top-0 z-50 border-b shadow-sm backdrop-blur-xl"
-        style={{ backgroundColor: `${theme.pageBg ?? "#ffffff"}ee`, borderColor: "rgba(0,0,0,0.06)" }}
+        style={{ backgroundColor: `${theme.pageBg ?? "#ffffff"}f5`, borderColor: "rgba(0,0,0,0.08)" }}
       >
-        <div className="mx-auto max-w-7xl px-5 sm:px-8 flex items-center justify-between h-16">
-          <a href="#top" className="flex items-center gap-2.5">
+        <div className="mx-auto max-w-7xl px-5 sm:px-8 flex items-center justify-between h-16 gap-3">
+          <a href="#top" className="flex items-center gap-2.5 min-w-0">
             {logo}
-            <span className="text-lg font-bold tracking-tight" style={{ fontFamily: theme.fontHeading }}>{brandName}</span>
+            <span className="text-base sm:text-lg font-bold tracking-tight truncate" style={{ fontFamily: theme.fontHeading }}>{brandName}</span>
           </a>
           <div className="hidden lg:flex items-center gap-7 text-[13px] font-medium opacity-80">
             {navLinks.map((l) => (
@@ -112,18 +114,64 @@ export function DemoShell(props: DemoShellProps) {
           </div>
           <div className="flex items-center gap-2">
             {secondaryCta && (
-              <a href={secondaryCta.href} className="hidden sm:inline-flex items-center rounded-full border border-black/15 px-4 py-2 text-xs font-medium hover:bg-black/5 transition-colors">
+              <a href={secondaryCta.href} className="hidden md:inline-flex items-center rounded-full border border-black/15 px-4 py-2 text-xs font-medium hover:bg-black/5 transition-colors">
                 {secondaryCta.label}
               </a>
             )}
             <a
               href={primaryCta.href}
-              className={cn("rounded-full px-5 py-2 text-xs font-medium text-white hover:opacity-90 transition-opacity", theme.accentBg)}
+              className={cn("hidden sm:inline-flex rounded-full px-5 py-2 text-xs font-medium text-white hover:opacity-90 transition-opacity", theme.accentBg)}
             >
               {primaryCta.label}
             </a>
+            <button
+              type="button"
+              aria-label="Toggle menu"
+              aria-expanded={mobileOpen}
+              onClick={() => setMobileOpen((v) => !v)}
+              className="lg:hidden p-2 -mr-1 rounded-md hover:bg-black/5"
+            >
+              {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            </button>
           </div>
         </div>
+        {mobileOpen && (
+          <div
+            className="lg:hidden border-t"
+            style={{ backgroundColor: theme.pageBg ?? "#ffffff", borderColor: "rgba(0,0,0,0.08)" }}
+          >
+            <div className="mx-auto max-w-7xl px-5 sm:px-8 py-4 flex flex-col gap-1">
+              {navLinks.map((l) => (
+                <a
+                  key={l.href}
+                  href={l.href}
+                  onClick={() => setMobileOpen(false)}
+                  className="py-2.5 text-sm font-medium opacity-85 hover:opacity-100"
+                >
+                  {l.label}
+                </a>
+              ))}
+              <div className="flex flex-col gap-2 pt-3">
+                {secondaryCta && (
+                  <a
+                    href={secondaryCta.href}
+                    onClick={() => setMobileOpen(false)}
+                    className="inline-flex justify-center rounded-full border border-black/15 px-4 py-2.5 text-xs font-medium"
+                  >
+                    {secondaryCta.label}
+                  </a>
+                )}
+                <a
+                  href={primaryCta.href}
+                  onClick={() => setMobileOpen(false)}
+                  className={cn("inline-flex justify-center rounded-full px-5 py-2.5 text-xs font-medium text-white", theme.accentBg)}
+                >
+                  {primaryCta.label}
+                </a>
+              </div>
+            </div>
+          </div>
+        )}
       </nav>
 
       <div id="top">{children}</div>
