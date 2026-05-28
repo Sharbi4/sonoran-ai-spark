@@ -16,6 +16,7 @@ import { Route as EmailAutomationRouteImport } from './routes/email-automation'
 import { Route as DashboardsRouteImport } from './routes/dashboards'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CaseStudiesRouteImport } from './routes/case-studies'
+import { Route as BlogRouteImport } from './routes/blog'
 import { Route as AiAuditRouteImport } from './routes/ai-audit'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
@@ -55,6 +56,11 @@ const CaseStudiesRoute = CaseStudiesRouteImport.update({
   path: '/case-studies',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BlogRoute = BlogRouteImport.update({
+  id: '/blog',
+  path: '/blog',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AiAuditRoute = AiAuditRouteImport.update({
   id: '/ai-audit',
   path: '/ai-audit',
@@ -75,6 +81,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/ai-audit': typeof AiAuditRoute
+  '/blog': typeof BlogRoute
   '/case-studies': typeof CaseStudiesRoute
   '/contact': typeof ContactRoute
   '/dashboards': typeof DashboardsRoute
@@ -87,6 +94,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/ai-audit': typeof AiAuditRoute
+  '/blog': typeof BlogRoute
   '/case-studies': typeof CaseStudiesRoute
   '/contact': typeof ContactRoute
   '/dashboards': typeof DashboardsRoute
@@ -100,6 +108,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/ai-audit': typeof AiAuditRoute
+  '/blog': typeof BlogRoute
   '/case-studies': typeof CaseStudiesRoute
   '/contact': typeof ContactRoute
   '/dashboards': typeof DashboardsRoute
@@ -114,6 +123,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/ai-audit'
+    | '/blog'
     | '/case-studies'
     | '/contact'
     | '/dashboards'
@@ -126,6 +136,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/ai-audit'
+    | '/blog'
     | '/case-studies'
     | '/contact'
     | '/dashboards'
@@ -138,6 +149,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/ai-audit'
+    | '/blog'
     | '/case-studies'
     | '/contact'
     | '/dashboards'
@@ -151,6 +163,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   AiAuditRoute: typeof AiAuditRoute
+  BlogRoute: typeof BlogRoute
   CaseStudiesRoute: typeof CaseStudiesRoute
   ContactRoute: typeof ContactRoute
   DashboardsRoute: typeof DashboardsRoute
@@ -211,6 +224,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CaseStudiesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/blog': {
+      id: '/blog'
+      path: '/blog'
+      fullPath: '/blog'
+      preLoaderRoute: typeof BlogRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/ai-audit': {
       id: '/ai-audit'
       path: '/ai-audit'
@@ -239,6 +259,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   AiAuditRoute: AiAuditRoute,
+  BlogRoute: BlogRoute,
   CaseStudiesRoute: CaseStudiesRoute,
   ContactRoute: ContactRoute,
   DashboardsRoute: DashboardsRoute,

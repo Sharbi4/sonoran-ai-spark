@@ -5,13 +5,17 @@ import { SiteLayout, Section, CopperButton, Accent } from "@/components/site-lay
 export const Route = createFileRoute("/ai-audit")({
   head: () => ({
     meta: [
-      { title: "AI Business Systems Audit — Sonoran Systems & AI" },
+      { title: "AI Business Audit $497 | Tucson AZ — Sonoran Systems & AI | Phoenix, Flagstaff" },
       {
         name: "description",
         content:
-          "A $497 AI Business Systems Audit for Arizona businesses. 60-minute strategy call, full review of your website, customer journey, and workflows, prioritized written action plan, and a recommended project roadmap.",
+          "$497 AI Business Systems Audit for Arizona businesses. 60-min strategy call, website review, workflow analysis & AI roadmap. Serving Tucson, Phoenix, Flagstaff & surrounding areas.",
       },
+      { property: "og:title", content: "AI Business Systems Audit — Sonoran Systems & AI | Tucson AZ" },
+      { property: "og:description", content: "$497 comprehensive AI audit for Arizona businesses. Strategy call, workflow review & prioritized action plan." },
+      { property: "og:url", content: "https://sonoransystemsai.com/ai-audit" },
     ],
+    links: [{ rel: "canonical", href: "https://sonoransystemsai.com/ai-audit" }],
   }),
   component: AIAudit,
 });

@@ -50,13 +50,17 @@ import { useState, useEffect } from "react";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Sonoran Systems & AI — AI systems for Arizona businesses" },
+      { title: "AI Consulting Tucson AZ | Sonoran Systems & AI — Phoenix, Flagstaff & Arizona" },
       {
         name: "description",
         content:
-          "Websites, automation, dashboards, and AI tools designed for Arizona businesses. Modern systems that save time and help you grow with confidence.",
+          "Sonoran Systems & AI — Tucson's premier AI consulting firm. AI automation, chatbots, dashboards, websites & workflow optimization for businesses in Tucson, Phoenix, Flagstaff & across Arizona. 50+ years of process excellence.",
       },
+      { property: "og:title", content: "AI Consulting Tucson AZ | Sonoran Systems & AI" },
+      { property: "og:description", content: "Tucson-based AI consulting serving Phoenix, Flagstaff & Arizona. Automation, dashboards, chatbots & intelligent systems for local businesses." },
+      { property: "og:url", content: "https://sonoransystemsai.com" },
     ],
+    links: [{ rel: "canonical", href: "https://sonoransystemsai.com" }],
   }),
   component: Home,
 });

@@ -18,13 +18,17 @@ import {
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: "Contact & Book a Consultation — Sonoran Systems & AI" },
+      { title: "Contact Us | AI Consulting Tucson AZ — Sonoran Systems & AI" },
       {
         name: "description",
         content:
-          "Book a free phone consultation with Sonoran Systems & AI. Tucson, Phoenix, and Arizona small businesses welcome.",
+          "Contact Sonoran Systems & AI to book a $250 Strategy Call. AI consulting, automation & workflow optimization for businesses in Tucson, Phoenix, Flagstaff & across Arizona. Book online today.",
       },
+      { property: "og:title", content: "Contact Sonoran Systems & AI | Tucson AI Consulting" },
+      { property: "og:description", content: "Book a $250 Strategy Call with Tucson's AI consulting experts. Serving Phoenix, Flagstaff & all of Arizona." },
+      { property: "og:url", content: "https://sonoransystemsai.com/contact" },
     ],
+    links: [{ rel: "canonical", href: "https://sonoransystemsai.com/contact" }],
   }),
   component: Contact,
 });
@@ -133,8 +137,8 @@ function Contact() {
             Let's <Accent>talk</Accent> about your <Accent color="sage">business</Accent>.
           </h1>
           <p className="mt-5 text-lg text-muted-foreground leading-relaxed">
-            Book a free phone consultation — fill out the short form below and pick a time that
-            works for you.
+            Book a $250 Strategy Call — fill out the short form below and pick a time that
+            works for you. Payment is collected before booking.
           </p>
         </div>
       </Section>
@@ -151,7 +155,7 @@ function Contact() {
                 <h3 className="mt-5 font-serif text-2xl">Thanks — we got it.</h3>
                 <p className="mt-3 text-muted-foreground max-w-md mx-auto">
                   We'll review your details and reach out within one business day to schedule your
-                  free consultation.
+                  strategy call.
                 </p>
               </div>
             ) : (
@@ -338,15 +342,9 @@ function Contact() {
               <ul className="mt-5 space-y-4 text-sm">
                 <li className="flex gap-3">
                   <Mail className="h-5 w-5 text-copper mt-0.5" strokeWidth={1.5} />
-                  <a href="mailto:hello@sonoransystems.ai" className="hover:text-copper">
-                    hello@sonoransystems.ai
-                  </a>
-                </li>
-                <li className="flex gap-3">
-                  <Phone className="h-5 w-5 text-copper mt-0.5" strokeWidth={1.5} />
-                  <a href="tel:+15205550100" className="hover:text-copper">
-                    (520) 555-0100
-                  </a>
+                  <span className="text-muted-foreground">
+                    Use the form to reach us — we'll respond within one business day.
+                  </span>
                 </li>
                 <li className="flex gap-3">
                   <MapPin className="h-5 w-5 text-copper mt-0.5" strokeWidth={1.5} />

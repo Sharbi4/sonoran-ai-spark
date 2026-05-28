@@ -9,6 +9,7 @@ import { Reveal } from "./motion/primitives";
 const NAV = [
   { to: "/services", label: "Services" },
   { to: "/packages", label: "Packages" },
+  { to: "/blog", label: "Blog" },
   { to: "/about", label: "About" },
   { to: "/case-studies", label: "Case Studies" },
   { to: "/contact", label: "Contact" },
@@ -198,15 +199,14 @@ function SiteFooter() {
             <LogoLockup />
           </Link>
           <p className="mt-6 text-base text-cream/80 max-w-md leading-relaxed">
-            Modern systems and AI tools for Arizona businesses ready to grow.
+            AI consulting firm with 50+ years of process excellence. Automation, chatbots, dashboards & intelligent systems for Arizona businesses.
           </p>
           <p className="mt-4 text-sm text-cream/55 max-w-md leading-relaxed">
-            Connecting websites, automations, AI assistants, and dashboards into one
-            calm, working system.
+            Based in Tucson, proudly serving businesses across Phoenix, Flagstaff, Scottsdale, Mesa, Chandler, Tempe, Oro Valley, Marana & all of Arizona.
           </p>
           <div className="mt-7 flex items-center gap-3 text-sm text-cream/70">
             <MapPin className="h-4 w-4 text-rose" />
-            Tucson · Phoenix · Scottsdale · Flagstaff
+            Tucson · Phoenix · Flagstaff · Scottsdale & Surrounding Areas
           </div>
         </div>
         <FooterCol
@@ -222,6 +222,7 @@ function SiteFooter() {
           title="Company"
           links={[
             { to: "/about", label: "About" },
+            { to: "/blog", label: "Blog" },
             { to: "/case-studies", label: "Case Studies" },
             { to: "/packages", label: "Packages" },
             { to: "/contact", label: "Contact" },
@@ -262,7 +263,7 @@ function SiteFooter() {
             <Link to="/terms" className="hover:text-copper transition-colors">
               Terms &amp; Fine Print
             </Link>
-            <span>Built in Tucson, Arizona.</span>
+            <span>AI Consulting · Tucson, Arizona · sonoransystemsai.com</span>
           </span>
         </div>
       </div>
@@ -419,7 +420,7 @@ export function DiagonalBands({ className }: { className?: string }) {
 
 export function FinalCTA({
   headline = "Ready to make your business easier to run?",
-  sub = "Book a free phone consultation and we'll talk through your website, workflows, tools, and where AI can actually help.",
+  sub = "Book a $250 Strategy Call and we'll talk through your website, workflows, tools, and where AI can actually help.",
 }: {
   headline?: string;
   sub?: string;
@@ -436,7 +437,7 @@ export function FinalCTA({
               </h2>
               <p className="mt-5 text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto">{sub}</p>
               <div className="mt-10 flex justify-center gap-3 flex-wrap">
-                <PrimaryButton to="/contact">Book a Free Consultation</PrimaryButton>
+                <PrimaryButton to="/contact">Book a Strategy Call</PrimaryButton>
                 <SecondaryButton to="/packages">View Packages</SecondaryButton>
               </div>
             </div>

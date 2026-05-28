@@ -9,13 +9,17 @@ import { SiteLayout, Section, CopperButton, Accent } from "@/components/site-lay
 export const Route = createFileRoute("/packages")({
   head: () => ({
     meta: [
-      { title: "Pricing & Packages — Sonoran Systems & AI" },
+      { title: "AI Consulting Pricing & Packages | Sonoran Systems & AI — Tucson AZ" },
       {
         name: "description",
         content:
-          "Project inquiry is free. Strategy is paid. Implementation is scoped. Support is monthly. Start with a $250 Strategy Call, a $197 Readiness Review, a $297 Automation Map, or the $497 AI Business Systems Audit.",
+          "AI consulting packages for Arizona businesses. Strategy calls from $250, AI audits from $497, full automation builds & monthly support. Serving Tucson, Phoenix, Flagstaff & surrounding areas.",
       },
+      { property: "og:title", content: "AI Consulting Packages — Sonoran Systems & AI | Tucson AZ" },
+      { property: "og:description", content: "Transparent AI consulting pricing for Arizona businesses. Strategy calls, audits, automation builds & ongoing support." },
+      { property: "og:url", content: "https://sonoransystemsai.com/packages" },
     ],
+    links: [{ rel: "canonical", href: "https://sonoransystemsai.com/packages" }],
   }),
   component: Packages,
 });

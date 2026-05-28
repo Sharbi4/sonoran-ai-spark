@@ -1,0 +1,9 @@
+# Sonoran Systems & AI — sonoransystemsai.com
+User-agent: *
+Allow: /
+
+Sitemap: https://sonoransystemsai.com/sitemap.xml
+
+# Disallow admin/api paths
+User-agent: *
+Disallow: /api/
