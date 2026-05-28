@@ -5,11 +5,11 @@ import { SiteLayout, Section, CopperButton, Accent } from "@/components/site-lay
 export const Route = createFileRoute("/ai-audit")({
   head: () => ({
     meta: [
-      { title: "AI Business Audit — Sonoran Systems & AI" },
+      { title: "AI Business Systems Audit — Sonoran Systems & AI" },
       {
         name: "description",
         content:
-          "A $297 AI Business Audit for Arizona small businesses. 60-minute call, full review of your website, journey, and workflows, plus a written action plan in 3 business days.",
+          "A $497 AI Business Systems Audit for Arizona businesses. 60-minute strategy call, full review of your website, customer journey, and workflows, prioritized written action plan, and a recommended project roadmap.",
       },
     ],
   }),
@@ -17,12 +17,13 @@ export const Route = createFileRoute("/ai-audit")({
 });
 
 const INCLUDES = [
-  "60-minute phone consultation",
-  "Website review",
-  "Customer journey review",
+  "60-minute strategy call",
+  "Website + customer journey review",
   "Workflow and tools review",
   "AI opportunity mapping",
-  "Written action plan delivered within 3 business days",
+  "Prioritized written action plan",
+  "Recommended project roadmap",
+  "Delivered within 3 business days",
 ];
 
 const OUTCOMES = [
@@ -54,13 +55,13 @@ function AIAudit() {
       <Section className="pt-16 sm:pt-24">
         <div className="max-w-3xl">
           <span className="inline-flex items-center rounded-full bg-copper/10 px-3 py-1 text-xs font-semibold text-copper uppercase tracking-wider">
-            Start Here
+            Flagship Diagnostic
           </span>
           <h1 className="mt-4 font-serif font-bold text-4xl sm:text-5xl leading-[1.05]">
-            Not sure where <Accent>AI</Accent> fits into your business? Start <Accent color="sage">here</Accent>.
+            The <Accent>AI Business Systems</Accent> Audit — your business, mapped and <Accent color="sage">prioritized</Accent>.
           </h1>
           <p className="mt-5 text-lg text-muted-foreground leading-relaxed">
-            The AI Business Audit gives you clarity — not a sales pitch.
+            A deep paid diagnostic of your website, customer journey, workflows, and AI opportunities — delivered as a prioritized action plan and project roadmap.
           </p>
         </div>
       </Section>
@@ -82,7 +83,7 @@ function AIAudit() {
             <div>
               <p className="text-sm font-semibold text-copper uppercase tracking-wider">Flat price</p>
               <div className="mt-3 font-serif text-6xl sm:text-7xl text-copper font-semibold">
-                $297
+                $497
               </div>
               <p className="mt-3 text-sm text-muted-foreground">
                 One-time. Delivered in 3 business days.
@@ -90,8 +91,19 @@ function AIAudit() {
             </div>
             <div className="mt-8 w-full">
               <CopperButton to="/contact" className="w-full">
-                Book Your AI Audit
+                Buy the Audit — $497
               </CopperButton>
+              <p className="mt-4 text-xs text-muted-foreground text-center">
+                Prefer to talk first?{" "}
+                <a href="/contact" className="text-copper hover:underline">
+                  Book a $250 Strategy Call
+                </a>{" "}
+                or{" "}
+                <a href="/contact" className="hover:underline">
+                  submit a free inquiry
+                </a>
+                .
+              </p>
             </div>
           </div>
         </div>
@@ -118,10 +130,10 @@ function AIAudit() {
       <Section className="text-center pb-24">
         <h2 className="font-serif text-3xl sm:text-4xl">Ready in 3 business days.</h2>
         <p className="mt-3 text-muted-foreground max-w-xl mx-auto">
-          Book your audit and we'll set up your consultation call right away.
+          Purchase the audit and we'll schedule your strategy call right away.
         </p>
         <div className="mt-8">
-          <CopperButton to="/contact">Book Your AI Audit — $297</CopperButton>
+          <CopperButton to="/contact">Buy the Audit — $497</CopperButton>
         </div>
       </Section>
     </SiteLayout>
