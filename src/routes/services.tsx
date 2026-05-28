@@ -15,6 +15,8 @@ import {
   Hammer,
   Leaf,
   Home as HomeIcon,
+  ExternalLink,
+  LayoutDashboard,
   type LucideIcon,
 } from "lucide-react";
 import {
@@ -25,6 +27,7 @@ import {
   Accent,
   DiagonalBands,
 } from "@/components/site-layout";
+import { INDUSTRY_NAV } from "@/lib/industries-content";
 
 export const Route = createFileRoute("/services")({
   head: () => ({
@@ -305,6 +308,7 @@ function ServicesPage() {
         ))}
       </div>
       <IndustrySpotlight />
+      <DemoLibrary />
       <DarkFinalCTA />
     </SiteLayout>
   );
