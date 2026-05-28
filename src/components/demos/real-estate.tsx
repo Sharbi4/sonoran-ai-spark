@@ -213,13 +213,23 @@ export default function RealEstateDemo() {
             <h2 className="text-4xl sm:text-5xl mb-10" style={{ fontFamily: theme.fontHeading }}>Where will you call home?</h2>
           </Reveal>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {["Arcadia", "Paradise Valley", "North Scottsdale", "Old Town", "Downtown Phoenix", "Biltmore", "Ahwatukee", "Cave Creek"].map((n, i) => (
-              <Reveal key={n} delay={(i % 4) * 0.05}>
-                <a href="#" className="block aspect-[5/3] rounded-2xl bg-gradient-to-br from-emerald-700 to-teal-900 relative overflow-hidden group">
-                  <div className="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition-colors" />
+            {[
+              { n: "Arcadia", c: 47, img: "photo-1568605114967-8130f3a36994" },
+              { n: "Paradise Valley", c: 32, img: "photo-1600585154340-be6161a56a0c" },
+              { n: "North Scottsdale", c: 84, img: "photo-1613977257363-707ba9348227" },
+              { n: "Old Town", c: 21, img: "photo-1505691938895-1758d7feb511" },
+              { n: "Downtown Phoenix", c: 38, img: "photo-1518790268985-3f9adbed1cbf" },
+              { n: "Biltmore", c: 19, img: "photo-1582268611958-ebfd161ef9cf" },
+              { n: "Ahwatukee", c: 56, img: "photo-1593604340846-4fbe9763a8f3" },
+              { n: "Cave Creek", c: 28, img: "photo-1564540583246-934409427776" },
+            ].map((p, i) => (
+              <Reveal key={p.n} delay={(i % 4) * 0.05}>
+                <a href="#" className="block aspect-[5/3] rounded-2xl relative overflow-hidden group">
+                  <img src={`https://images.unsplash.com/${p.img}?auto=format&fit=crop&w=800&q=80`} alt={p.n} className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-110" loading="lazy" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-emerald-950/85 via-emerald-950/30 to-transparent" />
                   <div className="absolute bottom-4 left-4">
-                    <p className="text-lg font-bold" style={{ fontFamily: theme.fontHeading }}>{n}</p>
-                    <p className="text-xs text-emerald-200">{Math.floor(Math.random() * 80) + 20} listings →</p>
+                    <p className="text-lg font-bold" style={{ fontFamily: theme.fontHeading }}>{p.n}</p>
+                    <p className="text-xs text-emerald-200">{p.c} listings →</p>
                   </div>
                 </a>
               </Reveal>
