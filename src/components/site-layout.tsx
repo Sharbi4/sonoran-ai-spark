@@ -231,6 +231,10 @@ function SiteFooter() {
           <p className="mt-5 text-sm text-muted-foreground max-w-xs leading-relaxed">
             Modern systems and AI tools for Arizona businesses ready to grow.
           </p>
+          <p className="mt-3 text-xs text-muted-foreground/85 max-w-xs leading-relaxed">
+            Connecting QuickBooks, Toast, Clio, Jobber, Mindbody, and 50+ business tools to
+            custom AI-powered dashboards.
+          </p>
         </div>
         <FooterCol
           title="Services"
@@ -238,7 +242,8 @@ function SiteFooter() {
             { to: "/services", label: "Websites" },
             { to: "/services", label: "Automation" },
             { to: "/services", label: "AI Chatbots" },
-            { to: "/services", label: "Dashboards" },
+            { to: "/dashboards", label: "Dashboards" },
+            { to: "/email-automation", label: "Email Automation" },
           ]}
         />
         <FooterCol
