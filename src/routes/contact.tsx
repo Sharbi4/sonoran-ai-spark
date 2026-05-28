@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { z } from "zod";
 import { Phone, MapPin, CalendarCheck2, CheckCircle2 } from "lucide-react";
@@ -133,8 +133,8 @@ function Contact() {
             Let's <Accent>talk</Accent> about your <Accent color="sage">business</Accent>.
           </h1>
           <p className="mt-5 text-lg text-muted-foreground leading-relaxed">
-            Book a free phone consultation — fill out the short form below and pick a time that
-            works for you.
+            Tell us about your business. We'll review your details and reach out within one
+            business day to schedule your free consultation.
           </p>
         </div>
       </Section>
@@ -325,12 +325,18 @@ function Contact() {
           <aside className="space-y-6">
             <div className="rounded-3xl bg-gradient-to-br from-cream to-sand/60 border border-sand p-7">
               <CalendarCheck2 className="h-6 w-6 text-copper" strokeWidth={1.5} />
-              <h3 className="mt-3 font-serif text-xl">Pick a time</h3>
+              <h3 className="mt-3 font-serif text-xl">What happens next</h3>
               <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
-                After submitting, you'll see our calendar to book a 30-minute phone consultation
-                right away.
+                We'll review your inquiry and reach out within one business day to schedule a free
+                30-minute consultation at a time that works for you.
               </p>
-              <CalendlyEmbed />
+              <p className="mt-3 text-xs text-muted-foreground leading-relaxed">
+                Want to lock in a time today? Book a paid{" "}
+                <a href="/ai-audit" className="text-copper hover:underline">
+                  Strategy Call
+                </a>{" "}
+                and our calendar opens right after checkout.
+              </p>
             </div>
 
             <div className="rounded-3xl bg-card border border-sand p-7">
