@@ -137,25 +137,7 @@ function LoginPage() {
               {mode === "forgot" && "We'll email you a secure reset link."}
             </p>
 
-            {mode !== "forgot" && (
-              <>
-                <button
-                  type="button"
-                  onClick={handleGoogle}
-                  disabled={submitting}
-                  className="mt-6 w-full inline-flex items-center justify-center gap-3 rounded-full border border-sand bg-white px-5 py-3 text-sm font-medium text-foreground hover:border-copper hover:text-copper transition-colors disabled:opacity-60"
-                >
-                  <GoogleIcon /> Continue with Google
-                </button>
-                <div className="my-6 flex items-center gap-3 text-[10px] font-semibold tracking-[0.24em] uppercase text-foreground/40">
-                  <div className="h-px flex-1 bg-sand" />
-                  or with email
-                  <div className="h-px flex-1 bg-sand" />
-                </div>
-              </>
-            )}
-
-            <form onSubmit={handleSubmit} className="space-y-4">
+            <form onSubmit={handleSubmit} className="mt-6 space-y-4">
               {mode === "signup" && (
                 <>
                   <Field icon={<UserIcon className="h-4 w-4" />} label="Full name">
