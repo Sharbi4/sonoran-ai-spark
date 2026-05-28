@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
-import { Menu, X, ArrowRight, Instagram, Linkedin, MapPin } from "lucide-react";
+import { Menu, X, ArrowRight, Instagram, Linkedin, MapPin, LogIn, LayoutDashboard } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { LogoLockup } from "./logo";
 import { Reveal } from "./motion/primitives";
 import { INDUSTRY_NAV } from "@/lib/industries-content";
+import { useAuth } from "@/hooks/use-auth";
 
 const NAV = [
   { to: "/services", label: "Services" },
@@ -146,6 +147,7 @@ function IndustriesMenu() {
 export function SiteLayout({ children }: { children: React.ReactNode }) {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const { user } = useAuth();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -183,7 +185,24 @@ export function SiteLayout({ children }: { children: React.ReactNode }) {
             ))}
           </nav>
           <div className="hidden md:block">
-            <PrimaryButton to="/contact">Let's Talk</PrimaryButton>
+            <div className="flex items-center gap-3">
+              {user ? (
+                <Link
+                  to="/portal"
+                  className="inline-flex items-center gap-1.5 text-sm font-medium text-foreground/80 hover:text-copper transition-colors"
+                >
+                  <LayoutDashboard className="h-4 w-4" /> Portal
+                </Link>
+              ) : (
+                <Link
+                  to="/login"
+                  className="inline-flex items-center gap-1.5 text-sm font-medium text-foreground/80 hover:text-copper transition-colors"
+                >
+                  <LogIn className="h-4 w-4" /> Client Login
+                </Link>
+              )}
+              <PrimaryButton to="/contact">Let's Talk</PrimaryButton>
+            </div>
           </div>
           <button
             type="button"
@@ -216,6 +235,13 @@ export function SiteLayout({ children }: { children: React.ReactNode }) {
                     {n.label}
                   </Link>
                 ))}
+                <Link
+                  to={user ? "/portal" : "/login"}
+                  onClick={() => setOpen(false)}
+                  className="py-2.5 inline-flex items-center gap-2 text-base font-medium text-foreground/85"
+                >
+                  {user ? <><LayoutDashboard className="h-4 w-4" /> Client Portal</> : <><LogIn className="h-4 w-4" /> Client Login</>}
+                </Link>
                 <Link
                   to="/contact"
                   onClick={() => setOpen(false)}
