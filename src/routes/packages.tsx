@@ -29,10 +29,10 @@ const START_HERE = [
     name: "Business Systems Strategy Call",
     price: "$250",
     priceId: "strategy_call_60min",
-    unit: "per 60-min session",
+    unit: "per 2-hour session",
     tagline: "Live advisory. No deliverable — just clear answers.",
     includes: [
-      "60 minutes by phone or video",
+      "2 hours by phone or video",
       "Bring any business systems question",
       "Tool & workflow recommendations",
       "Recording + 1-paragraph recap",
@@ -80,7 +80,7 @@ const START_HERE = [
     unit: "one-time · 3 business days",
     tagline: "Our flagship paid diagnostic — the full picture.",
     includes: [
-      "60-minute strategy call",
+      "2-hour strategy call",
       "Website + customer journey review",
       "Workflow and tools review",
       "AI opportunity map",

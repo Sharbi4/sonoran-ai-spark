@@ -10,7 +10,7 @@ export const Route = createFileRoute("/ai-audit")({
       {
         name: "description",
         content:
-          "A $497 AI Business Systems Audit for Arizona businesses. 60-minute strategy call, full review of your website, customer journey, and workflows, prioritized written action plan, and a recommended project roadmap.",
+          "A $497 AI Business Systems Audit for Arizona businesses. 2-hour strategy call, full review of your website, customer journey, and workflows, prioritized written action plan, and a recommended project roadmap.",
       },
     ],
   }),
@@ -18,7 +18,7 @@ export const Route = createFileRoute("/ai-audit")({
 });
 
 const INCLUDES = [
-  "60-minute strategy call",
+  "2-hour strategy call",
   "Website + customer journey review",
   "Workflow and tools review",
   "AI opportunity mapping",
