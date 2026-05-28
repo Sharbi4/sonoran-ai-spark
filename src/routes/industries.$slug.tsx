@@ -1,6 +1,6 @@
 import { createFileRoute, notFound } from "@tanstack/react-router";
 import { IndustryTemplate } from "@/components/industry-template";
-import { INDUSTRIES, INDUSTRY_SLUGS, type IndustrySlug } from "@/lib/industries-content";
+import { INDUSTRIES, INDUSTRY_MOCKUPS, INDUSTRY_SLUGS, type IndustrySlug } from "@/lib/industries-content";
 
 export const Route = createFileRoute("/industries/$slug")({
   beforeLoad: ({ params }) => {
@@ -46,5 +46,5 @@ export const Route = createFileRoute("/industries/$slug")({
 function IndustryDetailPage() {
   const { slug } = Route.useParams();
   const ind = INDUSTRIES[slug as IndustrySlug];
-  return <IndustryTemplate content={ind} />;
+  return <IndustryTemplate content={ind} mockup={INDUSTRY_MOCKUPS[slug as IndustrySlug]} />;
 }

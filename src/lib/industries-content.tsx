@@ -1,4 +1,5 @@
 import type { IndustryContent } from "@/components/industry-template";
+import type { DashboardSpec } from "@/components/mockups";
 
 export const INDUSTRY_SLUGS = [
   "law-firms",
@@ -10,6 +11,165 @@ export const INDUSTRY_SLUGS = [
 ] as const;
 
 export type IndustrySlug = (typeof INDUSTRY_SLUGS)[number];
+
+export const INDUSTRY_MOCKUPS: Record<IndustrySlug, DashboardSpec> = {
+  "law-firms": {
+    appName: "Sonoran · Firm Dashboard",
+    view: "Partner view · this week",
+    kpis: [
+      { label: "Open matters", value: "128", delta: "6 new", positive: true },
+      { label: "Billable hrs", value: "412", delta: "8% MoM", positive: true },
+      { label: "AR > 60d", value: "$48.2k", delta: "$6.1k", positive: false },
+      { label: "New intakes", value: "17", delta: "5 today", positive: true },
+    ],
+    chart: { title: "Billable hours · firm-wide", data: [22, 28, 26, 34, 31, 38, 41, 36, 44, 47, 42, 49, 53, 58], accent: "copper" },
+    rows: [
+      { label: "Litigation", value: 184, max: 200, accent: "copper" },
+      { label: "Estate planning", value: 112, max: 200, accent: "copper" },
+      { label: "Family law", value: 78, max: 200, accent: "sage" },
+      { label: "Corporate", value: 38, max: 200, accent: "sage" },
+    ],
+    list: {
+      title: "Upcoming deadlines",
+      items: [
+        { primary: "Motion to dismiss · Garcia v. Pima", secondary: "Due Thu · Atty: M. Rivera", tag: "7d" },
+        { primary: "Discovery response · Bell Holdings", secondary: "Due Fri · Atty: S. Patel", tag: "9d" },
+        { primary: "SOL expiry · Hernandez matter", secondary: "30-day window opens Mon", tag: "30d" },
+        { primary: "New intake · auto injury", secondary: "Conflict check passed · assign", tag: "New" },
+      ],
+    },
+  },
+  restaurants: {
+    appName: "Sonoran · Daily Ops",
+    view: "Two locations · yesterday",
+    kpis: [
+      { label: "Net sales", value: "$18,420", delta: "12% WoW", positive: true },
+      { label: "Covers", value: "284", delta: "9%", positive: true },
+      { label: "Avg ticket", value: "$64.85", delta: "$3.10", positive: true },
+      { label: "Labor %", value: "27.4%", delta: "1.2 pts", positive: false },
+    ],
+    chart: { title: "Net sales · last 14 days", data: [12, 14, 13, 16, 17, 19, 22, 18, 21, 23, 20, 24, 26, 28], accent: "copper" },
+    rows: [
+      { label: "Carne asada plate", value: 92, max: 100, accent: "copper" },
+      { label: "Margarita flight", value: 78, max: 100, accent: "copper" },
+      { label: "Sonoran hot dog", value: 64, max: 100, accent: "sage" },
+      { label: "Mesquite ribeye", value: 28, max: 100, accent: "sage" },
+    ],
+    list: {
+      title: "Action items",
+      items: [
+        { primary: "3 new Google reviews", secondary: "Draft replies ready to send", tag: "Draft" },
+        { primary: "Tonight: 142 reservations", secondary: "+ 6 large parties · prep for 7p rush", tag: "7p" },
+        { primary: "86: Hamachi crudo", secondary: "Supplier delivery delayed 1 day", tag: "86" },
+        { primary: "Birria tacos margin down 4%", secondary: "Beef cost spike · review price", tag: "Watch" },
+      ],
+    },
+  },
+  contractors: {
+    appName: "Sonoran · Job Board",
+    view: "Field + Office · live",
+    kpis: [
+      { label: "Active jobs", value: "42", delta: "8 today", positive: true },
+      { label: "Quoted", value: "$84.5k", delta: "12 open", positive: true },
+      { label: "AR 30+", value: "$22.1k", delta: "$4k", positive: false },
+      { label: "Close rate", value: "41%", delta: "13 pts", positive: true },
+    ],
+    chart: { title: "Revenue · last 14 days", data: [6, 8, 7, 11, 13, 12, 15, 17, 16, 19, 22, 21, 24, 27], accent: "copper" },
+    rows: [
+      { label: "HVAC installs", value: 38, max: 50, accent: "copper" },
+      { label: "Service calls", value: 31, max: 50, accent: "copper" },
+      { label: "Maintenance plans", value: 24, max: 50, accent: "sage" },
+      { label: "Warranty followups", value: 9, max: 50, accent: "sage" },
+    ],
+    list: {
+      title: "Today's schedule",
+      items: [
+        { primary: "9:00 · Williams residence", secondary: "AC tune-up · Tech: J. Ortiz", tag: "On way" },
+        { primary: "11:30 · Saguaro Plaza", secondary: "Rooftop unit replacement", tag: "2 techs" },
+        { primary: "2:00 · Quote · Vega home", secondary: "Mini-split · 3-zone estimate", tag: "Quote" },
+        { primary: "Invoice · Mercado job #4471", secondary: "Auto-sent at completion · paid", tag: "Paid" },
+      ],
+    },
+  },
+  "salons-wellness": {
+    appName: "Sonoran · Studio",
+    view: "All providers · this week",
+    kpis: [
+      { label: "Bookings", value: "318", delta: "11%", positive: true },
+      { label: "Rebook rate", value: "62%", delta: "8 pts", positive: true },
+      { label: "Avg ticket", value: "$148", delta: "$12", positive: true },
+      { label: "Inactive 90d", value: "47", delta: "win-back live", positive: true },
+    ],
+    chart: { title: "Revenue per chair", data: [340, 360, 380, 410, 395, 430, 460, 445, 470, 490, 510, 525, 540, 560], accent: "sage" },
+    rows: [
+      { label: "Maya · color", value: 96, max: 100, accent: "copper" },
+      { label: "Sienna · facials", value: 88, max: 100, accent: "copper" },
+      { label: "Aria · lash", value: 72, max: 100, accent: "sage" },
+      { label: "Open chair", value: 31, max: 100, accent: "sage" },
+    ],
+    list: {
+      title: "Auto-flows running",
+      items: [
+        { primary: "Color rebook · 6-week reminder", secondary: "32 clients in sequence", tag: "Live" },
+        { primary: "Win-back · 90+ days inactive", secondary: "47 clients · 20% off offer", tag: "Live" },
+        { primary: "Post-visit review · last 24h", secondary: "18 sent · 11 replies", tag: "61%" },
+        { primary: "DM triage · @studio", secondary: "9 booking intents drafted", tag: "Draft" },
+      ],
+    },
+  },
+  "real-estate": {
+    appName: "Sonoran · Pipeline",
+    view: "Team of 6 · this month",
+    kpis: [
+      { label: "Active leads", value: "184", delta: "23 new", positive: true },
+      { label: "Under contract", value: "11", delta: "$4.2M vol", positive: true },
+      { label: "Projected GCI", value: "$112k", delta: "17%", positive: true },
+      { label: "Lead → appt", value: "24%", delta: "5 pts", positive: true },
+    ],
+    chart: { title: "Pipeline value · last 14 days", data: [1.2, 1.4, 1.5, 1.8, 1.9, 2.1, 2.4, 2.3, 2.7, 3.0, 3.2, 3.4, 3.7, 4.2], accent: "copper" },
+    rows: [
+      { label: "Buyers", value: 92, max: 100, accent: "copper" },
+      { label: "Sellers", value: 41, max: 100, accent: "copper" },
+      { label: "Sphere / past clients", value: 36, max: 100, accent: "sage" },
+      { label: "Open house signups", value: 28, max: 100, accent: "sage" },
+    ],
+    list: {
+      title: "Transaction milestones",
+      items: [
+        { primary: "112 W. Speedway · inspection", secondary: "Drafted update to buyers + lender", tag: "Draft" },
+        { primary: "Catalina foothills listing", secondary: "Goes live tomorrow · MLS ready", tag: "Live" },
+        { primary: "Open house · Sat 11–1", secondary: "QR sign-in armed · 14 RSVPs", tag: "Sat" },
+        { primary: "Closing · Vega family", secondary: "Tuesday · COE checklist 90%", tag: "Tue" },
+      ],
+    },
+  },
+  "consultants-coaches": {
+    appName: "Sonoran · Practice OS",
+    view: "Solo + 2 contractors · this month",
+    kpis: [
+      { label: "Active clients", value: "14", delta: "2 new", positive: true },
+      { label: "MRR", value: "$28,400", delta: "9%", positive: true },
+      { label: "Proposals out", value: "5", delta: "$48k", positive: true },
+      { label: "Admin hrs", value: "3.2", delta: "6 hrs saved", positive: true },
+    ],
+    chart: { title: "Revenue · last 14 days", data: [400, 450, 600, 580, 720, 800, 900, 880, 1050, 1100, 1240, 1320, 1410, 1580], accent: "sage" },
+    rows: [
+      { label: "Retainer engagements", value: 84, max: 100, accent: "copper" },
+      { label: "Strategy sprints", value: 56, max: 100, accent: "copper" },
+      { label: "Workshops", value: 24, max: 100, accent: "sage" },
+      { label: "Advisory calls", value: 18, max: 100, accent: "sage" },
+    ],
+    list: {
+      title: "Next-step queue",
+      items: [
+        { primary: "Discovery · Atlas Logistics", secondary: "Intake filled · proposal drafted", tag: "Send" },
+        { primary: "Invoice · Northstar Q3", secondary: "Auto-sent · net 15", tag: "Sent" },
+        { primary: "Onboarding · new client", secondary: "Portal live · kickoff Thu", tag: "Live" },
+        { primary: "AI knowledge assistant", secondary: "12 client questions drafted", tag: "Draft" },
+      ],
+    },
+  },
+};
 
 export const INDUSTRIES: Record<IndustrySlug, IndustryContent> = {
   "law-firms": {
