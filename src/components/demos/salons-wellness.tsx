@@ -38,10 +38,10 @@ const SERVICES = [
 ];
 
 const STYLISTS = [
-  { name: "Sienna Rivera", title: "Master Colorist", specialty: "Balayage · Dimensional Color", books: "Booking 3 weeks out" },
-  { name: "Maya Thornton", title: "Lead Stylist", specialty: "Precision Cuts · Curls", books: "Booking 1 week out" },
-  { name: "Dr. Lena Park", title: "Lead Esthetician", specialty: "Anti-aging · Acne", books: "Booking 2 weeks out" },
-  { name: "Ava Kohler", title: "Lash Specialist", specialty: "Volume · Wispy Sets", books: "Booking 5 days out" },
+  { name: "Sienna Rivera", title: "Master Colorist", specialty: "Balayage · Dimensional Color", books: "Booking 3 weeks out", img: "https://images.unsplash.com/photo-1580618672591-eb180b1a973f?auto=format&fit=crop&w=600&q=80" },
+  { name: "Maya Thornton", title: "Lead Stylist", specialty: "Precision Cuts · Curls", books: "Booking 1 week out", img: "https://images.unsplash.com/photo-1614287859820-7d3eeae8d29d?auto=format&fit=crop&w=600&q=80" },
+  { name: "Dr. Lena Park", title: "Lead Esthetician", specialty: "Anti-aging · Acne", books: "Booking 2 weeks out", img: "https://images.unsplash.com/photo-1592621385612-4d7129426394?auto=format&fit=crop&w=600&q=80" },
+  { name: "Ava Kohler", title: "Lash Specialist", specialty: "Volume · Wispy Sets", books: "Booking 5 days out", img: "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=crop&w=600&q=80" },
 ];
 
 const MEMBERSHIPS = [
@@ -218,8 +218,9 @@ export default function SalonsWellnessDemo() {
             {STYLISTS.map((s) => (
               <Reveal key={s.name}>
                 <div className="rounded-3xl overflow-hidden bg-white border border-rose-100 shadow-sm hover:shadow-xl transition-shadow">
-                  <div className="aspect-[4/5] bg-gradient-to-br from-rose-200 via-pink-300 to-fuchsia-400 relative">
-                    <div className="absolute inset-0 -z-10 opacity-30" style={{ backgroundImage: "radial-gradient(circle at 50% 30%, rgba(255,255,255,0.5), transparent 60%)" }} />
+                  <div className="aspect-[4/5] relative overflow-hidden">
+                    <img src={s.img} alt={s.name} className="absolute inset-0 h-full w-full object-cover" loading="lazy" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-rose-950/40 to-transparent" />
                   </div>
                   <div className="p-5">
                     <p className="text-lg text-rose-950" style={{ fontFamily: theme.fontHeading }}>{s.name}</p>
