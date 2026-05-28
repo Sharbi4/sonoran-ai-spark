@@ -447,10 +447,6 @@ function IndustrySpotlight() {
   );
 }
 
-function DarkFinalCTA() {
-  return _DarkFinalCTA();
-}
-
 function DemoLibrary() {
   return (
     <Section className="bg-cream/40 border-y border-sand">
@@ -510,7 +506,7 @@ function DemoLibrary() {
   );
 }
 
-function _DarkFinalCTA() {
+function DarkFinalCTA() {
   return (
     <section className="py-20 sm:py-28 bg-charcoal">
       <div className="mx-auto max-w-4xl px-5 sm:px-8 text-center">
