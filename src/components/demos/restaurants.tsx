@@ -126,6 +126,35 @@ export default function RestaurantsDemo() {
 
       {/* MENU */}
       <section id="menu" className="py-24">
+        {/* On The Pass — editorial photo strip */}
+        <div className="mx-auto max-w-7xl px-5 sm:px-8 mb-20">
+          <Reveal>
+            <div className="flex items-end justify-between mb-6">
+              <div>
+                <SectionLabel color={theme.accentText}>On The Pass</SectionLabel>
+                <h3 className="text-3xl sm:text-4xl text-gray-900" style={{ fontFamily: theme.fontHeading }}>This week, from the wood fire.</h3>
+              </div>
+              <p className="hidden sm:block text-xs text-gray-500 max-w-xs text-right">Photography updated weekly by our pastry chef.</p>
+            </div>
+          </Reveal>
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
+            {[
+              { src: "https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&w=900&q=80", label: "Carne Asada · 48h Marinade" },
+              { src: "https://images.unsplash.com/photo-1565299543923-37dd37887442?auto=format&fit=crop&w=900&q=80", label: "Prickly Pear Margarita" },
+              { src: "https://images.unsplash.com/photo-1565299585323-38d6b0865b47?auto=format&fit=crop&w=900&q=80", label: "Mesquite Wood Fire" },
+              { src: "https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&w=900&q=80", label: "Tres Leches · Burnt Sugar" },
+            ].map((p, i) => (
+              <Reveal key={p.src} delay={i * 0.05}>
+                <figure className="group relative overflow-hidden rounded-2xl aspect-[4/5]">
+                  <img src={p.src} alt={p.label} className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/0 to-black/0" />
+                  <figcaption className="absolute bottom-3 left-3 right-3 text-white text-xs font-medium tracking-wide" style={{ fontFamily: theme.fontHeading }}>{p.label}</figcaption>
+                </figure>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+
         <div className="mx-auto max-w-6xl px-5 sm:px-8">
           <Reveal>
             <div className="text-center max-w-2xl mx-auto mb-10">
