@@ -61,6 +61,13 @@ export default function LawFirmsDemo() {
       {/* HERO */}
       <section className="relative isolate overflow-hidden">
         <div aria-hidden className="absolute inset-0 -z-10" style={{ background: "linear-gradient(135deg, #0A1D3D 0%, #1B3A6B 60%, #2C5588 100%)" }} />
+        <img
+          aria-hidden
+          src="https://images.unsplash.com/photo-1589994965851-a8f479c573a9?auto=format&fit=crop&w=1800&q=80"
+          alt=""
+          className="absolute inset-0 -z-10 h-full w-full object-cover opacity-25"
+        />
+        <div aria-hidden className="absolute inset-0 -z-10" style={{ background: "linear-gradient(180deg, rgba(10,29,61,0.55) 0%, rgba(10,29,61,0.85) 100%)" }} />
         <div className="absolute inset-0 -z-10 opacity-20" style={{ backgroundImage: "url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><path d='M0 50h100M50 0v100' stroke='white' stroke-opacity='0.05'/></svg>\")", backgroundSize: "40px 40px" }} />
         <div className="mx-auto max-w-7xl px-5 sm:px-8 pt-20 sm:pt-28 pb-24 text-white grid lg:grid-cols-[1.2fr_1fr] gap-14 items-center">
           <Reveal>
