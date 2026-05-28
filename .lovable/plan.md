@@ -1,75 +1,47 @@
-## Sonoran Systems & AI — full site build
+## Goal
+Position **3-Month Website Care** as an included value-add on every website-related package, with clearly defined limits so it doesn't become unbounded support.
 
-Incremental upgrade on top of the existing app. Keeps the current design tokens (terracotta/sage/sand/charcoal already in `src/styles.css`), site shell (`site-layout.tsx`, logo, nav), Stripe/Calendly/webhook plumbing, and `purchases` table. Replaces or rebuilds pages per the brief and adds the missing ones.
+## Scope of changes (all in `src/routes/packages.tsx`)
 
-### Brand audit (before any pages)
-- Verify CSS tokens in `src/styles.css` match brief exactly: `#FBF7F2` bg, `#1F1F1F` charcoal, `#C24F34` terracotta, `#E07A6B` adobe rose, `#8BA395` sage, `#E9DFCF` sand, `#FFFFFF` card. Add any missing semantic token (`--rose`, `--sand`, `--copper`/`--terracotta`).
-- Confirm fonts: bold geometric sans for headings, clean sans for body. Add via `<link>` if not already loaded.
-- Audit `Button`, section labels (11px uppercase tracked), card border style — extend variants once, reuse everywhere.
+### 1. Add care note to Web & Brand cards
+The "Build the System" cards currently only show price + tagline (no bullets). I'll extend the Web & Brand items with an optional `care` flag, and render a small badge under the tagline:
 
-### Shared building blocks (`src/components/`)
-- `nav-mega.tsx` — Services mega dropdown (2 cols + sand CTA strip) and Industries dropdown. Replaces current header nav. Mobile sheet variant.
-- `start-here-cards.tsx` — 3-card chooser (Inquiry / Strategy Call / AI Audit) used on Home and Contact, with payment CTAs wired through `useStripeCheckout`.
-- `process-steps.tsx` — 5-step horizontal flow with animated connecting line.
-- `services-grid.tsx` — 4×2 service cards with sage icons + spring hover.
-- `dashboard-preview.tsx` — animated stats with count-up on scroll, terracotta line + bar charts.
-- `industry-cards.tsx` — reusable 5-card row + per-industry detail template.
-- `integrations-marquee.tsx` — auto-scrolling chip row, pauses on hover.
-- `who-this-is-for.tsx` — two-column comparison block.
-- `package-teaser.tsx`, `portal-teaser.tsx`, `faq.tsx` (Radix Accordion), `final-cta.tsx`.
-- `floating-ui-cards.tsx` — hero AI Assistant / Workflow / Daily Summary cards with framer-motion spring entrances.
-- `count-up.tsx` — viewport-triggered animated number.
-- Motion primitives already exist (`Reveal`, `StaggerGroup`, `ParallaxLayer`) — extend with a `Curtain` reveal (clip-path lift) since the brief specifies curtain, not fade.
+> ✓ Includes 3-Month Website Care
 
-### Routes (all 21, built in this order)
-1. Rebuild `routes/index.tsx` — Hero, Start Here, Process, Services Grid, Dashboard Preview, Industries, Integrations marquee, Who-this-is-for, Package teaser, Portal teaser, FAQ, Final CTA.
-2. Rebuild `routes/packages.tsx` — comparison table, featured Audit card, Strategy Call card, 4 project packages, retainer, revision policy, not-sure block.
-3. Rebuild `routes/contact.tsx` — keep working Calendly + intake form, add Start Here cards, booking-flow explanation box (3 flows), full intake form per spec.
-4. Rebuild `routes/about.tsx` — firm voice, founder section, Tucson roots, principles, capabilities.
-5. Rebuild `routes/ai-audit.tsx` — audit-specific landing with checkout CTA + intake explainer.
-6. `routes/services.tsx` — services overview.
-7. Service detail pages: `services.ai-consulting`, `services.websites`, `services.brand-design`, `services.workflow-automation`, `services.ai-chatbots`, `services.dashboards`, `services.email-automation`, `services.lead-capture` (use existing `dashboards.tsx` / `email-automation.tsx` as starting points, restructure under `/services/*`).
-8. `routes/industries.tsx` — industries overview.
-9. Full industry pages: `industries.law-firms`, `industries.restaurants`, `industries.contractors`, `industries.salons-wellness`, `industries.real-estate`, `industries.consultants-coaches`. Each: hero, pain points, recommended systems, tool integrations, sample workflow, case study placeholder, CTA.
-10. `routes/portal.tsx` — Client Portal teaser (no auth yet, marketing page only).
-11. Update `routes/__root.tsx` / `site-layout.tsx` for new mega-nav.
+Applies to:
+- **Starter Website** ($1,750+)
+- **Website System Launch** ($2,500+)
+- **Brand + Web Launch** ($3,000+)
 
-Every route gets distinct `head()` metadata (title, description, og:title, og:description). Leaf pages get og:image where there's a hero asset.
+Note: there is no "Website + Automation Launch" package on the page today. I'll add the care badge to the three above and ask whether you want a new combined package created (see open question).
 
-### Payments wiring (Strategy Call + AI Audit)
-- Create two Stripe products via `payments--batch_create_product`:
-  - `strategy_call` → price `strategy_call_60min`, $250 one-time, qty 1.
-  - `ai_audit` → price `ai_audit_497`, $497 one-time, qty 1.
-- Both digital services → tax code `txcd_20030000` (consulting services) — confirm at build time.
-- **Tax decision:** I'll ask at the start of build whether to enable Stripe-managed compliance handling (+3.5%), tax calculation only (+0.5%), or no tax automation. Default recommendation: managed compliance handling since this is digital consulting and the seller is US-based.
-- Wire `Pay & Book →` (Strategy Call) and `Buy Audit →` (Audit) via existing `useStripeCheckout` hook → embedded checkout dialog.
-- Return URL: `/thank-you?type=strategy|audit&session_id={CHECKOUT_SESSION_ID}`. `thank-you.tsx` branches:
-  - Strategy: shows Calendly embed + short pre-call intake form.
-  - Audit: shows full Audit intake form, then Calendly.
-- Webhook (`api/public/payments/webhook.ts`) already records to `purchases` — extend to stamp `product_name` and route metadata from session.
+### 2. New "What's Included in 3-Month Website Care" section
+A clean two-column block placed directly under the Web & Brand group (before Automation & AI), styled to match existing section cards:
 
-### Motion system
-- Lenis already wired.
-- Add `Curtain` reveal primitive (clip-path inset from top) — used for section headlines per "curtain lifting, never a fade".
-- Spring config: `{ stiffness: 110, damping: 22, mass: 0.9 }` (already in `primitives.tsx`).
-- Stagger 0.15s on card groups.
-- Hover: scale 1.02, shadow expansion, arrow translate-x on buttons.
-- Buttons press-in on tap (`whileTap={{ scale: 0.97 }}`).
-- Number count-up via `useInView` + `animate` on scroll into viewport.
-- Page transitions: existing route transitions stay; add fade-slide overlay in `__root.tsx` via `AnimatePresence` keyed by `pathname`.
+- **Included** (small edits, up to 5 per month for 3 months):
+  text updates, image swaps, link/button fixes, typo fixes, contact-info updates, testimonial swaps, business-hours updates, minor spacing/mobile fixes, form routing corrections, broken-link fixes, basic launch bug fixes, small SEO title/meta updates, updating one existing section with provided content.
+- **Not included** (quoted separately or via monthly support):
+  new pages, redesigns, new brand direction, new logos, new automations/integrations, dashboards, portals, blog writing, SEO campaigns, paid ads, large copy rewrites, major layout changes, ecommerce, custom code, platform migration.
 
-### SEO + a11y
-- Single H1 per route, semantic landmarks, alt on every illustration.
-- JSON-LD: `LocalBusiness` on Home + Contact (Tucson, AZ).
-- Open Graph + Twitter cards per route.
-- All interactive elements keyboard-accessible (already shadcn).
+### 3. Edit-size reference table
+Compact table under the care section:
 
-### Out of scope (this pass)
-- Real client portal auth/dashboard — only the marketing teaser route.
-- Case study detail pages beyond the existing `case-studies.tsx` (industry pages reference placeholders).
-- Email templates — already pending separate domain setup (`sonoransystemsai.com`).
+| Edit type | Examples | Included? |
+|---|---|---|
+| Small | text, image swap, typo, link, button | Yes, during care |
+| Medium | rework existing section, new form field, single-section layout change | Limited / may be quoted |
+| Large | new page, redesign, new feature/integration/automation | Quoted separately |
 
-### Technical notes
-- ~25 new files, ~10 rewrites. No new dependencies needed (framer-motion, lenis, stripe, calendly all present).
-- Will run in batches: (a) shared components + Home + nav, (b) Packages + Contact + Audit + payments wiring, (c) Services overview + 8 service detail pages, (d) Industries overview + 6 industry pages, (e) About + Portal + polish pass.
-- After each batch, verify build and spot-check the preview before moving on.
+### 4. Fine-print line
+Append to the existing fine-print/footnote area on the packages page:
+
+> Website packages include 3 months of post-launch website care covering up to 5 small edits per month (text changes, image swaps, typo/link fixes, form routing corrections, minor layout adjustments). New pages, redesigns, new sections, integrations, automation/dashboard work, ecommerce, and major copy rewrites are quoted separately. Automation packages: care covers website edits only — automation/workflow/chatbot/email-sequence changes are scoped separately or via a monthly support plan.
+
+## Open questions
+1. Do you want me to **add a new "Website + Automation Launch ($3,500+)"** package to the Web & Brand group (you referenced it in the brief, but it doesn't exist yet)?
+2. Confirm the **5 edits/month cap** wording — include it on the cards too, or keep it only in the fine print so the cards stay clean?
+
+## Out of scope
+- No changes to retainer pricing or contents.
+- No changes to Start Here cards (Strategy Call, Audit, etc.).
+- No backend/Stripe changes.
