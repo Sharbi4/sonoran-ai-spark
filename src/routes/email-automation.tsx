@@ -158,7 +158,7 @@ function EmailAutomationPage() {
               and follow up automatically — so nothing falls through the cracks.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <PrimaryButton to="/contact">Book a Free Consultation</PrimaryButton>
+              <PrimaryButton to="/contact">Submit a Free Inquiry</PrimaryButton>
               <SecondaryButton to="/packages">View Packages</SecondaryButton>
             </div>
           </div>
@@ -350,7 +350,7 @@ function EmailAutomationPage() {
 
       <FinalCTA
         headline="Stop losing leads to an unorganized inbox."
-        sub="Book a free consultation and we'll show you what an automated email system looks like for your business."
+        sub="Submit a free inquiry and we'll show you what an automated email system looks like for your business."
       />
     </SiteLayout>
   );

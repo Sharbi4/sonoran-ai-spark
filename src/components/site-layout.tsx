@@ -468,7 +468,7 @@ export function DiagonalBands({ className }: { className?: string }) {
 
 export function FinalCTA({
   headline = "Ready to make your business easier to run?",
-  sub = "Book a free phone consultation and we'll talk through your website, workflows, tools, and where AI can actually help.",
+  sub = "Submit a free inquiry and we'll talk through your website, workflows, tools, and where AI can actually help.",
 }: {
   headline?: string;
   sub?: string;
@@ -485,7 +485,7 @@ export function FinalCTA({
               </h2>
               <p className="mt-5 text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto">{sub}</p>
               <div className="mt-10 flex justify-center gap-3 flex-wrap">
-                <PrimaryButton to="/contact">Book a Free Consultation</PrimaryButton>
+                <PrimaryButton to="/contact">Submit a Free Inquiry</PrimaryButton>
                 <SecondaryButton to="/packages">View Packages</SecondaryButton>
               </div>
             </div>
