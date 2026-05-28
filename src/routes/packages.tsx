@@ -5,6 +5,8 @@ import {
   LifeBuoy, Repeat, Rocket, Crown,
 } from "lucide-react";
 import { SiteLayout, Section, CopperButton, Accent } from "@/components/site-layout";
+import { useStripeCheckout } from "@/hooks/useStripeCheckout";
+import { ArrowRight } from "lucide-react";
 
 export const Route = createFileRoute("/packages")({
   head: () => ({
@@ -26,6 +28,7 @@ const START_HERE = [
     icon: Compass,
     name: "Business Systems Strategy Call",
     price: "$250",
+    priceId: "strategy_call_250",
     unit: "per 60-min session",
     tagline: "Live advisory. No deliverable — just clear answers.",
     includes: [
@@ -34,13 +37,14 @@ const START_HERE = [
       "Tool & workflow recommendations",
       "Recording + 1-paragraph recap",
     ],
-    cta: "Book a Strategy Call",
+    cta: "Pay & Book — $250",
     featured: false,
   },
   {
     icon: FileSearch,
     name: "Website + AI Readiness Review",
     price: "$197",
+    priceId: "website_ai_readiness_197",
     unit: "one-time",
     tagline: "A written diagnostic of your website and AI fit.",
     includes: [
@@ -56,6 +60,7 @@ const START_HERE = [
     icon: Workflow,
     name: "Automation Opportunity Map",
     price: "$297",
+    priceId: "automation_opportunity_297",
     unit: "one-time",
     tagline: "A written map of every workflow we'd automate.",
     includes: [
@@ -71,6 +76,7 @@ const START_HERE = [
     icon: ClipboardCheck,
     name: "AI Business Systems Audit",
     price: "$497",
+    priceId: "ai_audit_497",
     unit: "one-time · 3 business days",
     tagline: "Our flagship paid diagnostic — the full picture.",
     includes: [
@@ -251,8 +257,10 @@ function CheckList({ items }: { items: string[] }) {
 }
 
 function Packages() {
+  const { openCheckout, checkoutElement } = useStripeCheckout();
   return (
     <SiteLayout>
+      {checkoutElement}
       {/* Header */}
       <Section className="pt-16 sm:pt-24 pb-8">
         <div className="max-w-3xl">
@@ -329,13 +337,19 @@ function Packages() {
                   <CheckList items={[...p.includes]} />
                 </div>
                 <div className="mt-6">
-                  <CopperButton
-                    to="/contact"
-                    variant={p.featured ? "filled" : "outlined"}
-                    className="w-full"
+                  <button
+                    type="button"
+                    onClick={() => openCheckout({ priceId: p.priceId })}
+                    className={
+                      "w-full inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-medium transition-colors " +
+                      (p.featured
+                        ? "bg-copper text-copper-foreground hover:bg-copper/90 shadow-[0_10px_30px_-12px_rgba(194,79,52,0.5)]"
+                        : "border border-copper text-copper hover:bg-copper hover:text-copper-foreground")
+                    }
                   >
-                    {p.cta}
-                  </CopperButton>
+                    <span>{p.cta}</span>
+                    <ArrowRight className="h-4 w-4" />
+                  </button>
                 </div>
               </div>
             );
