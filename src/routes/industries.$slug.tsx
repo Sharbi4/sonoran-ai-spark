@@ -1,6 +1,19 @@
 import { createFileRoute, notFound } from "@tanstack/react-router";
-import { IndustryTemplate } from "@/components/industry-template";
+import { IndustryTemplate, type DemoInfo } from "@/components/industry-template";
 import { INDUSTRIES, INDUSTRY_MOCKUPS, INDUSTRY_SLUGS, type IndustrySlug } from "@/lib/industries-content";
+
+const DEMO_INFO: Record<string, DemoInfo> = {
+  "law-firms": { brandName: "Desert Ridge Legal", stats: [{ value: "74%", label: "Faster Intake" }, { value: "4 min", label: "Avg Response Time" }, { value: "$22K", label: "Monthly Revenue Gain" }, { value: "98%", label: "Lead Capture Rate" }] },
+  contractors: { brandName: "Summit Builders", stats: [{ value: "43%", label: "More Jobs Booked" }, { value: "100%", label: "Follow-Up Rate" }, { value: "73%", label: "Revenue Growth" }, { value: "38%", label: "Close Rate" }] },
+  restaurants: { brandName: "Copper Canyon Grill", stats: [{ value: "31%", label: "Revenue Growth" }, { value: "139%", label: "Catering Revenue Up" }, { value: "0 min", label: "Manual Reporting" }, { value: "95%", label: "Reviews Answered" }] },
+  "salons-wellness": { brandName: "Oasis Studio", stats: [{ value: "22%", label: "Rebook Rate Increase" }, { value: "62%", label: "Retention Rate" }, { value: "$148", label: "Avg Ticket" }, { value: "61%", label: "Review Response Rate" }] },
+  "real-estate": { brandName: "Sonoran Realty Group", stats: [{ value: "184", label: "Active Leads" }, { value: "$4.2M", label: "Pipeline Volume" }, { value: "24%", label: "Lead → Appointment" }, { value: "$112K", label: "Projected GCI" }] },
+  "consultants-coaches": { brandName: "Atlas Advisory", stats: [{ value: "14", label: "Active Clients" }, { value: "$28.4K", label: "Monthly Revenue" }, { value: "48h", label: "Proposal to Signature" }, { value: "6 hrs", label: "Admin Time Saved/Week" }] },
+  "doctors-medical": { brandName: "Sonoran Medical Group", stats: [{ value: "34%", label: "Fewer No-Shows" }, { value: "2+ hrs", label: "Staff Time Saved Daily" }, { value: "92", label: "Patient NPS Score" }, { value: "82%", label: "Digital Check-In Rate" }] },
+  "financial-advisors": { brandName: "Pinnacle Wealth", stats: [{ value: "$42.8M", label: "AUM Managed" }, { value: "4 days", label: "Avg Onboarding Time" }, { value: "186", label: "Active Clients" }, { value: "18%", label: "Revenue Growth YTD" }] },
+  "political-campaigns": { brandName: "Campaign Command", stats: [{ value: "$284K", label: "Donations Raised" }, { value: "342", label: "Active Volunteers" }, { value: "8,420", label: "Doors Knocked" }, { value: "34%", label: "Email Open Rate" }] },
+  "small-business-teams": { brandName: "Team Command", stats: [{ value: "18 min", label: "Avg Response Time" }, { value: "42", label: "Active Leads" }, { value: "14%", label: "Revenue Growth" }, { value: "8 hrs", label: "Admin Time Saved/Week" }] },
+};
 
 export const Route = createFileRoute("/industries/$slug")({
   beforeLoad: ({ params }) => {
@@ -46,5 +59,12 @@ export const Route = createFileRoute("/industries/$slug")({
 function IndustryDetailPage() {
   const { slug } = Route.useParams();
   const ind = INDUSTRIES[slug as IndustrySlug];
-  return <IndustryTemplate content={ind} mockup={INDUSTRY_MOCKUPS[slug as IndustrySlug]} slug={slug} />;
+  return (
+    <IndustryTemplate
+      content={ind}
+      mockup={INDUSTRY_MOCKUPS[slug as IndustrySlug]}
+      slug={slug}
+      demoInfo={DEMO_INFO[slug]}
+    />
+  );
 }

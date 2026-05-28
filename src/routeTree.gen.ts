@@ -22,6 +22,7 @@ import { Route as BlogRouteImport } from './routes/blog'
 import { Route as AiAuditRouteImport } from './routes/ai-audit'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as IndustriesIndexRouteImport } from './routes/industries.index'
 import { Route as IndustriesSlugRouteImport } from './routes/industries.$slug'
 import { Route as DemoSlugRouteImport } from './routes/demo.$slug'
 import { Route as ApiPublicContactRouteImport } from './routes/api/public/contact'
@@ -92,6 +93,11 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const IndustriesIndexRoute = IndustriesIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => IndustriesRoute,
+} as any)
 const IndustriesSlugRoute = IndustriesSlugRouteImport.update({
   id: '/$slug',
   path: '/$slug',
@@ -130,6 +136,7 @@ export interface FileRoutesByFullPath {
   '/thank-you': typeof ThankYouRoute
   '/demo/$slug': typeof DemoSlugRoute
   '/industries/$slug': typeof IndustriesSlugRoute
+  '/industries/': typeof IndustriesIndexRoute
   '/api/public/contact': typeof ApiPublicContactRoute
   '/api/public/payments/webhook': typeof ApiPublicPaymentsWebhookRoute
 }
@@ -142,13 +149,13 @@ export interface FileRoutesByTo {
   '/contact': typeof ContactRoute
   '/dashboards': typeof DashboardsRoute
   '/email-automation': typeof EmailAutomationRoute
-  '/industries': typeof IndustriesRouteWithChildren
   '/packages': typeof PackagesRoute
   '/services': typeof ServicesRoute
   '/terms': typeof TermsRoute
   '/thank-you': typeof ThankYouRoute
   '/demo/$slug': typeof DemoSlugRoute
   '/industries/$slug': typeof IndustriesSlugRoute
+  '/industries': typeof IndustriesIndexRoute
   '/api/public/contact': typeof ApiPublicContactRoute
   '/api/public/payments/webhook': typeof ApiPublicPaymentsWebhookRoute
 }
@@ -169,6 +176,7 @@ export interface FileRoutesById {
   '/thank-you': typeof ThankYouRoute
   '/demo/$slug': typeof DemoSlugRoute
   '/industries/$slug': typeof IndustriesSlugRoute
+  '/industries/': typeof IndustriesIndexRoute
   '/api/public/contact': typeof ApiPublicContactRoute
   '/api/public/payments/webhook': typeof ApiPublicPaymentsWebhookRoute
 }
@@ -190,6 +198,7 @@ export interface FileRouteTypes {
     | '/thank-you'
     | '/demo/$slug'
     | '/industries/$slug'
+    | '/industries/'
     | '/api/public/contact'
     | '/api/public/payments/webhook'
   fileRoutesByTo: FileRoutesByTo
@@ -202,13 +211,13 @@ export interface FileRouteTypes {
     | '/contact'
     | '/dashboards'
     | '/email-automation'
-    | '/industries'
     | '/packages'
     | '/services'
     | '/terms'
     | '/thank-you'
     | '/demo/$slug'
     | '/industries/$slug'
+    | '/industries'
     | '/api/public/contact'
     | '/api/public/payments/webhook'
   id:
@@ -228,6 +237,7 @@ export interface FileRouteTypes {
     | '/thank-you'
     | '/demo/$slug'
     | '/industries/$slug'
+    | '/industries/'
     | '/api/public/contact'
     | '/api/public/payments/webhook'
   fileRoutesById: FileRoutesById
@@ -344,6 +354,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/industries/': {
+      id: '/industries/'
+      path: '/'
+      fullPath: '/industries/'
+      preLoaderRoute: typeof IndustriesIndexRouteImport
+      parentRoute: typeof IndustriesRoute
+    }
     '/industries/$slug': {
       id: '/industries/$slug'
       path: '/$slug'
@@ -377,10 +394,12 @@ declare module '@tanstack/react-router' {
 
 interface IndustriesRouteChildren {
   IndustriesSlugRoute: typeof IndustriesSlugRoute
+  IndustriesIndexRoute: typeof IndustriesIndexRoute
 }
 
 const IndustriesRouteChildren: IndustriesRouteChildren = {
   IndustriesSlugRoute: IndustriesSlugRoute,
+  IndustriesIndexRoute: IndustriesIndexRoute,
 }
 
 const IndustriesRouteWithChildren = IndustriesRoute._addFileChildren(

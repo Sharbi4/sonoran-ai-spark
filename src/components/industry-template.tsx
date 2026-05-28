@@ -1,5 +1,4 @@
 import { Check, ArrowRight, ExternalLink, Lightbulb, Monitor, PenTool, Workflow, MessageSquare, BarChart3, MailPlus, Magnet } from "lucide-react";
-import { Link } from "@tanstack/react-router";
 import {
   SiteLayout,
   Section,
@@ -11,8 +10,6 @@ import {
 } from "@/components/site-layout";
 import { Reveal, StaggerGroup, StaggerItem } from "@/components/motion/primitives";
 import { DashboardMockup, type DashboardSpec } from "@/components/mockups";
-import { DEMO_CONFIGS } from "@/lib/demo-content";
-import type { IndustrySlug } from "@/lib/industries-content";
 
 export interface IndustryContent {
   label: string;
@@ -23,6 +20,11 @@ export interface IndustryContent {
   tools: string[];
   workflow: string[];
   caseStudy: { name: string; result: string };
+}
+
+export interface DemoInfo {
+  brandName: string;
+  stats: { value: string; label: string }[];
 }
 
 const CORE_SERVICES = [
@@ -40,12 +42,13 @@ export function IndustryTemplate({
   content,
   mockup,
   slug,
+  demoInfo,
 }: {
   content: IndustryContent;
   mockup?: DashboardSpec;
   slug?: string;
+  demoInfo?: DemoInfo;
 }) {
-  const demoConfig = slug ? DEMO_CONFIGS[slug as IndustrySlug] : undefined;
 
   return (
     <SiteLayout>
@@ -74,46 +77,45 @@ export function IndustryTemplate({
       </Section>
 
       {/* Demo Website Preview */}
-      {demoConfig && slug && (
+      {demoInfo && slug && (
         <Section className="pt-0">
           <Reveal>
-            <div className="rounded-3xl bg-gradient-to-br from-charcoal to-charcoal/95 border border-charcoal/40 overflow-hidden">
+            <div className="rounded-3xl bg-[#1F1F1F] border border-white/10 overflow-hidden">
               <div className="p-8 sm:p-12">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="h-10 w-10 rounded-xl bg-copper/20 flex items-center justify-center">
                     <ExternalLink className="h-5 w-5 text-copper" />
                   </div>
-                  <SectionLabel color="cream">Demo Website</SectionLabel>
+                  <p className="text-[11px] font-semibold tracking-[0.28em] uppercase text-white/70">Demo Website</p>
                 </div>
-                <h2 className="font-serif text-2xl sm:text-3xl text-cream text-balance">
+                <h2 className="font-serif text-2xl sm:text-3xl text-white text-balance">
                   See what a premium {content.label.toLowerCase()} website looks like.
                 </h2>
-                <p className="mt-3 text-cream/70 leading-relaxed max-w-2xl">
-                  We built a full demo site — <span className="text-copper font-medium">{demoConfig.brandName}</span> — to show exactly what a custom website, dashboard, and automation system looks like for {content.label.toLowerCase()}. Explore the features, dashboard, and workflows.
+                <p className="mt-3 text-white/75 leading-relaxed max-w-2xl">
+                  We built a full demo site — <span className="text-copper font-medium">{demoInfo.brandName}</span> — to show exactly what a custom website, dashboard, and automation system looks like for {content.label.toLowerCase()}. Explore the features, dashboard, and workflows.
                 </p>
                 <div className="mt-6 flex flex-wrap gap-3">
-                  <Link
-                    to="/demo/$slug"
-                    params={{ slug }}
+                  <a
+                    href={`/demo/${slug}`}
                     className="inline-flex items-center gap-2 rounded-full bg-copper px-6 py-3 text-sm font-medium text-copper-foreground hover:bg-copper/90 transition-colors"
                   >
-                    Explore {demoConfig.brandName} Demo <ArrowRight className="h-4 w-4" />
-                  </Link>
-                  <Link
-                    to="/contact"
-                    className="inline-flex items-center gap-2 rounded-full border border-cream/30 px-6 py-3 text-sm font-medium text-cream hover:bg-cream hover:text-charcoal transition-colors"
+                    Explore {demoInfo.brandName} Demo <ArrowRight className="h-4 w-4" />
+                  </a>
+                  <a
+                    href="/contact"
+                    className="inline-flex items-center gap-2 rounded-full border border-white/30 px-6 py-3 text-sm font-medium text-white hover:bg-white hover:text-[#1F1F1F] transition-colors"
                   >
                     Build This For Me
-                  </Link>
+                  </a>
                 </div>
               </div>
               {/* Mini preview of demo features */}
               <div className="border-t border-white/10 bg-white/5 px-8 sm:px-12 py-6">
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-                  {demoConfig.stats.map((s) => (
+                  {demoInfo.stats.map((s) => (
                     <div key={s.label} className="text-center">
                       <p className="font-serif text-xl font-bold text-copper">{s.value}</p>
-                      <p className="mt-0.5 text-[10px] text-cream/60 uppercase tracking-wider">{s.label}</p>
+                      <p className="mt-0.5 text-xs text-white/70 uppercase tracking-wider">{s.label}</p>
                     </div>
                   ))}
                 </div>
@@ -255,27 +257,84 @@ export function IndustryTemplate({
       </Section>
 
       <Section>
-        <div className="rounded-3xl bg-charcoal text-cream p-10 sm:p-14 relative overflow-hidden">
+        <div className="rounded-3xl bg-[#1F1F1F] text-white p-10 sm:p-14 relative overflow-hidden">
           <div aria-hidden className="absolute inset-0 satin-bands opacity-25 pointer-events-none" />
           <div className="relative grid lg:grid-cols-2 gap-10 items-center">
             <div>
-              <SectionLabel color="cream">Case study placeholder</SectionLabel>
-              <h3 className="mt-3 font-serif text-3xl sm:text-4xl text-cream text-balance">
+              <p className="text-[11px] font-semibold tracking-[0.28em] uppercase text-white/70">Case study placeholder</p>
+              <h3 className="mt-3 font-serif text-3xl sm:text-4xl text-white text-balance">
                 {content.caseStudy.name}
               </h3>
-              <p className="mt-5 text-cream/80 leading-relaxed max-w-md">
+              <p className="mt-5 text-white/75 leading-relaxed max-w-md">
                 {content.caseStudy.result}
               </p>
             </div>
             <div className="lg:justify-self-end">
-              <Link
-                to="/case-studies"
-                className="inline-flex items-center gap-2 rounded-full border border-cream/30 px-5 py-3 text-sm font-medium text-cream hover:bg-cream hover:text-charcoal transition-colors"
+              <a
+                href="/case-studies"
+                className="inline-flex items-center gap-2 rounded-full border border-white/30 px-5 py-3 text-sm font-medium text-white hover:bg-white hover:text-[#1F1F1F] transition-colors"
               >
                 Read Case Studies <ArrowRight className="h-4 w-4" />
-              </Link>
+              </a>
             </div>
           </div>
+        </div>
+      </Section>
+
+      {/* Why Sonoran for this Industry */}
+      <Section>
+        <div className="grid lg:grid-cols-3 gap-8">
+          <div className="lg:col-span-1">
+            <Reveal>
+              <SectionLabel>Why us</SectionLabel>
+              <h2 className="mt-3 font-serif text-3xl sm:text-4xl text-foreground text-balance">
+                Why Sonoran for <Accent>{content.label.toLowerCase()}</Accent>.
+              </h2>
+            </Reveal>
+          </div>
+          <div className="lg:col-span-2">
+            <StaggerGroup className="grid sm:grid-cols-2 gap-5">
+              {[
+                { title: "Industry-specific builds", body: `We don't use generic templates. Every system is built for how ${content.label.toLowerCase()} businesses actually operate day-to-day.` },
+                { title: "Your tools, connected", body: "We integrate with your existing software stack — no rip and replace. Everything talks to everything." },
+                { title: "Arizona-based, hands-on", body: "Tucson-based team, available by phone. We meet you where you are and speak plain English." },
+                { title: "Own everything we build", body: "No vendor lock-in. You own your website, data, automations, and dashboard. Walk away anytime." },
+              ].map((item) => (
+                <StaggerItem key={item.title}>
+                  <div className="rounded-2xl bg-card border border-sand p-6">
+                    <h3 className="font-medium text-foreground">{item.title}</h3>
+                    <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{item.body}</p>
+                  </div>
+                </StaggerItem>
+              ))}
+            </StaggerGroup>
+          </div>
+        </div>
+      </Section>
+
+      {/* Quick FAQ */}
+      <Section className="border-t border-sand">
+        <Reveal>
+          <SectionLabel>FAQ</SectionLabel>
+          <h2 className="mt-3 font-serif text-3xl sm:text-4xl text-foreground text-balance">
+            Common questions from {content.label.toLowerCase()} owners.
+          </h2>
+        </Reveal>
+        <div className="mt-10 max-w-3xl space-y-6">
+          {[
+            { q: "How long does a typical build take?", a: "Most projects launch in 3–5 weeks. Complex dashboard + automation builds may take 6–8 weeks. We'll give you a clear timeline during intake." },
+            { q: "Do I need to switch my existing tools?", a: "No. We integrate with the tools you already use. The goal is to connect everything, not replace it." },
+            { q: "What does it cost?", a: "Websites start at $1,750. Dashboards start at $2,500. Automations start at $1,500. We scope every project individually — no surprise fees." },
+            { q: "Can I see a demo before committing?", a: demoInfo ? `Yes — explore our ${demoInfo.brandName} demo to see exactly what we'd build for your business.` : "Yes — we'll walk you through examples during your strategy call." },
+            { q: "What happens after launch?", a: "Website builds include 3 months of care. For ongoing support, we offer monthly retainer packages starting at $500/mo." },
+          ].map((faq) => (
+            <Reveal key={faq.q}>
+              <div className="rounded-2xl bg-card border border-sand p-6">
+                <h3 className="font-medium text-foreground">{faq.q}</h3>
+                <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{faq.a}</p>
+              </div>
+            </Reveal>
+          ))}
         </div>
       </Section>
 
