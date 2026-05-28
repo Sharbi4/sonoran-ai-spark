@@ -17,19 +17,19 @@ const theme: DemoShellTheme = {
 };
 
 const LISTINGS = [
-  { price: "$1,245,000", beds: 4, baths: 3.5, sqft: 3120, addr: "8742 E Vista Bonita Dr", city: "North Scottsdale", tag: "New", grad: "from-emerald-300 to-teal-600" },
-  { price: "$875,000", beds: 3, baths: 2, sqft: 2240, addr: "1620 W Camino Real", city: "Paradise Valley", tag: "Open Sat", grad: "from-amber-300 to-orange-500" },
-  { price: "$2,450,000", beds: 5, baths: 4.5, sqft: 4880, addr: "10455 N Mummy Mountain", city: "Paradise Valley", tag: "Luxury", grad: "from-slate-400 to-slate-700" },
-  { price: "$640,000", beds: 3, baths: 2, sqft: 1980, addr: "405 E Highland Ave", city: "Phoenix · Arcadia", tag: "Hot", grad: "from-rose-300 to-red-500" },
-  { price: "$1,895,000", beds: 4, baths: 4, sqft: 3650, addr: "7811 E Mariposa Grande", city: "Scottsdale · McCormick", tag: "Pool", grad: "from-sky-300 to-blue-600" },
-  { price: "$525,000", beds: 2, baths: 2, sqft: 1420, addr: "44 W Portland St #305", city: "Downtown Phoenix", tag: "Loft", grad: "from-violet-300 to-purple-600" },
+  { price: "$1,245,000", beds: 4, baths: 3.5, sqft: 3120, addr: "8742 E Vista Bonita Dr", city: "North Scottsdale", tag: "New", img: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=900&q=80" },
+  { price: "$875,000", beds: 3, baths: 2, sqft: 2240, addr: "1620 W Camino Real", city: "Paradise Valley", tag: "Open Sat", img: "https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=900&q=80" },
+  { price: "$2,450,000", beds: 5, baths: 4.5, sqft: 4880, addr: "10455 N Mummy Mountain", city: "Paradise Valley", tag: "Luxury", img: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=900&q=80" },
+  { price: "$640,000", beds: 3, baths: 2, sqft: 1980, addr: "405 E Highland Ave", city: "Phoenix · Arcadia", tag: "Hot", img: "https://images.unsplash.com/photo-1570129477492-45c003edd2be?auto=format&fit=crop&w=900&q=80" },
+  { price: "$1,895,000", beds: 4, baths: 4, sqft: 3650, addr: "7811 E Mariposa Grande", city: "Scottsdale · McCormick", tag: "Pool", img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&q=80" },
+  { price: "$525,000", beds: 2, baths: 2, sqft: 1420, addr: "44 W Portland St #305", city: "Downtown Phoenix", tag: "Loft", img: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=900&q=80" },
 ];
 
 const AGENTS = [
-  { name: "Carla Mendez", title: "Founder · Lic. SA123456", sales: "$48M sold in 2025" },
-  { name: "Devin Park", title: "Luxury Specialist", sales: "$31M sold in 2025" },
-  { name: "Joelle Stratton", title: "Buyer's Agent", sales: "62 families placed" },
-  { name: "Marcus Hale", title: "New Construction", sales: "Toll Bros · Taylor Morrison" },
+  { name: "Carla Mendez", title: "Founder · Lic. SA123456", sales: "$48M sold in 2025", img: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80" },
+  { name: "Devin Park", title: "Luxury Specialist", sales: "$31M sold in 2025", img: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=600&q=80" },
+  { name: "Joelle Stratton", title: "Buyer's Agent", sales: "62 families placed", img: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=600&q=80" },
+  { name: "Marcus Hale", title: "New Construction", sales: "Toll Bros · Taylor Morrison", img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80" },
 ];
 
 export default function RealEstateDemo() {
@@ -118,8 +118,8 @@ export default function RealEstateDemo() {
             {LISTINGS.map((l) => (
               <Reveal key={l.addr}>
                 <div className="group bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-xl transition-all">
-                  <div className={cn("aspect-[4/3] bg-gradient-to-br relative", l.grad)}>
-                    <div className="absolute inset-0 -z-10 opacity-30" style={{ backgroundImage: "radial-gradient(circle at 30% 40%, rgba(0,0,0,0.4), transparent 60%)" }} />
+                  <div className="aspect-[4/3] relative overflow-hidden">
+                    <img src={l.img} alt={l.addr} className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
                     <span className="absolute top-3 left-3 bg-white text-emerald-800 text-[10px] font-bold uppercase tracking-wider px-2 py-1 rounded">{l.tag}</span>
                     <button className="absolute top-3 right-3 h-9 w-9 bg-white/90 rounded-full flex items-center justify-center hover:bg-white">
                       <Heart className="h-4 w-4 text-emerald-700" />
