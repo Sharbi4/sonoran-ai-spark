@@ -14,6 +14,72 @@ export type Database = {
   }
   public: {
     Tables: {
+      contact_submissions: {
+        Row: {
+          budget: string | null
+          business_name: string
+          business_type: string
+          challenge: string | null
+          city: string
+          created_at: string
+          email: string
+          first_name: string
+          help_with: string[]
+          id: string
+          ip_address: string | null
+          last_name: string
+          phone: string
+          repetitive: string | null
+          status: string
+          timeline: string
+          tools: string | null
+          user_agent: string | null
+          website: string | null
+        }
+        Insert: {
+          budget?: string | null
+          business_name: string
+          business_type: string
+          challenge?: string | null
+          city: string
+          created_at?: string
+          email: string
+          first_name: string
+          help_with?: string[]
+          id?: string
+          ip_address?: string | null
+          last_name: string
+          phone: string
+          repetitive?: string | null
+          status?: string
+          timeline: string
+          tools?: string | null
+          user_agent?: string | null
+          website?: string | null
+        }
+        Update: {
+          budget?: string | null
+          business_name?: string
+          business_type?: string
+          challenge?: string | null
+          city?: string
+          created_at?: string
+          email?: string
+          first_name?: string
+          help_with?: string[]
+          id?: string
+          ip_address?: string | null
+          last_name?: string
+          phone?: string
+          repetitive?: string | null
+          status?: string
+          timeline?: string
+          tools?: string | null
+          user_agent?: string | null
+          website?: string | null
+        }
+        Relationships: []
+      }
       purchases: {
         Row: {
           amount_total: number | null
