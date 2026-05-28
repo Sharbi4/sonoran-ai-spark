@@ -3,7 +3,6 @@ import { useEffect, useState, type FormEvent } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, Loader2, Lock, Mail, User as UserIcon, Building2 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
-import { lovable } from "@/integrations/lovable";
 import { useAuth } from "@/hooks/use-auth";
 import { LogoLockup } from "@/components/logo";
 import { cn } from "@/lib/utils";
@@ -39,17 +38,6 @@ function LoginPage() {
   useEffect(() => {
     if (!loading && user) navigate({ to: redirect, replace: true });
   }, [user, loading, redirect, navigate]);
-
-  const handleGoogle = async () => {
-    setSubmitting(true);
-    const res = await lovable.auth.signInWithOAuth("google", {
-      redirect_uri: window.location.origin + redirect,
-    });
-    if (res.error) {
-      toast.error("Google sign-in failed");
-      setSubmitting(false);
-    }
-  };
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
