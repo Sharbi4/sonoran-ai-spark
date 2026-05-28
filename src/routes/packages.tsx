@@ -96,7 +96,7 @@ const START_HERE = [
 const BUILD_GROUPS: {
   category: string;
   accent: "copper" | "sage";
-  items: { icon: typeof Monitor; name: string; price: string; tagline: string }[];
+  items: { icon: typeof Monitor; name: string; price: string; tagline: string; care?: boolean }[];
 }[] = [
   {
     category: "Web & Brand",
@@ -107,12 +107,14 @@ const BUILD_GROUPS: {
         name: "Starter Website",
         price: "Starting at $1,750",
         tagline: "1–3 pages, contact form, mobile design.",
+        care: true,
       },
       {
         icon: Monitor,
         name: "Website System Launch",
         price: "Starting at $2,500",
         tagline: "4–6 pages, lead capture, booking, copy, basic SEO.",
+        care: true,
       },
       {
         icon: PenTool,
@@ -125,6 +127,7 @@ const BUILD_GROUPS: {
         name: "Brand + Web Launch",
         price: "Starting at $3,000",
         tagline: "Brand identity + 4–6 page website.",
+        care: true,
       },
     ],
   },
