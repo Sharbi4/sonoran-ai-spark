@@ -5,6 +5,8 @@ import {
   LifeBuoy, Repeat, Rocket, Crown,
 } from "lucide-react";
 import { SiteLayout, Section, CopperButton, Accent } from "@/components/site-layout";
+import { useStripeCheckout } from "@/hooks/useStripeCheckout";
+import { ArrowRight } from "lucide-react";
 
 export const Route = createFileRoute("/packages")({
   head: () => ({
@@ -26,6 +28,7 @@ const START_HERE = [
     icon: Compass,
     name: "Business Systems Strategy Call",
     price: "$250",
+    priceId: "strategy_call_250",
     unit: "per 60-min session",
     tagline: "Live advisory. No deliverable — just clear answers.",
     includes: [
@@ -34,13 +37,14 @@ const START_HERE = [
       "Tool & workflow recommendations",
       "Recording + 1-paragraph recap",
     ],
-    cta: "Book a Strategy Call",
+    cta: "Pay & Book — $250",
     featured: false,
   },
   {
     icon: FileSearch,
     name: "Website + AI Readiness Review",
     price: "$197",
+    priceId: "website_ai_readiness_197",
     unit: "one-time",
     tagline: "A written diagnostic of your website and AI fit.",
     includes: [
@@ -56,6 +60,7 @@ const START_HERE = [
     icon: Workflow,
     name: "Automation Opportunity Map",
     price: "$297",
+    priceId: "automation_opportunity_297",
     unit: "one-time",
     tagline: "A written map of every workflow we'd automate.",
     includes: [
@@ -71,6 +76,7 @@ const START_HERE = [
     icon: ClipboardCheck,
     name: "AI Business Systems Audit",
     price: "$497",
+    priceId: "ai_audit_497",
     unit: "one-time · 3 business days",
     tagline: "Our flagship paid diagnostic — the full picture.",
     includes: [
