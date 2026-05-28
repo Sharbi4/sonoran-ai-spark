@@ -46,5 +46,5 @@ export const Route = createFileRoute("/industries/$slug")({
 function IndustryDetailPage() {
   const { slug } = Route.useParams();
   const ind = INDUSTRIES[slug as IndustrySlug];
-  return <IndustryTemplate content={ind} mockup={INDUSTRY_MOCKUPS[slug as IndustrySlug]} />;
+  return <IndustryTemplate content={ind} mockup={INDUSTRY_MOCKUPS[slug as IndustrySlug]} slug={slug} />;
 }

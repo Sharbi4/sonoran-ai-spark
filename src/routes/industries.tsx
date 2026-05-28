@@ -93,9 +93,8 @@ function IndustriesPage() {
             const Icon = ICONS[slug];
             return (
               <StaggerItem key={slug}>
-                <Link
-                  to="/industries/$slug"
-                  params={{ slug }}
+                <a
+                  href={`/industries/${slug}`}
                   className="group relative block h-full rounded-3xl bg-card border border-sand p-7 hover:-translate-y-1.5 hover:shadow-[0_30px_60px_-30px_rgba(194,79,52,0.25)] hover:border-copper/30 transition-all duration-300"
                 >
                   <div className="flex items-start justify-between">
@@ -136,7 +135,7 @@ function IndustriesPage() {
                     Explore {label.toLowerCase()}
                     <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
                   </span>
-                </Link>
+                </a>
               </StaggerItem>
             );
           })}
