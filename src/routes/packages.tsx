@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Check, Sparkles } from "lucide-react";
+import { Check, Sparkles, Scale, Utensils, Hammer, Mail } from "lucide-react";
 import { SiteLayout, Section, CopperButton, Accent } from "@/components/site-layout";
 
 export const Route = createFileRoute("/packages")({
@@ -85,6 +85,41 @@ const RETAINER_INCLUDES = [
   "Monthly 30-minute strategy phone call",
   "AI prompt and tool refinement",
   "Priority response time",
+];
+
+const SPECIALIZED = [
+  {
+    icon: Scale,
+    name: "Law Firm Intelligence",
+    body:
+      "Connect Clio, MyCase, or PracticePanther to a custom dashboard showing cases, billing, deadlines, and revenue — with AI summaries every morning.",
+    price: "Starting at $2,500",
+    to: "/dashboards",
+  },
+  {
+    icon: Utensils,
+    name: "Restaurant Analytics",
+    body:
+      "Connect Toast or Square to a dashboard showing daily sales, top menu items, busiest hours, staff performance, and AI-powered insights.",
+    price: "Starting at $1,500",
+    to: "/dashboards",
+  },
+  {
+    icon: Hammer,
+    name: "Contractor Command Center",
+    body:
+      "Connect Jobber or ServiceTitan with QuickBooks into one dashboard showing jobs, quotes, invoices, and revenue — with alerts when things need attention.",
+    price: "Starting at $2,000",
+    to: "/dashboards",
+  },
+  {
+    icon: Mail,
+    name: "Email Automation System",
+    body:
+      "Build an AI-powered email system that classifies incoming messages, drafts replies in your voice, and follows up automatically on every lead.",
+    price: "Starting at $1,000",
+    to: "/email-automation",
+  },
 ];
 
 function CheckList({ items }: { items: string[] }) {
@@ -238,6 +273,48 @@ function Packages() {
               <CheckList items={RETAINER_INCLUDES} />
             </div>
           </div>
+        </div>
+      </Section>
+
+      {/* SPECIALIZED SOLUTIONS */}
+      <Section className="pt-4">
+        <div className="max-w-2xl mb-10">
+          <p className="text-sm font-medium text-copper uppercase tracking-wider">
+            Specialized solutions
+          </p>
+          <h2 className="mt-3 font-serif text-3xl sm:text-4xl">
+            Industry-specific systems, <Accent color="sage">ready to build.</Accent>
+          </h2>
+          <p className="mt-4 text-muted-foreground leading-relaxed">
+            Pre-scoped systems built around the tools your industry already uses.
+          </p>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+          {SPECIALIZED.map((s) => {
+            const Icon = s.icon;
+            return (
+              <div
+                key={s.name}
+                className="rounded-2xl bg-card border border-sand p-6 flex flex-col shadow-[0_1px_2px_rgba(28,28,30,0.03),0_14px_36px_-22px_rgba(28,28,30,0.18)]"
+              >
+                <div className="flex items-start gap-4">
+                  <div className="h-11 w-11 rounded-full bg-copper/12 inline-flex items-center justify-center shrink-0">
+                    <Icon className="h-5 w-5 text-copper" />
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="font-serif text-xl">{s.name}</h3>
+                    <p className="mt-2 text-sm text-foreground/80 leading-relaxed">{s.body}</p>
+                  </div>
+                </div>
+                <div className="mt-5 pt-5 border-t border-sand flex items-center justify-between gap-3">
+                  <span className="font-serif text-lg text-copper font-semibold">{s.price}</span>
+                  <CopperButton to={s.to} variant="outlined" className="!py-2 !px-4 !text-xs">
+                    Learn More
+                  </CopperButton>
+                </div>
+              </div>
+            );
+          })}
         </div>
       </Section>
 
