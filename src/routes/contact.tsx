@@ -18,11 +18,11 @@ import {
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: "Contact & Book a Consultation — Sonoran Systems & AI" },
+      { title: "Contact & Submit an Inquiry — Sonoran Systems & AI" },
       {
         name: "description",
         content:
-          "Book a free phone consultation with Sonoran Systems & AI. Tucson, Phoenix, and Arizona small businesses welcome.",
+          "Submit a free inquiry with Sonoran Systems & AI. Tucson, Phoenix, and Arizona small businesses welcome.",
       },
     ],
   }),
@@ -157,7 +157,7 @@ function Contact() {
           </h1>
           <p className="mt-5 text-lg text-muted-foreground leading-relaxed">
             Tell us about your business. We'll review your details and reach out within one
-            business day to schedule your free consultation.
+            business day to discuss next steps.
           </p>
         </div>
       </Section>
@@ -173,8 +173,8 @@ function Contact() {
                 <CheckCircle2 className="h-12 w-12 text-copper mx-auto" strokeWidth={1.5} />
                 <h3 className="mt-5 font-serif text-2xl">Thanks — we got it.</h3>
                 <p className="mt-3 text-muted-foreground max-w-md mx-auto">
-                  We'll review your details and reach out within one business day to schedule your
-                  free consultation.
+                  We'll review your details and reach out within one business day to discuss next
+                  steps.
                 </p>
               </div>
             ) : (

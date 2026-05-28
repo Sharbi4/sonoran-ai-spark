@@ -79,7 +79,7 @@ function About() {
         </div>
       </Section>
 
-      <FinalCTA headline="Let's build something that actually works." sub="Book a free 30-minute consultation." />
+      <FinalCTA headline="Let's build something that actually works." sub="Submit a free inquiry to get started." />
     </SiteLayout>
   );
 }
