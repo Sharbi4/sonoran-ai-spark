@@ -14,6 +14,7 @@ import { Route as ThankYouRouteImport } from './routes/thank-you'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as ResetPasswordRouteImport } from './routes/reset-password'
+import { Route as PortalRouteImport } from './routes/portal'
 import { Route as PackagesRouteImport } from './routes/packages'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as IndustriesRouteImport } from './routes/industries'
@@ -60,6 +61,11 @@ const ServicesRoute = ServicesRouteImport.update({
 const ResetPasswordRoute = ResetPasswordRouteImport.update({
   id: '/reset-password',
   path: '/reset-password',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PortalRoute = PortalRouteImport.update({
+  id: '/portal',
+  path: '/portal',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PackagesRoute = PackagesRouteImport.update({
@@ -189,6 +195,7 @@ export interface FileRoutesByFullPath {
   '/industries': typeof IndustriesRouteWithChildren
   '/login': typeof LoginRoute
   '/packages': typeof PackagesRoute
+  '/portal': typeof PortalRoute
   '/reset-password': typeof ResetPasswordRoute
   '/services': typeof ServicesRoute
   '/terms': typeof TermsRoute
@@ -217,6 +224,7 @@ export interface FileRoutesByTo {
   '/email-automation': typeof EmailAutomationRoute
   '/login': typeof LoginRoute
   '/packages': typeof PackagesRoute
+  '/portal': typeof PortalRoute
   '/reset-password': typeof ResetPasswordRoute
   '/services': typeof ServicesRoute
   '/terms': typeof TermsRoute
@@ -247,6 +255,7 @@ export interface FileRoutesById {
   '/industries': typeof IndustriesRouteWithChildren
   '/login': typeof LoginRoute
   '/packages': typeof PackagesRoute
+  '/portal': typeof PortalRoute
   '/reset-password': typeof ResetPasswordRoute
   '/services': typeof ServicesRoute
   '/terms': typeof TermsRoute
@@ -278,6 +287,7 @@ export interface FileRouteTypes {
     | '/industries'
     | '/login'
     | '/packages'
+    | '/portal'
     | '/reset-password'
     | '/services'
     | '/terms'
@@ -306,6 +316,7 @@ export interface FileRouteTypes {
     | '/email-automation'
     | '/login'
     | '/packages'
+    | '/portal'
     | '/reset-password'
     | '/services'
     | '/terms'
@@ -335,6 +346,7 @@ export interface FileRouteTypes {
     | '/industries'
     | '/login'
     | '/packages'
+    | '/portal'
     | '/reset-password'
     | '/services'
     | '/terms'
@@ -365,6 +377,7 @@ export interface RootRouteChildren {
   IndustriesRoute: typeof IndustriesRouteWithChildren
   LoginRoute: typeof LoginRoute
   PackagesRoute: typeof PackagesRoute
+  PortalRoute: typeof PortalRoute
   ResetPasswordRoute: typeof ResetPasswordRoute
   ServicesRoute: typeof ServicesRoute
   TermsRoute: typeof TermsRoute
@@ -416,6 +429,13 @@ declare module '@tanstack/react-router' {
       path: '/reset-password'
       fullPath: '/reset-password'
       preLoaderRoute: typeof ResetPasswordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/portal': {
+      id: '/portal'
+      path: '/portal'
+      fullPath: '/portal'
+      preLoaderRoute: typeof PortalRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/packages': {
@@ -601,6 +621,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndustriesRoute: IndustriesRouteWithChildren,
   LoginRoute: LoginRoute,
   PackagesRoute: PackagesRoute,
+  PortalRoute: PortalRoute,
   ResetPasswordRoute: ResetPasswordRoute,
   ServicesRoute: ServicesRoute,
   TermsRoute: TermsRoute,
