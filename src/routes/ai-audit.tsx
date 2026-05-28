@@ -53,7 +53,7 @@ const OUTCOMES = [
 function AIAudit() {
   const { openCheckout, checkoutElement } = useStripeCheckout();
   const buyAudit = () => openCheckout({ priceId: "ai_audit_497" });
-  const bookCall = () => openCheckout({ priceId: "strategy_call_250" });
+  const bookCall = () => openCheckout({ priceId: "strategy_call_60min" });
   return (
     <SiteLayout>
       {checkoutElement}
