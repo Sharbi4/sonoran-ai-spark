@@ -387,33 +387,3 @@ function Field({
     </div>
   );
 }
-
-function CalendlyEmbed() {
-  const ref = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const SCRIPT_SRC = "https://assets.calendly.com/assets/external/widget.js";
-    const existing = document.querySelector(`script[src="${SCRIPT_SRC}"]`);
-    if (!existing) {
-      const s = document.createElement("script");
-      s.src = SCRIPT_SRC;
-      s.async = true;
-      document.body.appendChild(s);
-    }
-  }, []);
-
-  // Brand colors (hex without #): copper accent, charcoal text, cream background
-  const url =
-    "https://calendly.com/sharbin-sonoransystemsai/30min" +
-    "?hide_event_type_details=0&hide_gdpr_banner=1" +
-    "&background_color=fbf7f2&text_color=1f1f1f&primary_color=c24f34";
-
-  return (
-    <div
-      ref={ref}
-      className="calendly-inline-widget mt-5 rounded-xl overflow-hidden border border-sand"
-      data-url={url}
-      style={{ minWidth: "320px", height: "700px" }}
-    />
-  );
-}
