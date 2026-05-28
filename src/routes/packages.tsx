@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Check, Sparkles } from "lucide-react";
+import { Check, Sparkles, Scale, Utensils, Hammer, Mail } from "lucide-react";
 import { SiteLayout, Section, CopperButton, Accent } from "@/components/site-layout";
 
 export const Route = createFileRoute("/packages")({
@@ -85,6 +85,41 @@ const RETAINER_INCLUDES = [
   "Monthly 30-minute strategy phone call",
   "AI prompt and tool refinement",
   "Priority response time",
+];
+
+const SPECIALIZED = [
+  {
+    icon: Scale,
+    name: "Law Firm Intelligence",
+    body:
+      "Connect Clio, MyCase, or PracticePanther to a custom dashboard showing cases, billing, deadlines, and revenue — with AI summaries every morning.",
+    price: "Starting at $2,500",
+    to: "/dashboards",
+  },
+  {
+    icon: Utensils,
+    name: "Restaurant Analytics",
+    body:
+      "Connect Toast or Square to a dashboard showing daily sales, top menu items, busiest hours, staff performance, and AI-powered insights.",
+    price: "Starting at $1,500",
+    to: "/dashboards",
+  },
+  {
+    icon: Hammer,
+    name: "Contractor Command Center",
+    body:
+      "Connect Jobber or ServiceTitan with QuickBooks into one dashboard showing jobs, quotes, invoices, and revenue — with alerts when things need attention.",
+    price: "Starting at $2,000",
+    to: "/dashboards",
+  },
+  {
+    icon: Mail,
+    name: "Email Automation System",
+    body:
+      "Build an AI-powered email system that classifies incoming messages, drafts replies in your voice, and follows up automatically on every lead.",
+    price: "Starting at $1,000",
+    to: "/email-automation",
+  },
 ];
 
 function CheckList({ items }: { items: string[] }) {
