@@ -448,6 +448,69 @@ function IndustrySpotlight() {
 }
 
 function DarkFinalCTA() {
+  return _DarkFinalCTA();
+}
+
+function DemoLibrary() {
+  return (
+    <Section className="bg-cream/40 border-y border-sand">
+      <p className="text-[11px] font-semibold tracking-[0.22em] uppercase text-muted-foreground">
+        See it in action
+      </p>
+      <h2 className="mt-3 font-serif font-bold text-3xl sm:text-4xl max-w-3xl">
+        Live <Accent>demo websites</Accent> &amp; <Accent color="sage">dashboards</Accent>.
+      </h2>
+      <p className="mt-4 max-w-2xl text-muted-foreground leading-relaxed">
+        Each industry ships with a fully built demo site and a working dashboard — open
+        them in a new tab to explore exactly what your version could look like.
+      </p>
+      <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        {INDUSTRY_NAV.map((it) => (
+          <div
+            key={it.slug}
+            className="rounded-2xl bg-card border border-sand p-6 flex flex-col hover:-translate-y-0.5 transition-all"
+          >
+            <h3 className="font-serif font-bold text-lg">{it.label}</h3>
+            <p className="mt-2 text-xs text-muted-foreground tracking-wide uppercase">
+              Demo site · Live dashboard
+            </p>
+            <div className="mt-5 flex flex-col gap-2">
+              <Link
+                to="/demo/$slug"
+                params={{ slug: it.slug }}
+                className="inline-flex items-center justify-between gap-2 rounded-full bg-copper text-copper-foreground px-4 py-2 text-sm font-medium hover:bg-copper/90 transition-colors"
+              >
+                <span className="inline-flex items-center gap-2">
+                  <ExternalLink className="h-4 w-4" /> Demo website
+                </span>
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+              <Link
+                to="/dashboard/$slug"
+                params={{ slug: it.slug }}
+                className="inline-flex items-center justify-between gap-2 rounded-full bg-sage text-white px-4 py-2 text-sm font-medium hover:bg-sage/90 transition-colors"
+              >
+                <span className="inline-flex items-center gap-2">
+                  <LayoutDashboard className="h-4 w-4" /> Live dashboard
+                </span>
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+              <Link
+                to="/industries/$slug"
+                params={{ slug: it.slug }}
+                className="mt-1 text-xs text-muted-foreground hover:text-foreground transition-colors text-center"
+              >
+                View industry overview →
+              </Link>
+            </div>
+          </div>
+        ))}
+      </div>
+    </Section>
+  );
+}
+
+function _DarkFinalCTA() {
   return (
     <section className="py-20 sm:py-28 bg-charcoal">
       <div className="mx-auto max-w-4xl px-5 sm:px-8 text-center">
