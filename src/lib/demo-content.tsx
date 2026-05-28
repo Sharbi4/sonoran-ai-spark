@@ -14,7 +14,7 @@ import type { IndustrySlug } from "@/lib/industries-content";
 export const DEMO_CONFIGS: Partial<Record<IndustrySlug, DemoConfig>> = {
   "law-firms": {
     slug: "law-firms",
-    brandName: "Desert Ridge Legal",
+    brandName: "Ellison & Chen",
     tagline: "Premium Modern Legal Operations",
     heroHeadline: (
       <>
@@ -414,7 +414,7 @@ export const DEMO_CONFIGS: Partial<Record<IndustrySlug, DemoConfig>> = {
 
   "political-campaigns": {
     slug: "political-campaigns",
-    brandName: "Campaign Command",
+    brandName: "Maria Vasquez for Arizona",
     tagline: "High-Energy Campaign Operations HQ",
     heroHeadline: (
       <>
