@@ -81,13 +81,13 @@ function ServicesMegaMenu() {
           </div>
           <div className="bg-sand/60 px-8 py-5 flex items-center justify-between gap-4 border-t border-sand">
             <p className="text-sm font-medium text-foreground">
-              Start with an <span className="text-copper font-semibold">AI Business Audit</span> — $297
+              Start with the <span className="text-copper font-semibold">AI Business Systems Audit</span> — $497
             </p>
             <Link
               to="/ai-audit"
               className="inline-flex items-center gap-1.5 rounded-full bg-copper text-copper-foreground px-4 py-2 text-xs font-medium hover:bg-copper/90 transition-colors"
             >
-              Book Your Audit <ArrowRight className="h-3.5 w-3.5" />
+              Buy the Audit <ArrowRight className="h-3.5 w-3.5" />
             </Link>
           </div>
         </div>
