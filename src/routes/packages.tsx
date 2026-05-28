@@ -5,6 +5,8 @@ import {
   LifeBuoy, Repeat, Rocket, Crown,
 } from "lucide-react";
 import { SiteLayout, Section, CopperButton, Accent } from "@/components/site-layout";
+import { useStripeCheckout } from "@/hooks/useStripeCheckout";
+import { ArrowRight } from "lucide-react";
 
 export const Route = createFileRoute("/packages")({
   head: () => ({
@@ -30,21 +32,23 @@ const START_HERE = [
     icon: Compass,
     name: "Business Systems Strategy Call",
     price: "$250",
-    unit: "per 60-min session",
+    priceId: "strategy_call_60min",
+    unit: "per 2-hour session",
     tagline: "Live advisory. No deliverable — just clear answers.",
     includes: [
-      "60 minutes by phone or video",
+      "2 hours by phone or video",
       "Bring any business systems question",
       "Tool & workflow recommendations",
       "Recording + 1-paragraph recap",
     ],
-    cta: "Book a Strategy Call",
+    cta: "Pay & Book — $250",
     featured: false,
   },
   {
     icon: FileSearch,
     name: "Website + AI Readiness Review",
     price: "$197",
+    priceId: "website_ai_readiness_197",
     unit: "one-time",
     tagline: "A written diagnostic of your website and AI fit.",
     includes: [
@@ -60,6 +64,7 @@ const START_HERE = [
     icon: Workflow,
     name: "Automation Opportunity Map",
     price: "$297",
+    priceId: "automation_opportunity_297",
     unit: "one-time",
     tagline: "A written map of every workflow we'd automate.",
     includes: [
@@ -75,10 +80,11 @@ const START_HERE = [
     icon: ClipboardCheck,
     name: "AI Business Systems Audit",
     price: "$497",
+    priceId: "ai_audit_497",
     unit: "one-time · 3 business days",
     tagline: "Our flagship paid diagnostic — the full picture.",
     includes: [
-      "60-minute strategy call",
+      "2-hour strategy call",
       "Website + customer journey review",
       "Workflow and tools review",
       "AI opportunity map",
@@ -94,7 +100,7 @@ const START_HERE = [
 const BUILD_GROUPS: {
   category: string;
   accent: "copper" | "sage";
-  items: { icon: typeof Monitor; name: string; price: string; tagline: string }[];
+  items: { icon: typeof Monitor; name: string; price: string; tagline: string; care?: boolean }[];
 }[] = [
   {
     category: "Web & Brand",
@@ -105,12 +111,14 @@ const BUILD_GROUPS: {
         name: "Starter Website",
         price: "Starting at $1,750",
         tagline: "1–3 pages, contact form, mobile design.",
+        care: true,
       },
       {
         icon: Monitor,
         name: "Website System Launch",
         price: "Starting at $2,500",
         tagline: "4–6 pages, lead capture, booking, copy, basic SEO.",
+        care: true,
       },
       {
         icon: PenTool,
@@ -123,6 +131,7 @@ const BUILD_GROUPS: {
         name: "Brand + Web Launch",
         price: "Starting at $3,000",
         tagline: "Brand identity + 4–6 page website.",
+        care: true,
       },
     ],
   },
@@ -255,8 +264,10 @@ function CheckList({ items }: { items: string[] }) {
 }
 
 function Packages() {
+  const { openCheckout, checkoutElement } = useStripeCheckout();
   return (
     <SiteLayout>
+      {checkoutElement}
       {/* Header */}
       <Section className="pt-16 sm:pt-24 pb-8">
         <div className="max-w-3xl">
@@ -333,13 +344,19 @@ function Packages() {
                   <CheckList items={[...p.includes]} />
                 </div>
                 <div className="mt-6">
-                  <CopperButton
-                    to="/contact"
-                    variant={p.featured ? "filled" : "outlined"}
-                    className="w-full"
+                  <button
+                    type="button"
+                    onClick={() => openCheckout({ priceId: p.priceId })}
+                    className={
+                      "w-full inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-medium transition-colors " +
+                      (p.featured
+                        ? "bg-copper text-copper-foreground hover:bg-copper/90 shadow-[0_10px_30px_-12px_rgba(194,79,52,0.5)]"
+                        : "border border-copper text-copper hover:bg-copper hover:text-copper-foreground")
+                    }
                   >
-                    {p.cta}
-                  </CopperButton>
+                    <span>{p.cta}</span>
+                    <ArrowRight className="h-4 w-4" />
+                  </button>
                 </div>
               </div>
             );
@@ -388,6 +405,12 @@ function Packages() {
                           <p className="mt-2 text-sm text-foreground/80 leading-relaxed">
                             {item.tagline}
                           </p>
+                          {item.care && (
+                            <p className="mt-3 inline-flex items-center gap-1.5 text-[11px] font-medium text-sage">
+                              <Check className="h-3.5 w-3.5" strokeWidth={2.5} />
+                              Includes 3-Month Website Care
+                            </p>
+                          )}
                         </div>
                       </div>
                       <div className="mt-5 pt-5 border-t border-sand flex items-center justify-between gap-3">
@@ -414,6 +437,118 @@ function Packages() {
           scope, number of pages, integrations, data sources, automation
           complexity, timeline, and third-party tools required.
         </p>
+      </Section>
+
+      {/* 3-MONTH WEBSITE CARE */}
+      <Section id="website-care" className="pt-4">
+        <div className="rounded-3xl border border-sand bg-card p-8 sm:p-12 shadow-[0_1px_2px_rgba(28,28,30,0.03),0_14px_36px_-22px_rgba(28,28,30,0.18)]">
+          <div className="max-w-2xl">
+            <p className="text-sm font-medium text-sage uppercase tracking-wider">
+              Included with every website package
+            </p>
+            <h2 className="mt-2 font-serif text-3xl sm:text-4xl">
+              3-Month <Accent color="sage">Website Care</Accent>
+            </h2>
+            <p className="mt-4 text-muted-foreground leading-relaxed">
+              For the first 3 months after your site goes live, we handle small
+              website updates and launch fixes so your site stays clean and
+              working properly — at no extra cost.
+            </p>
+          </div>
+
+          <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="rounded-2xl border border-sage/30 bg-sage/5 p-6">
+              <p className="text-xs font-semibold uppercase tracking-wider text-sage">
+                Included
+              </p>
+              <p className="mt-1 text-sm text-muted-foreground">
+                Up to 5 small edits per month
+              </p>
+              <ul className="mt-4 space-y-2 text-sm text-foreground/85">
+                {[
+                  "Text updates and typo fixes",
+                  "Image swaps",
+                  "Button & link updates",
+                  "Contact info, hours, testimonials",
+                  "Form routing corrections",
+                  "Broken link fixes",
+                  "Basic launch bug fixes",
+                  "Minor spacing & mobile fixes",
+                  "Small SEO title/meta updates",
+                  "Updating one existing section with provided content",
+                ].map((t) => (
+                  <li key={t} className="flex gap-2.5">
+                    <Check className="h-4 w-4 mt-0.5 text-sage shrink-0" strokeWidth={2.5} />
+                    <span>{t}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="rounded-2xl border border-sand bg-cream/40 p-6">
+              <p className="text-xs font-semibold uppercase tracking-wider text-foreground/60">
+                Not included — quoted separately
+              </p>
+              <p className="mt-1 text-sm text-muted-foreground">
+                Larger work or ongoing scope
+              </p>
+              <ul className="mt-4 space-y-2 text-sm text-foreground/85">
+                {[
+                  "New pages or full redesigns",
+                  "New brand direction or logo concepts",
+                  "New integrations or automations",
+                  "Dashboards or client portals",
+                  "Blog writing or major copy rewrites",
+                  "Ongoing SEO campaigns or paid ads",
+                  "Major layout changes",
+                  "Ecommerce setup",
+                  "Custom code features",
+                  "Platform migration",
+                ].map((t) => (
+                  <li key={t} className="flex gap-2.5 text-foreground/70">
+                    <span className="mt-0.5 inline-block h-4 w-4 shrink-0 text-center leading-4">–</span>
+                    <span>{t}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+
+          <div className="mt-8 overflow-hidden rounded-2xl border border-sand">
+            <table className="w-full text-sm">
+              <thead className="bg-cream/60 text-left text-xs uppercase tracking-wider text-foreground/60">
+                <tr>
+                  <th className="px-4 py-3 font-semibold">Edit type</th>
+                  <th className="px-4 py-3 font-semibold">Examples</th>
+                  <th className="px-4 py-3 font-semibold">Included?</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-sand">
+                <tr>
+                  <td className="px-4 py-3 font-medium">Small</td>
+                  <td className="px-4 py-3 text-foreground/80">Text, image swap, typo, link, button</td>
+                  <td className="px-4 py-3 text-sage font-medium">Yes, during care</td>
+                </tr>
+                <tr>
+                  <td className="px-4 py-3 font-medium">Medium</td>
+                  <td className="px-4 py-3 text-foreground/80">Rework existing section, new form field, single-section layout change</td>
+                  <td className="px-4 py-3 text-foreground/70">Limited / may be quoted</td>
+                </tr>
+                <tr>
+                  <td className="px-4 py-3 font-medium">Large</td>
+                  <td className="px-4 py-3 text-foreground/80">New page, redesign, new feature, integration, or automation</td>
+                  <td className="px-4 py-3 text-copper font-medium">Quoted separately</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p className="mt-6 text-xs text-muted-foreground italic">
+            Automation packages: website care covers website edits only.
+            Automation, workflow, chatbot, and email-sequence changes are scoped
+            separately or handled through a monthly support plan.
+          </p>
+        </div>
       </Section>
 
       {/* KEEP IT RUNNING — retainers */}
@@ -518,6 +653,14 @@ function Packages() {
       <Section className="py-10">
         <div className="max-w-3xl mx-auto text-center border-t border-sand pt-10">
           <p className="text-sm text-muted-foreground leading-relaxed">
+            Website packages include 3 months of post-launch website care
+            covering up to 5 small edits per month (text changes, image swaps,
+            typo/link fixes, form routing corrections, minor layout
+            adjustments). New pages, redesigns, new sections, integrations,
+            automation/dashboard work, ecommerce, and major copy rewrites are
+            quoted separately.
+          </p>
+          <p className="mt-4 text-sm text-muted-foreground leading-relaxed">
             Payment terms, revisions, third-party fees, and AI disclaimers are
             detailed in our{" "}
             <a href="/terms" className="text-copper hover:underline">

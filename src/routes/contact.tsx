@@ -1,7 +1,7 @@
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { z } from "zod";
-import { Mail, Phone, MapPin, CalendarCheck2, CheckCircle2 } from "lucide-react";
+import { Phone, MapPin, CalendarCheck2, CheckCircle2 } from "lucide-react";
 import { SiteLayout, Section, Accent } from "@/components/site-layout";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -18,17 +18,13 @@ import {
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: "Contact Us | AI Consulting Tucson AZ — Sonoran Systems & AI" },
+      { title: "Contact & Submit an Inquiry — Sonoran Systems & AI" },
       {
         name: "description",
         content:
-          "Contact Sonoran Systems & AI to book a $250 Strategy Call. AI consulting, automation & workflow optimization for businesses in Tucson, Phoenix, Flagstaff & across Arizona. Book online today.",
+          "Submit a free inquiry with Sonoran Systems & AI. Tucson, Phoenix, and Arizona small businesses welcome.",
       },
-      { property: "og:title", content: "Contact Sonoran Systems & AI | Tucson AI Consulting" },
-      { property: "og:description", content: "Book a $250 Strategy Call with Tucson's AI consulting experts. Serving Phoenix, Flagstaff & all of Arizona." },
-      { property: "og:url", content: "https://sonoransystemsai.com/contact" },
     ],
-    links: [{ rel: "canonical", href: "https://sonoransystemsai.com/contact" }],
   }),
   component: Contact,
 });
@@ -99,6 +95,8 @@ function Contact() {
   const [form, setForm] = useState<FormState>(EMPTY);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   function update<K extends keyof FormState>(key: K, val: FormState[K]) {
     setForm((f) => ({ ...f, [key]: val }));
@@ -113,7 +111,7 @@ function Contact() {
     }));
   }
 
-  function onSubmit(e: React.FormEvent) {
+  async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
     const result = schema.safeParse(form);
     if (!result.success) {
@@ -125,7 +123,28 @@ function Contact() {
       return;
     }
     setErrors({});
-    setSubmitted(true);
+    setSubmitError(null);
+    setSubmitting(true);
+    try {
+      const res = await fetch("/api/public/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(result.data),
+      });
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data?.error || "Submission failed");
+      }
+      setSubmitted(true);
+    } catch (err) {
+      setSubmitError(
+        err instanceof Error
+          ? err.message
+          : "Something went wrong. Please call (520) 551-1113.",
+      );
+    } finally {
+      setSubmitting(false);
+    }
   }
 
   return (
@@ -137,8 +156,8 @@ function Contact() {
             Let's <Accent>talk</Accent> about your <Accent color="sage">business</Accent>.
           </h1>
           <p className="mt-5 text-lg text-muted-foreground leading-relaxed">
-            Book a $250 Strategy Call — fill out the short form below and pick a time that
-            works for you. Payment is collected before booking.
+            Tell us about your business. We'll review your details and reach out within one
+            business day to discuss next steps.
           </p>
         </div>
       </Section>
@@ -154,8 +173,8 @@ function Contact() {
                 <CheckCircle2 className="h-12 w-12 text-copper mx-auto" strokeWidth={1.5} />
                 <h3 className="mt-5 font-serif text-2xl">Thanks — we got it.</h3>
                 <p className="mt-3 text-muted-foreground max-w-md mx-auto">
-                  We'll review your details and reach out within one business day to schedule your
-                  strategy call.
+                  We'll review your details and reach out within one business day to discuss next
+                  steps.
                 </p>
               </div>
             ) : (
@@ -315,11 +334,15 @@ function Contact() {
                   </Field>
                 </div>
 
+                {submitError && (
+                  <p className="text-sm text-destructive">{submitError}</p>
+                )}
                 <button
                   type="submit"
-                  className="w-full sm:w-auto inline-flex items-center justify-center rounded-full bg-copper px-7 py-3.5 text-sm font-medium text-copper-foreground hover:bg-copper/90 transition-colors"
+                  disabled={submitting}
+                  className="w-full sm:w-auto inline-flex items-center justify-center rounded-full bg-copper px-7 py-3.5 text-sm font-medium text-copper-foreground hover:bg-copper/90 transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
                 >
-                  Send & Book My Consultation
+                  {submitting ? "Sending…" : "Send Inquiry"}
                 </button>
               </form>
             )}
@@ -329,22 +352,28 @@ function Contact() {
           <aside className="space-y-6">
             <div className="rounded-3xl bg-gradient-to-br from-cream to-sand/60 border border-sand p-7">
               <CalendarCheck2 className="h-6 w-6 text-copper" strokeWidth={1.5} />
-              <h3 className="mt-3 font-serif text-xl">Pick a time</h3>
+              <h3 className="mt-3 font-serif text-xl">What happens next</h3>
               <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
-                After submitting, you'll see our calendar to book a 30-minute phone consultation
-                right away.
+                We'll review your inquiry and reach out within one business day to schedule a free
+                30-minute consultation at a time that works for you.
               </p>
-              <CalendlyEmbed />
+              <p className="mt-3 text-xs text-muted-foreground leading-relaxed">
+                Want to lock in a time today? Book a paid{" "}
+                <a href="/ai-audit" className="text-copper hover:underline">
+                  Strategy Call
+                </a>{" "}
+                and our calendar opens right after checkout.
+              </p>
             </div>
 
             <div className="rounded-3xl bg-card border border-sand p-7">
               <h3 className="font-serif text-xl">Get in touch</h3>
               <ul className="mt-5 space-y-4 text-sm">
                 <li className="flex gap-3">
-                  <Mail className="h-5 w-5 text-copper mt-0.5" strokeWidth={1.5} />
-                  <span className="text-muted-foreground">
-                    Use the form to reach us — we'll respond within one business day.
-                  </span>
+                  <Phone className="h-5 w-5 text-copper mt-0.5" strokeWidth={1.5} />
+                  <a href="tel:+15205511113" className="hover:text-copper">
+                    (520) 551-1113
+                  </a>
                 </li>
                 <li className="flex gap-3">
                   <MapPin className="h-5 w-5 text-copper mt-0.5" strokeWidth={1.5} />
@@ -383,35 +412,5 @@ function Field({
         </p>
       )}
     </div>
-  );
-}
-
-function CalendlyEmbed() {
-  const ref = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const SCRIPT_SRC = "https://assets.calendly.com/assets/external/widget.js";
-    const existing = document.querySelector(`script[src="${SCRIPT_SRC}"]`);
-    if (!existing) {
-      const s = document.createElement("script");
-      s.src = SCRIPT_SRC;
-      s.async = true;
-      document.body.appendChild(s);
-    }
-  }, []);
-
-  // Brand colors (hex without #): copper accent, charcoal text, cream background
-  const url =
-    "https://calendly.com/sharbin-sonoransystemsai/30min" +
-    "?hide_event_type_details=0&hide_gdpr_banner=1" +
-    "&background_color=fbf7f2&text_color=1f1f1f&primary_color=c24f34";
-
-  return (
-    <div
-      ref={ref}
-      className="calendly-inline-widget mt-5 rounded-xl overflow-hidden border border-sand"
-      data-url={url}
-      style={{ minWidth: "320px", height: "700px" }}
-    />
   );
 }

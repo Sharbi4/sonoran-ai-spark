@@ -5,11 +5,12 @@ import { Menu, X, ArrowRight, Instagram, Linkedin, MapPin } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { LogoLockup } from "./logo";
 import { Reveal } from "./motion/primitives";
+import { INDUSTRY_NAV } from "@/lib/industries-content";
 
 const NAV = [
   { to: "/services", label: "Services" },
+  { to: "/industries", label: "Industries" },
   { to: "/packages", label: "Packages" },
-  { to: "/blog", label: "Blog" },
   { to: "/about", label: "About" },
   { to: "/case-studies", label: "Case Studies" },
   { to: "/contact", label: "Contact" },
@@ -97,6 +98,51 @@ function ServicesMegaMenu() {
   );
 }
 
+function IndustriesMenu() {
+  return (
+    <div className="relative group">
+      <Link
+        to="/industries"
+        className="text-sm font-medium text-foreground/80 hover:text-copper transition-colors inline-flex items-center gap-1"
+        activeProps={{ className: "text-copper" }}
+      >
+        Industries
+      </Link>
+      <div className="invisible opacity-0 translate-y-1 group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 focus-within:visible focus-within:opacity-100 focus-within:translate-y-0 transition-all duration-200 absolute left-1/2 -translate-x-1/2 top-full pt-3 z-50">
+        <div className="w-[320px] rounded-3xl glass-card overflow-hidden">
+          <div className="p-6">
+            <p className="text-[10px] font-semibold tracking-[0.24em] uppercase text-sage mb-4">
+              Industries we serve
+            </p>
+            <ul className="space-y-2.5">
+              {INDUSTRY_NAV.map((i) => (
+                <li key={i.slug}>
+                  <Link
+                    to="/industries/$slug"
+                    params={{ slug: i.slug }}
+                    className="group/link flex items-center gap-2 text-sm text-foreground/85 hover:text-copper transition-colors"
+                  >
+                    <span>{i.label}</span>
+                    <ArrowRight className="h-3 w-3 opacity-0 -translate-x-1 group-hover/link:opacity-100 group-hover/link:translate-x-0 transition-all" />
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="bg-sand/60 px-6 py-4 border-t border-sand">
+            <Link
+              to="/industries"
+              className="inline-flex items-center gap-1.5 text-xs font-semibold tracking-wide text-foreground hover:text-copper transition-colors"
+            >
+              View all industries <ArrowRight className="h-3.5 w-3.5" />
+            </Link>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export function SiteLayout({ children }: { children: React.ReactNode }) {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -124,7 +170,8 @@ export function SiteLayout({ children }: { children: React.ReactNode }) {
           </Link>
           <nav className="hidden md:flex items-center gap-8">
             <ServicesMegaMenu />
-            {NAV.filter((n) => n.to !== "/services").map((n) => (
+            <IndustriesMenu />
+            {NAV.filter((n) => n.to !== "/services" && n.to !== "/industries").map((n) => (
               <Link
                 key={n.to}
                 to={n.to}
@@ -199,14 +246,15 @@ function SiteFooter() {
             <LogoLockup />
           </Link>
           <p className="mt-6 text-base text-cream/80 max-w-md leading-relaxed">
-            AI consulting firm with 50+ years of process excellence. Automation, chatbots, dashboards & intelligent systems for Arizona businesses.
+            Modern systems and AI tools for Arizona businesses ready to grow.
           </p>
           <p className="mt-4 text-sm text-cream/55 max-w-md leading-relaxed">
-            Based in Tucson, proudly serving businesses across Phoenix, Flagstaff, Scottsdale, Mesa, Chandler, Tempe, Oro Valley, Marana & all of Arizona.
+            Connecting websites, automations, AI assistants, and dashboards into one
+            calm, working system.
           </p>
           <div className="mt-7 flex items-center gap-3 text-sm text-cream/70">
             <MapPin className="h-4 w-4 text-rose" />
-            Tucson · Phoenix · Flagstaff · Scottsdale & Surrounding Areas
+            Tucson · Phoenix · Scottsdale · Flagstaff
           </div>
         </div>
         <FooterCol
@@ -222,9 +270,9 @@ function SiteFooter() {
           title="Company"
           links={[
             { to: "/about", label: "About" },
-            { to: "/blog", label: "Blog" },
             { to: "/case-studies", label: "Case Studies" },
             { to: "/packages", label: "Packages" },
+            { to: "/industries", label: "Industries" },
             { to: "/contact", label: "Contact" },
           ]}
         />
@@ -263,7 +311,7 @@ function SiteFooter() {
             <Link to="/terms" className="hover:text-copper transition-colors">
               Terms &amp; Fine Print
             </Link>
-            <span>AI Consulting · Tucson, Arizona · sonoransystemsai.com</span>
+            <span>Built in Tucson, Arizona.</span>
           </span>
         </div>
       </div>
@@ -420,7 +468,7 @@ export function DiagonalBands({ className }: { className?: string }) {
 
 export function FinalCTA({
   headline = "Ready to make your business easier to run?",
-  sub = "Book a $250 Strategy Call and we'll talk through your website, workflows, tools, and where AI can actually help.",
+  sub = "Submit a free inquiry and we'll talk through your website, workflows, tools, and where AI can actually help.",
 }: {
   headline?: string;
   sub?: string;
@@ -437,7 +485,7 @@ export function FinalCTA({
               </h2>
               <p className="mt-5 text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto">{sub}</p>
               <div className="mt-10 flex justify-center gap-3 flex-wrap">
-                <PrimaryButton to="/contact">Book a Strategy Call</PrimaryButton>
+                <PrimaryButton to="/contact">Submit a Free Inquiry</PrimaryButton>
                 <SecondaryButton to="/packages">View Packages</SecondaryButton>
               </div>
             </div>

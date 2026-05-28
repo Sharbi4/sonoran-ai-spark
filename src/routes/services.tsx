@@ -29,21 +29,21 @@ import {
 export const Route = createFileRoute("/services")({
   head: () => ({
     meta: [
-      { title: "AI & Automation Services Tucson AZ | Sonoran Systems & AI — Phoenix, Flagstaff" },
+      { title: "Services — Sonoran Systems & AI" },
       {
         name: "description",
         content:
-          "AI consulting, workflow automation, AI chatbots, website design, dashboards, email automation & lead capture for Tucson, Phoenix, Flagstaff & Arizona businesses. Process excellence meets cutting-edge AI.",
+          "AI consulting, websites, brand design, workflow automation, chatbots, dashboards, email automation, and lead systems for Arizona businesses.",
       },
-      { property: "og:title", content: "AI & Automation Services — Sonoran Systems & AI | Tucson AZ" },
+      { property: "og:title", content: "Services — Sonoran Systems & AI" },
       {
         property: "og:description",
         content:
-          "Full-service AI consulting for Arizona businesses — automation, chatbots, dashboards, websites & more. Based in Tucson, serving Phoenix, Flagstaff & beyond.",
+          "Connected systems for Arizona businesses: AI, websites, automation, dashboards, and more.",
       },
-      { property: "og:url", content: "https://sonoransystemsai.com/services" },
+      { property: "og:url", content: "/services" },
     ],
-    links: [{ rel: "canonical", href: "https://sonoransystemsai.com/services" }],
+    links: [{ rel: "canonical", href: "/services" }],
   }),
   component: ServicesPage,
 });
@@ -329,7 +329,7 @@ function ServicesHero() {
             experience.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
-            <PrimaryButton to="/contact">Book a Strategy Call</PrimaryButton>
+            <PrimaryButton to="/contact">Submit a Free Inquiry</PrimaryButton>
             <SecondaryButton to="/packages">View Packages</SecondaryButton>
           </div>
           <p className="mt-6 text-sm text-muted-foreground">
@@ -451,10 +451,10 @@ function DarkFinalCTA() {
           Not sure which service is right for your business?
         </h2>
         <p className="mt-4 font-serif text-xl sm:text-2xl text-copper">
-          That's exactly what the $250 Strategy Call is for.
+          That's exactly what the free inquiry is for.
         </p>
         <p className="mt-6 text-white/70 leading-relaxed max-w-2xl mx-auto">
-          Book a 60-minute strategy call and we'll figure it out together. No pressure. No
+          Send us a few details and we'll figure it out together. No pressure. No
           obligation. Just a straightforward conversation about your business and where we
           can help.
         </p>
@@ -463,7 +463,7 @@ function DarkFinalCTA() {
             to="/contact"
             className="inline-flex items-center gap-2 rounded-full bg-copper text-copper-foreground px-6 py-3 text-sm font-medium hover:bg-copper/90 transition-colors"
           >
-            Book a Strategy Call <ArrowRight className="h-4 w-4" />
+            Submit a Free Inquiry <ArrowRight className="h-4 w-4" />
           </Link>
           <Link
             to="/packages"

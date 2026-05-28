@@ -46,6 +46,10 @@ import {
   HoverLift,
 } from "@/components/motion/primitives";
 import { useState, useEffect } from "react";
+import { StartHereCards } from "@/components/start-here-cards";
+import { IntegrationsMarquee } from "@/components/integrations-marquee";
+import { WhoThisIsFor } from "@/components/who-this-is-for";
+import { FAQ } from "@/components/faq";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -69,12 +73,16 @@ function Home() {
   return (
     <SiteLayout>
       <Hero />
+      <StartHereCards />
       <ServicesPreview />
       <WorkingSystem />
       <DashboardPreview />
+      <IntegrationsMarquee />
       <PackagesPreview />
       <Industries />
+      <WhoThisIsFor />
       <FounderLocal />
+      <FAQ />
       <FinalCTA />
     </SiteLayout>
   );

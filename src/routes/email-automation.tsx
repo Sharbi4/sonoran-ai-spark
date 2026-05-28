@@ -11,21 +11,20 @@ import { cn } from "@/lib/utils";
 export const Route = createFileRoute("/email-automation")({
   head: () => ({
     meta: [
-      { title: "AI Email Automation Tucson AZ | Sonoran Systems & AI — Phoenix, Flagstaff" },
+      { title: "Email Automation — Sonoran Systems & AI" },
       {
         name: "description",
         content:
-          "AI-powered email automation for Arizona businesses. Auto-triage, AI-drafted replies & lead follow-up sequences. Serving Tucson, Phoenix, Flagstaff & surrounding areas.",
+          "AI-powered email systems that read incoming messages, draft replies in your voice, and follow up automatically — so no lead falls through the cracks.",
       },
-      { property: "og:title", content: "AI Email Automation — Sonoran Systems & AI | Tucson AZ" },
+      { property: "og:title", content: "Email Automation — Sonoran Systems & AI" },
       {
         property: "og:description",
         content:
-          "Never miss a lead again. AI email triage, draft replies & automated follow-up for Arizona businesses. Based in Tucson.",
+          "Never miss a lead or forget a follow-up again. AI triage, draft replies, and automated sequences for Gmail and Outlook.",
       },
-      { property: "og:url", content: "https://sonoransystemsai.com/email-automation" },
     ],
-    links: [{ rel: "canonical", href: "https://sonoransystemsai.com/email-automation" }],
+    links: [{ rel: "canonical", href: "/email-automation" }],
   }),
   component: EmailAutomationPage,
 });
@@ -159,7 +158,7 @@ function EmailAutomationPage() {
               and follow up automatically — so nothing falls through the cracks.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <PrimaryButton to="/contact">Book a Strategy Call</PrimaryButton>
+              <PrimaryButton to="/contact">Submit a Free Inquiry</PrimaryButton>
               <SecondaryButton to="/packages">View Packages</SecondaryButton>
             </div>
           </div>
@@ -351,7 +350,7 @@ function EmailAutomationPage() {
 
       <FinalCTA
         headline="Stop losing leads to an unorganized inbox."
-        sub="Book a $250 Strategy Call and we'll show you what an automated email system looks like for your business."
+        sub="Submit a free inquiry and we'll show you what an automated email system looks like for your business."
       />
     </SiteLayout>
   );

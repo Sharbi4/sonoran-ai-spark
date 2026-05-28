@@ -14,21 +14,20 @@ import { cn } from "@/lib/utils";
 export const Route = createFileRoute("/dashboards")({
   head: () => ({
     meta: [
-      { title: "AI Business Dashboards Tucson AZ | Sonoran Systems & AI — Phoenix, Flagstaff" },
+      { title: "Business Intelligence Dashboards — Sonoran Systems & AI" },
       {
         name: "description",
         content:
-          "Custom AI-powered business intelligence dashboards for Arizona businesses. Connect QuickBooks, Toast, Clio, Jobber & 50+ tools. Serving Tucson, Phoenix, Flagstaff & surrounding areas.",
+          "Custom AI-powered dashboards that connect QuickBooks, Toast, Clio, Jobber, Mindbody and 50+ tools into one clean view of your entire Arizona business.",
       },
-      { property: "og:title", content: "AI Business Dashboards — Sonoran Systems & AI | Tucson AZ" },
+      { property: "og:title", content: "Business Intelligence Dashboards — Sonoran Systems & AI" },
       {
         property: "og:description",
         content:
-          "One custom dashboard for your Arizona business. Every number that matters. AI insights in plain English. Based in Tucson.",
+          "Stop logging into five apps every morning. One custom dashboard. Every number that matters. AI insights in plain English.",
       },
-      { property: "og:url", content: "https://sonoransystemsai.com/dashboards" },
     ],
-    links: [{ rel: "canonical", href: "https://sonoransystemsai.com/dashboards" }],
+    links: [{ rel: "canonical", href: "/dashboards" }],
   }),
   component: DashboardsPage,
 });
@@ -379,7 +378,7 @@ function DashboardsPage() {
               business.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <PrimaryButton to="/contact">Book a Strategy Call</PrimaryButton>
+              <PrimaryButton to="/contact">Submit a Free Inquiry</PrimaryButton>
               <SecondaryButton to="/packages">View Packages</SecondaryButton>
             </div>
           </div>
@@ -682,7 +681,7 @@ function DashboardsPage() {
 
       <FinalCTA
         headline="Ready to see your business in one place?"
-        sub="Book a $250 Strategy Call and we'll show you exactly what your dashboard could look like."
+        sub="Submit a free inquiry and we'll show you exactly what your dashboard could look like."
       />
     </SiteLayout>
   );

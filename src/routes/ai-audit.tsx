@@ -1,27 +1,24 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Check, Compass, Wrench, ListChecks, MessageCircle } from "lucide-react";
-import { SiteLayout, Section, CopperButton, Accent } from "@/components/site-layout";
+import { Check, Compass, Wrench, ListChecks, MessageCircle, ArrowRight } from "lucide-react";
+import { SiteLayout, Section, Accent } from "@/components/site-layout";
+import { useStripeCheckout } from "@/hooks/useStripeCheckout";
 
 export const Route = createFileRoute("/ai-audit")({
   head: () => ({
     meta: [
-      { title: "AI Business Audit $497 | Tucson AZ — Sonoran Systems & AI | Phoenix, Flagstaff" },
+      { title: "AI Business Systems Audit — Sonoran Systems & AI" },
       {
         name: "description",
         content:
-          "$497 AI Business Systems Audit for Arizona businesses. 60-min strategy call, website review, workflow analysis & AI roadmap. Serving Tucson, Phoenix, Flagstaff & surrounding areas.",
+          "A $497 AI Business Systems Audit for Arizona businesses. 2-hour strategy call, full review of your website, customer journey, and workflows, prioritized written action plan, and a recommended project roadmap.",
       },
-      { property: "og:title", content: "AI Business Systems Audit — Sonoran Systems & AI | Tucson AZ" },
-      { property: "og:description", content: "$497 comprehensive AI audit for Arizona businesses. Strategy call, workflow review & prioritized action plan." },
-      { property: "og:url", content: "https://sonoransystemsai.com/ai-audit" },
     ],
-    links: [{ rel: "canonical", href: "https://sonoransystemsai.com/ai-audit" }],
   }),
   component: AIAudit,
 });
 
 const INCLUDES = [
-  "60-minute strategy call",
+  "2-hour strategy call",
   "Website + customer journey review",
   "Workflow and tools review",
   "AI opportunity mapping",
@@ -54,8 +51,12 @@ const OUTCOMES = [
 ];
 
 function AIAudit() {
+  const { openCheckout, checkoutElement } = useStripeCheckout();
+  const buyAudit = () => openCheckout({ priceId: "ai_audit_497" });
+  const bookCall = () => openCheckout({ priceId: "strategy_call_60min" });
   return (
     <SiteLayout>
+      {checkoutElement}
       <Section className="pt-16 sm:pt-24">
         <div className="max-w-3xl">
           <span className="inline-flex items-center rounded-full bg-copper/10 px-3 py-1 text-xs font-semibold text-copper uppercase tracking-wider">
@@ -94,14 +95,18 @@ function AIAudit() {
               </p>
             </div>
             <div className="mt-8 w-full">
-              <CopperButton to="/contact" className="w-full">
-                Buy the Audit — $497
-              </CopperButton>
+              <button
+                type="button"
+                onClick={buyAudit}
+                className="w-full inline-flex items-center justify-center gap-2 rounded-full bg-copper text-copper-foreground px-6 py-3 text-sm font-medium hover:bg-copper/90 transition-colors shadow-[0_10px_30px_-12px_rgba(194,79,52,0.5)]"
+              >
+                Buy the Audit — $497 <ArrowRight className="h-4 w-4" />
+              </button>
               <p className="mt-4 text-xs text-muted-foreground text-center">
                 Prefer to talk first?{" "}
-                <a href="/contact" className="text-copper hover:underline">
+                <button type="button" onClick={bookCall} className="text-copper hover:underline">
                   Book a $250 Strategy Call
-                </a>{" "}
+                </button>{" "}
                 or{" "}
                 <a href="/contact" className="hover:underline">
                   submit a free inquiry
@@ -137,7 +142,13 @@ function AIAudit() {
           Purchase the audit and we'll schedule your strategy call right away.
         </p>
         <div className="mt-8">
-          <CopperButton to="/contact">Buy the Audit — $497</CopperButton>
+          <button
+            type="button"
+            onClick={buyAudit}
+            className="inline-flex items-center justify-center gap-2 rounded-full bg-copper text-copper-foreground px-6 py-3 text-sm font-medium hover:bg-copper/90 transition-colors shadow-[0_10px_30px_-12px_rgba(194,79,52,0.5)]"
+          >
+            Buy the Audit — $497 <ArrowRight className="h-4 w-4" />
+          </button>
         </div>
       </Section>
     </SiteLayout>
