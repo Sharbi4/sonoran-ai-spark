@@ -25,6 +25,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as IndustriesIndexRouteImport } from './routes/industries.index'
 import { Route as IndustriesSlugRouteImport } from './routes/industries.$slug'
 import { Route as DemoSlugRouteImport } from './routes/demo.$slug'
+import { Route as DashboardSlugRouteImport } from './routes/dashboard.$slug'
 import { Route as ApiPublicContactRouteImport } from './routes/api/public/contact'
 import { Route as ApiPublicPaymentsWebhookRouteImport } from './routes/api/public/payments/webhook'
 
@@ -108,6 +109,11 @@ const DemoSlugRoute = DemoSlugRouteImport.update({
   path: '/demo/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DashboardSlugRoute = DashboardSlugRouteImport.update({
+  id: '/dashboard/$slug',
+  path: '/dashboard/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiPublicContactRoute = ApiPublicContactRouteImport.update({
   id: '/api/public/contact',
   path: '/api/public/contact',
@@ -134,6 +140,7 @@ export interface FileRoutesByFullPath {
   '/services': typeof ServicesRoute
   '/terms': typeof TermsRoute
   '/thank-you': typeof ThankYouRoute
+  '/dashboard/$slug': typeof DashboardSlugRoute
   '/demo/$slug': typeof DemoSlugRoute
   '/industries/$slug': typeof IndustriesSlugRoute
   '/industries/': typeof IndustriesIndexRoute
@@ -153,6 +160,7 @@ export interface FileRoutesByTo {
   '/services': typeof ServicesRoute
   '/terms': typeof TermsRoute
   '/thank-you': typeof ThankYouRoute
+  '/dashboard/$slug': typeof DashboardSlugRoute
   '/demo/$slug': typeof DemoSlugRoute
   '/industries/$slug': typeof IndustriesSlugRoute
   '/industries': typeof IndustriesIndexRoute
@@ -174,6 +182,7 @@ export interface FileRoutesById {
   '/services': typeof ServicesRoute
   '/terms': typeof TermsRoute
   '/thank-you': typeof ThankYouRoute
+  '/dashboard/$slug': typeof DashboardSlugRoute
   '/demo/$slug': typeof DemoSlugRoute
   '/industries/$slug': typeof IndustriesSlugRoute
   '/industries/': typeof IndustriesIndexRoute
@@ -196,6 +205,7 @@ export interface FileRouteTypes {
     | '/services'
     | '/terms'
     | '/thank-you'
+    | '/dashboard/$slug'
     | '/demo/$slug'
     | '/industries/$slug'
     | '/industries/'
@@ -215,6 +225,7 @@ export interface FileRouteTypes {
     | '/services'
     | '/terms'
     | '/thank-you'
+    | '/dashboard/$slug'
     | '/demo/$slug'
     | '/industries/$slug'
     | '/industries'
@@ -235,6 +246,7 @@ export interface FileRouteTypes {
     | '/services'
     | '/terms'
     | '/thank-you'
+    | '/dashboard/$slug'
     | '/demo/$slug'
     | '/industries/$slug'
     | '/industries/'
@@ -256,6 +268,7 @@ export interface RootRouteChildren {
   ServicesRoute: typeof ServicesRoute
   TermsRoute: typeof TermsRoute
   ThankYouRoute: typeof ThankYouRoute
+  DashboardSlugRoute: typeof DashboardSlugRoute
   DemoSlugRoute: typeof DemoSlugRoute
   ApiPublicContactRoute: typeof ApiPublicContactRoute
   ApiPublicPaymentsWebhookRoute: typeof ApiPublicPaymentsWebhookRoute
@@ -375,6 +388,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DemoSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/dashboard/$slug': {
+      id: '/dashboard/$slug'
+      path: '/dashboard/$slug'
+      fullPath: '/dashboard/$slug'
+      preLoaderRoute: typeof DashboardSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/public/contact': {
       id: '/api/public/contact'
       path: '/api/public/contact'
@@ -420,6 +440,7 @@ const rootRouteChildren: RootRouteChildren = {
   ServicesRoute: ServicesRoute,
   TermsRoute: TermsRoute,
   ThankYouRoute: ThankYouRoute,
+  DashboardSlugRoute: DashboardSlugRoute,
   DemoSlugRoute: DemoSlugRoute,
   ApiPublicContactRoute: ApiPublicContactRoute,
   ApiPublicPaymentsWebhookRoute: ApiPublicPaymentsWebhookRoute,

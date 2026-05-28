@@ -1,4 +1,4 @@
-import { Check, ArrowRight, ExternalLink, Lightbulb, Monitor, PenTool, Workflow, MessageSquare, BarChart3, MailPlus, Magnet } from "lucide-react";
+import { Check, ArrowRight, ExternalLink, Lightbulb, Monitor, PenTool, Workflow, MessageSquare, BarChart3, MailPlus, Magnet, LayoutDashboard } from "lucide-react";
 import {
   SiteLayout,
   Section,
@@ -100,6 +100,13 @@ export function IndustryTemplate({
                     className="inline-flex items-center gap-2 rounded-full bg-copper px-6 py-3 text-sm font-medium text-copper-foreground hover:bg-copper/90 transition-colors"
                   >
                     Explore {demoInfo.brandName} Demo <ArrowRight className="h-4 w-4" />
+                  </a>
+                  <a
+                    href={`/dashboard/${slug}`}
+                    className="inline-flex items-center gap-2 rounded-full bg-sage px-6 py-3 text-sm font-medium text-white hover:bg-sage/90 transition-colors"
+                  >
+                    <LayoutDashboard className="h-4 w-4" />
+                    Open Live Dashboard
                   </a>
                   <a
                     href="/contact"
