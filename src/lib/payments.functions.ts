@@ -35,9 +35,10 @@ export const createCheckoutSession = createServerFn({ method: 'POST' })
         payment_intent_data: { description: product.name },
         ...(data.customerEmail && { customer_email: data.customerEmail }),
         metadata: { priceId: data.priceId, productId },
-        // managed_payments enables Stripe end-to-end tax compliance, fraud
-        // protection, and dispute handling per the user's preference.
-        managed_payments: { enabled: true },
+        // No tax automation: full compliance handling rejected the
+        // consulting-services tax code, and automatic_tax requires a head
+        // office address configured in Stripe Tax. Re-enable one of those
+        // later once the seller chooses a tax setup.
       } as any);
 
       return { clientSecret: session.client_secret ?? '' };
