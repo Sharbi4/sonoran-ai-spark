@@ -6,6 +6,7 @@ import { LogoLockup } from "./logo";
 
 const NAV = [
   { to: "/", label: "Home" },
+  { to: "/dashboards", label: "Dashboards" },
   { to: "/packages", label: "Packages" },
   { to: "/case-studies", label: "Case Studies" },
   { to: "/about", label: "About" },
@@ -20,11 +21,12 @@ const CORE_SERVICES = [
   { slug: "chatbots", label: "AI Chatbots & Voice Agents" },
 ];
 
-const ADVANCED_SERVICES = [
-  { slug: "dashboards", label: "Business Intelligence Dashboards" },
-  { slug: "email", label: "Email Automation" },
-  { slug: "lead-capture", label: "Lead Capture & Follow-Up" },
-  { slug: "dashboards", label: "Industry Dashboards" },
+type ServiceLink = { to: string; label: string; external?: boolean };
+const ADVANCED_SERVICES: ServiceLink[] = [
+  { to: "/dashboards", label: "Business Intelligence Dashboards" },
+  { to: "/email-automation", label: "Email Automation" },
+  { to: "/services#lead-capture", label: "Lead Capture & Follow-Up" },
+  { to: "/services#booking", label: "Booking & Intake Systems" },
 ];
 
 function HeaderBrand() {
@@ -73,9 +75,9 @@ function ServicesMegaMenu() {
               </p>
               <ul className="space-y-2">
                 {ADVANCED_SERVICES.map((s) => (
-                  <li key={s.slug + s.label}>
+                  <li key={s.to + s.label}>
                     <a
-                      href={`/services#${s.slug}`}
+                      href={s.to}
                       className="block text-sm text-foreground/85 hover:text-copper"
                     >
                       {s.label}
@@ -167,10 +169,20 @@ export function SiteLayout({ children }: { children: React.ReactNode }) {
                 Services
               </Link>
               <div className="pl-3 pb-2 flex flex-col gap-1.5">
-                {[...CORE_SERVICES, ...ADVANCED_SERVICES.slice(0, 3)].map((s) => (
+                {CORE_SERVICES.map((s) => (
                   <a
                     key={s.slug + s.label}
                     href={`/services#${s.slug}`}
+                    onClick={() => setOpen(false)}
+                    className="text-sm text-muted-foreground hover:text-copper"
+                  >
+                    {s.label}
+                  </a>
+                ))}
+                {ADVANCED_SERVICES.map((s) => (
+                  <a
+                    key={s.to + s.label}
+                    href={s.to}
                     onClick={() => setOpen(false)}
                     className="text-sm text-muted-foreground hover:text-copper"
                   >
