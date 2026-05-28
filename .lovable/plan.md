@@ -1,95 +1,64 @@
-## Scope
+# Sonoran Systems & AI — Premium Redesign Plan
 
-Two rounds, as the brief suggests:
+You already have routes scaffolded (Home, Services, Packages, AI Audit, About, Case Studies, Contact, Dashboards, Email Automation). This plan upgrades the *feel* of the site to Awwwards-level: warm desert editorial + satin glassmorphism + Framer Motion + Lenis smooth scroll, with the exact page script you outlined.
 
-**Round 1 — Home page "What We Build" overview section**
-**Round 2 — Full `/services` page rebuild + Services mega dropdown in nav**
+## What I'll build
 
-All work stays in frontend/presentation code. Uses existing brand tokens already in `src/styles.css` (terracotta, sage, sand, off-white, charcoal). No new backend, no real form routing — service CTAs all link to `/contact` (pre-tag via `?service=...` query param so the contact page can read it later).
+### 1. Foundation
+- Install `framer-motion` and `lenis`.
+- Update `src/styles.css`:
+  - Lock in the brand palette exactly: terracotta `#C24F34`, adobe rose `#E07A6B`, sand `#E9DFCF`, sage `#8BA395`, charcoal `#1F1F1F`, cream `#FBF7F2`.
+  - Swap heading font to **Space Grotesk** (geometric sans), body **Inter**.
+  - Add glass utilities (`.glass-card`, `.glass-header`, satin gradients, soft shadow tokens, diagonal-band background).
+- Add `src/components/lenis-provider.tsx` mounted in `__root.tsx` for site-wide smooth scroll (client-only to avoid hydration issues).
+- Add motion primitives in `src/components/motion/`:
+  - `Reveal` (fade + rise on scroll, spring)
+  - `StaggerGroup` / `StaggerItem`
+  - `ParallaxLayer` (scroll-linked y transform)
+  - `MagneticButton`, `HoverLift` card wrapper
+  - `AccentWord` (animated colored words in headlines)
+- Fix the current SSR hydration warning in the footer at the same time.
 
----
+### 2. Global chrome
+- Rebuild `site-layout.tsx` header as **satin glass** (translucent cream, backdrop blur, sand hairline, shadow on scroll), Linear-style mega menu with the exact two-column Core / Advanced split + "$297 audit" bottom strip.
+- Mobile: slide-in glass drawer, full-width terracotta CTA.
+- Footer: charcoal variant with warm accents, organized columns, social icons, hover micro-interactions.
 
-## Round 1 — Home page services overview
+### 3. Home page (full rewrite to your script)
+1. **Hero** — cream rounded container, headline "AI **systems** for **businesses** that are ready to move **smarter**." with animated colored words, two CTAs, trust + location row. Right side: diagonal terracotta/rose/sand/sage/charcoal bands with parallax + three floating glass cards (AI Assistant, Workflow, Daily Summary) drifting at different speeds.
+2. **Services Preview** — 4 glass cards, sage line icons, staggered reveal, hover lift, arrow glides.
+3. **Sticky "Working System"** — left sticky headline, right scroll-through 5 cards snapping into place with animated connector dots between them; background tint shifts cream → sand → faint sage via scroll progress.
+4. **Dashboard Preview** — large satin glass dashboard mock with sidebar, metric tiles that count up on enter, animated SVG chart line that draws on scroll, terracotta data, sage highlights, floating mini cards with parallax.
+5. **Packages Preview** — full-bleed charcoal satin section, glass pricing card for Growth Systems Package, sage check list, terracotta CTA.
+6. **Industry Use Cases** — 6 cards, horizontal drag/scroll on desktop, hover changes accent.
+7. **Founder / Local** — warm editorial split, abstract geometric side panel with "Tucson, Arizona" tag.
+8. **Final CTA** — large rounded cream container, satin glass feel.
 
-Edit `src/routes/index.tsx`. Replace the current "What We Build" section with the new 8-card version per spec:
-
-- Section label `WHAT WE BUILD` (uppercase tracked, charcoal/muted)
-- Headline `Systems that work together.` with `together.` in terracotta + thin terracotta underline
-- Subheadline paragraph
-- Grid: 4 cols desktop / 2 tablet / 1 mobile
-- 8 cards (Websites, Workflow Automation, AI Chatbots, Dashboards, Brand & Logo, Email Automation, Lead Capture, AI Consulting)
-- Each card: white bg, sand border, rounded, sage Lucide line icon top-left, bold charcoal name, 2–3 sentence body, terracotta `Learn More →` link to `/services#<slug>`
-- Centered CTA below: "Not sure which service fits your business?" + terracotta `Book a Free Call →` button to `/contact`
-
-Icon mapping (Lucide, line style, consistent stroke):
-Monitor, Workflow, MessagesSquare, BarChart3, PenTool, MailPlus, Magnet, Lightbulb
-
----
-
-## Round 2 — `/services` page
-
-Rewrite `src/routes/services.tsx` end-to-end:
-
-1. **Hero**
-   - Diagonal color band element on the right (terracotta / sage / sand / charcoal layers at ~-12°), using existing `.diagonal-bands` utility or inline gradient divs
-   - Label `WHAT WE DO`
-   - Headline `AI systems, websites, and automation for businesses ready to grow.` — `grow.` in terracotta
-   - Subheadline paragraph
-   - Primary `Book a Free Call →` (terracotta), secondary `View Packages →` (terracotta outline)
-   - Trust line: serving Tucson/Phoenix/Scottsdale/AZ
-
-2. **8 service detail sections** in a single shared `<ServiceDetail>` component, alternating image/text side per index (`flex-row` / `flex-row-reverse`). Each section:
-   - Anchor id (`#ai-consulting`, `#websites`, `#brand`, `#workflow`, `#chatbots`, `#dashboards`, `#email`, `#lead-capture`)
-   - Small uppercase terracotta label
-   - Large headline with one accent word (alternating terracotta / sage per spec)
-   - 2–3 paragraph body
-   - "Includes" list: checkmark (terracotta `Check` icon) + text, 6–7 items
-   - Italic "Who it's for" line
-   - Terracotta CTA button → `/contact?service=<slug>`
-   - Visual side: large sage line icon inside a soft sand card with rounded corners (no stock photos)
-
-3. **Industry Spotlight section**
-   - Label `BUILT FOR YOUR INDUSTRY`, headline `We speak your industry's language.` (`industry's` terracotta)
-   - 5 horizontal cards (Law / Restaurants / Contractors / Salons / Real Estate): line icon, name, tool list (muted small), one-line description
-
-4. **Final CTA section**
-   - Charcoal bg `#1F1F1F`
-   - White headline + terracotta accent line
-   - Light-gray body
-   - Terracotta primary + white-outline secondary buttons
-   - Sand-colored small text with service-area line
-
-5. **`head()` metadata**: title `Services — Sonoran Systems & AI`, description, og:title/description, canonical `/services`.
-
----
-
-## Services mega dropdown in nav
-
-Edit `src/components/site-layout.tsx`:
-
-- Desktop nav: replace the plain `Services` link with a hover/focus dropdown panel using the existing shadcn `NavigationMenu` (already installed) — two columns:
-  - **CORE SERVICES**: AI Consulting, Website Design, Brand & Logo Design, Workflow Automation, AI Chatbots & Voice Agents
-  - **ADVANCED SYSTEMS**: Business Intelligence Dashboards, Email Automation, Lead Capture & Follow-Up, Industry Dashboards
-  - Each item links to `/services#<slug>`
-- Bottom strip inside the dropdown: sand background, text `Start with an AI Business Audit — $297`, terracotta `Book Your Audit →` button → `/ai-audit`
-- Mobile: keep hamburger; expand Services into a nested list with the same items (no fancy mega panel on mobile)
-
----
-
-## Out of scope (this round)
-
-- Packages page changes
-- Contact page changes (only the link target gets `?service=` query — page itself unchanged)
-- Real form intake tagging logic (just the query param; reading it can come later)
-- New logo work (existing `<Logo />` component stays)
-- Animations beyond the existing subtle fade-ins already in the project
-
----
+### 4. Inner pages
+- **Services**: alternating left/right sections for all 8 services with mini glass UI visuals, scroll reveals, and brand diagonal accents.
+- **Packages**: 6 glass pricing cards, terracotta "featured" state on Growth Systems, sage checks.
+- **AI Audit**: focused single-offer page, glass price card, what's included checklist, single CTA.
+- **About**: warm editorial founder/local story.
+- **Case Studies**: keep structure, restyle with glass + reveals.
+- **Contact**: 2-column — form left (all fields you listed, select with all service options), side card with Arizona service area.
+- Keep existing `dashboards.tsx` and `email-automation.tsx`, restyle headers/cards to match new glass language.
 
 ## Technical notes
+- **Lenis** wired with `requestAnimationFrame` loop inside a `useEffect`; provider returns `null` SSR-side so no hydration drift.
+- **Framer Motion**: `useScroll` + `useTransform` for sticky/parallax; `whileInView` with `once: true, margin: "-15%"` for reveals; spring `{ stiffness: 120, damping: 20 }` as the default.
+- All colors flow through CSS variables already in `styles.css` — no hard-coded hex in components.
+- Respect `prefers-reduced-motion`: motion primitives short-circuit to opacity-only.
+- Mobile: sticky scroll sections collapse to normal stacked sections under `md`.
 
-- All colors via existing CSS variables in `src/styles.css` (`--terracotta`, `--sage`, `--sand`, `--off-white`, `--charcoal`). No hardcoded hex in JSX.
-- Use `Link` from `@tanstack/react-router` for all internal nav.
-- Icons from `lucide-react`, `strokeWidth={1.5}` for consistent line weight, `text-sage` or `text-charcoal` per spec.
-- Shared small components defined inline at top of `services.tsx`: `SectionLabel`, `AccentHeadline`, `ServiceDetail`, `IndustryCard`.
-- Mega dropdown uses shadcn `NavigationMenu` primitives already in `src/components/ui/navigation-menu.tsx`.
+## Out of scope (call out)
+- No backend / form submission wiring (form will POST to a stub handler and show a success state).
+- No real auth or data — dashboard numbers are static mock content.
+- No CMS for Insights — I'll only add the route if you want it; otherwise I'll keep nav to the 6 pages already there.
+
+## Deliverables
+- Updated `styles.css`, new motion primitives, new Lenis provider.
+- Rewritten `site-layout.tsx`, `index.tsx`, `services.tsx`, `packages.tsx`, `ai-audit.tsx`, `contact.tsx`, `about.tsx`.
+- Restyled `case-studies.tsx`, `dashboards.tsx`, `email-automation.tsx`.
+- Hydration error fixed.
+
+Confirm and I'll build it. Want me to add an **Insights** route too, or skip it for now?
