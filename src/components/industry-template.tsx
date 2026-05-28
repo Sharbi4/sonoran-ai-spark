@@ -10,6 +10,7 @@ import {
   FinalCTA,
 } from "@/components/site-layout";
 import { Reveal, StaggerGroup, StaggerItem } from "@/components/motion/primitives";
+import { DashboardMockup, type DashboardSpec } from "@/components/mockups";
 
 export interface IndustryContent {
   label: string;
@@ -22,7 +23,13 @@ export interface IndustryContent {
   caseStudy: { name: string; result: string };
 }
 
-export function IndustryTemplate({ content }: { content: IndustryContent }) {
+export function IndustryTemplate({
+  content,
+  mockup,
+}: {
+  content: IndustryContent;
+  mockup?: DashboardSpec;
+}) {
   return (
     <SiteLayout>
       <Section className="pt-16 sm:pt-24 pb-10">
@@ -48,6 +55,23 @@ export function IndustryTemplate({ content }: { content: IndustryContent }) {
           </Reveal>
         </div>
       </Section>
+
+      {mockup && (
+        <Section className="pt-0">
+          <div className="mb-7 max-w-2xl">
+            <SectionLabel>What you'd see</SectionLabel>
+            <h2 className="mt-3 font-serif text-3xl sm:text-4xl text-foreground text-balance">
+              A live dashboard built for <Accent>your {content.label.toLowerCase()}</Accent>.
+            </h2>
+            <p className="mt-4 text-muted-foreground leading-relaxed">
+              Illustrative example. Real builds are tailored to your data sources and KPIs.
+            </p>
+          </div>
+          <Reveal>
+            <DashboardMockup spec={mockup} />
+          </Reveal>
+        </Section>
+      )}
 
       <Section className="pt-0">
         <div className="grid lg:grid-cols-2 gap-6">
