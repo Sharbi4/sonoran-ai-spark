@@ -1,99 +1,75 @@
-## Goal
+## Sonoran Systems & AI — full site build
 
-Rebuild the offer ladder, pricing, and CTAs across the site to match the corrected consulting-firm model:
+Incremental upgrade on top of the existing app. Keeps the current design tokens (terracotta/sage/sand/charcoal already in `src/styles.css`), site shell (`site-layout.tsx`, logo, nav), Stripe/Calendly/webhook plumbing, and `purchases` table. Replaces or rebuilds pages per the brief and adds the missing ones.
 
-> **Project inquiry is free. Strategy is paid. Implementation is scoped. Support is monthly.**
+### Brand audit (before any pages)
+- Verify CSS tokens in `src/styles.css` match brief exactly: `#FBF7F2` bg, `#1F1F1F` charcoal, `#C24F34` terracotta, `#E07A6B` adobe rose, `#8BA395` sage, `#E9DFCF` sand, `#FFFFFF` card. Add any missing semantic token (`--rose`, `--sand`, `--copper`/`--terracotta`).
+- Confirm fonts: bold geometric sans for headings, clean sans for body. Add via `<link>` if not already loaded.
+- Audit `Button`, section labels (11px uppercase tracked), card border style — extend variants once, reuse everywhere.
 
-## 1. New offer ladder (replaces current Packages page)
+### Shared building blocks (`src/components/`)
+- `nav-mega.tsx` — Services mega dropdown (2 cols + sand CTA strip) and Industries dropdown. Replaces current header nav. Mobile sheet variant.
+- `start-here-cards.tsx` — 3-card chooser (Inquiry / Strategy Call / AI Audit) used on Home and Contact, with payment CTAs wired through `useStripeCheckout`.
+- `process-steps.tsx` — 5-step horizontal flow with animated connecting line.
+- `services-grid.tsx` — 4×2 service cards with sage icons + spring hover.
+- `dashboard-preview.tsx` — animated stats with count-up on scroll, terracotta line + bar charts.
+- `industry-cards.tsx` — reusable 5-card row + per-industry detail template.
+- `integrations-marquee.tsx` — auto-scrolling chip row, pauses on hover.
+- `who-this-is-for.tsx` — two-column comparison block.
+- `package-teaser.tsx`, `portal-teaser.tsx`, `faq.tsx` (Radix Accordion), `final-cta.tsx`.
+- `floating-ui-cards.tsx` — hero AI Assistant / Workflow / Daily Summary cards with framer-motion spring entrances.
+- `count-up.tsx` — viewport-triggered animated number.
+- Motion primitives already exist (`Reveal`, `StaggerGroup`, `ParallaxLayer`) — extend with a `Curtain` reveal (clip-path lift) since the brief specifies curtain, not fade.
 
-### Start Here — direct purchase (Stripe)
-| Offer | Price | Type |
-|---|---|---|
-| Project Inquiry | Free | Form |
-| Business Systems Strategy Call | $250/hr | Stripe (pay-to-book → Calendly) |
-| Website + AI Readiness Review | $197 | Stripe one-time |
-| Automation Opportunity Map | $297 | Stripe one-time |
-| **AI Business Systems Audit** | **$497** | Stripe one-time (flagship) |
+### Routes (all 21, built in this order)
+1. Rebuild `routes/index.tsx` — Hero, Start Here, Process, Services Grid, Dashboard Preview, Industries, Integrations marquee, Who-this-is-for, Package teaser, Portal teaser, FAQ, Final CTA.
+2. Rebuild `routes/packages.tsx` — comparison table, featured Audit card, Strategy Call card, 4 project packages, retainer, revision policy, not-sure block.
+3. Rebuild `routes/contact.tsx` — keep working Calendly + intake form, add Start Here cards, booking-flow explanation box (3 flows), full intake form per spec.
+4. Rebuild `routes/about.tsx` — firm voice, founder section, Tucson roots, principles, capabilities.
+5. Rebuild `routes/ai-audit.tsx` — audit-specific landing with checkout CTA + intake explainer.
+6. `routes/services.tsx` — services overview.
+7. Service detail pages: `services.ai-consulting`, `services.websites`, `services.brand-design`, `services.workflow-automation`, `services.ai-chatbots`, `services.dashboards`, `services.email-automation`, `services.lead-capture` (use existing `dashboards.tsx` / `email-automation.tsx` as starting points, restructure under `/services/*`).
+8. `routes/industries.tsx` — industries overview.
+9. Full industry pages: `industries.law-firms`, `industries.restaurants`, `industries.contractors`, `industries.salons-wellness`, `industries.real-estate`, `industries.consultants-coaches`. Each: hero, pain points, recommended systems, tool integrations, sample workflow, case study placeholder, CTA.
+10. `routes/portal.tsx` — Client Portal teaser (no auth yet, marketing page only).
+11. Update `routes/__root.tsx` / `site-layout.tsx` for new mega-nav.
 
-### Build the System — scoped, intake only (no Buy Now)
-| Offer | Starting at |
-|---|---|
-| Starter Website | $1,750+ |
-| Website System Launch | $2,500+ |
-| Brand Starter Kit | $1,000+ |
-| Brand + Web Launch | $3,000+ |
-| Lead Capture + Follow-Up System | $1,500+ |
-| Workflow Automation Setup | $1,750+ |
-| Email Automation System | $1,500+ |
-| AI Customer Response System | $2,000+ |
-| Connected Business Dashboard | $2,500+ |
-| Full Intelligence Dashboard | $4,500+ |
+Every route gets distinct `head()` metadata (title, description, og:title, og:description). Leaf pages get og:image where there's a hero asset.
 
-CTA: **Request Project Quote** → intake form / Calendly.
+### Payments wiring (Strategy Call + AI Audit)
+- Create two Stripe products via `payments--batch_create_product`:
+  - `strategy_call` → price `strategy_call_60min`, $250 one-time, qty 1.
+  - `ai_audit` → price `ai_audit_497`, $497 one-time, qty 1.
+- Both digital services → tax code `txcd_20030000` (consulting services) — confirm at build time.
+- **Tax decision:** I'll ask at the start of build whether to enable Stripe-managed compliance handling (+3.5%), tax calculation only (+0.5%), or no tax automation. Default recommendation: managed compliance handling since this is digital consulting and the seller is US-based.
+- Wire `Pay & Book →` (Strategy Call) and `Buy Audit →` (Audit) via existing `useStripeCheckout` hook → embedded checkout dialog.
+- Return URL: `/thank-you?type=strategy|audit&session_id={CHECKOUT_SESSION_ID}`. `thank-you.tsx` branches:
+  - Strategy: shows Calendly embed + short pre-call intake form.
+  - Audit: shows full Audit intake form, then Calendly.
+- Webhook (`api/public/payments/webhook.ts`) already records to `purchases` — extend to stamp `product_name` and route metadata from session.
 
-### Keep It Running — application first (no Buy Now)
-| Retainer | Price | Overage |
-|---|---|---|
-| AI Support Partner Lite | $500/mo (3 small requests + monthly call) | n/a |
-| AI Support Partner | $750/mo (up to 5 hrs) | $150/hr |
-| Growth Systems Partner | $1,500/mo (up to 10 hrs) | $150/hr |
-| Custom Systems Partner | $2,500+/mo | Custom |
+### Motion system
+- Lenis already wired.
+- Add `Curtain` reveal primitive (clip-path inset from top) — used for section headlines per "curtain lifting, never a fade".
+- Spring config: `{ stiffness: 110, damping: 22, mass: 0.9 }` (already in `primitives.tsx`).
+- Stagger 0.15s on card groups.
+- Hover: scale 1.02, shadow expansion, arrow translate-x on buttons.
+- Buttons press-in on tap (`whileTap={{ scale: 0.97 }}`).
+- Number count-up via `useInView` + `animate` on scroll into viewport.
+- Page transitions: existing route transitions stay; add fade-slide overlay in `__root.tsx` via `AnimatePresence` keyed by `pathname`.
 
-CTA: **Apply for Retainer** → intake form.
+### SEO + a11y
+- Single H1 per route, semantic landmarks, alt on every illustration.
+- JSON-LD: `LocalBusiness` on Home + Contact (Tucson, AZ).
+- Open Graph + Twitter cards per route.
+- All interactive elements keyboard-accessible (already shadcn).
 
-## 2. AI Audit page (`src/routes/ai-audit.tsx`)
-- Reprice to **$497**.
-- Rename to **AI Business Systems Audit**.
-- Update "Includes" list to: 60-min strategy call, website + customer journey review, workflow/tools review, AI opportunity map, prioritized written action plan, recommended project roadmap.
-- Primary CTA: **Buy Audit — $497** (Stripe).
-- Secondary: "Not ready? Start with a Strategy Call ($250)" or "Submit a free project inquiry."
+### Out of scope (this pass)
+- Real client portal auth/dashboard — only the marketing teaser route.
+- Case study detail pages beyond the existing `case-studies.tsx` (industry pages reference placeholders).
+- Email templates — already pending separate domain setup (`sonoransystemsai.com`).
 
-## 3. Packages page (`src/routes/packages.tsx`) — full rewrite into 3 sections
-- **Start Here**: 4 cards with prices + Buy Now buttons (Stripe), audit highlighted.
-- **Build the System**: 10 cards grouped by category (Web · Brand · Automation · Dashboards), all with "Request Project Quote" CTA → `/contact`.
-- **Keep It Running**: 4 retainer cards with "Apply" CTA → `/contact`.
-- Remove the old Specialized Solutions section (folded into Build the System).
-- Remove "2 rounds of revisions" blanket promise (moved to fine print).
-
-## 4. Dashboards page (`src/routes/dashboards.tsx`)
-- Restructure into 3 tiers: Starter Dashboard ($1,500+), Connected Business Dashboard ($2,500+), Full Intelligence Dashboard ($4,500+).
-- All CTAs → "Request Project Quote" (Calendly + form). No direct purchase.
-
-## 5. Email Automation page (`src/routes/email-automation.tsx`)
-- Update floor to $1,500+.
-- CTA → "Request Project Quote".
-
-## 6. Services page (`src/routes/services.tsx`)
-- Update overview to mirror the new 3-tier ladder.
-
-## 7. Contact page (`src/routes/contact.tsx`)
-- Keep Calendly inline widget.
-- Adjust intake form copy to "Submit a Project Inquiry — free" vs "Book a Paid Strategy Call ($250/hr)".
-
-## 8. New: Terms & Fine Print page (`src/routes/terms.tsx`)
-- Verbatim from the corrected fine-print language you provided (pricing terms, revisions, third-party fees, AI disclaimers, no legal/medical/financial advice, etc.).
-- Linked from footer and from the bottom of Packages page.
-
-## 9. Stripe enablement (deferred — needs Cloud)
-
-Lovable Cloud must be enabled before built-in Stripe payments can be turned on. **Not part of this plan** — once you confirm enabling Cloud, I'll:
-- Run `enable_stripe_payments` (tax: calculation-only, +0.5%).
-- Create Stripe products for the 4 Start Here offers ($250 call, $197 review, $297 map, $497 audit).
-- Add `createCheckoutSession` server fn + `/api/public/stripe-webhook` route.
-- Add `/thank-you` route with Calendly kickoff embed.
-
-For now all "Buy Now" buttons render with the correct price/label but point to `/contact` as a placeholder. Swapping them to Stripe is a one-line change per button once products exist.
-
-## Implementation order
-1. Rewrite `packages.tsx` with the new 3-tier structure.
-2. Update `ai-audit.tsx` ($497, new copy).
-3. Restructure `dashboards.tsx` into 3 tiers.
-4. Update `email-automation.tsx` floor + CTA.
-5. Adjust `services.tsx` overview.
-6. Adjust `contact.tsx` intake copy.
-7. Create `terms.tsx` and link from footer.
-
-## What I need from you
-1. **Strategy Call billing**: $250 flat per 60-min session, or true hourly with min 30 min ($125)? (Calendly handles fixed-duration cleaner.)
-2. **Brand Snapshot Review $149** — include it in launch set or skip? You marked it Optional.
-3. **Confirm**: defer Stripe wiring until after Lovable Cloud is enabled (CTAs route to `/contact` for now).
+### Technical notes
+- ~25 new files, ~10 rewrites. No new dependencies needed (framer-motion, lenis, stripe, calendly all present).
+- Will run in batches: (a) shared components + Home + nav, (b) Packages + Contact + Audit + payments wiring, (c) Services overview + 8 service detail pages, (d) Industries overview + 6 industry pages, (e) About + Portal + polish pass.
+- After each batch, verify build and spot-check the preview before moving on.
