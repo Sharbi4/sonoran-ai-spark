@@ -32,11 +32,13 @@ export const createCheckoutSession = createServerFn({ method: 'POST' })
         mode: 'payment',
         ui_mode: 'embedded_page',
         return_url: data.returnUrl,
-        managed_payments: { enabled: true } as any,
         payment_intent_data: { description: product.name },
         ...(data.customerEmail && { customer_email: data.customerEmail }),
         metadata: { priceId: data.priceId, productId },
-      });
+        // managed_payments enables Stripe end-to-end tax compliance, fraud
+        // protection, and dispute handling per the user's preference.
+        managed_payments: { enabled: true },
+      } as any);
 
       return { clientSecret: session.client_secret ?? '' };
     } catch (error) {
