@@ -257,8 +257,10 @@ function CheckList({ items }: { items: string[] }) {
 }
 
 function Packages() {
+  const { openCheckout, checkoutElement } = useStripeCheckout();
   return (
     <SiteLayout>
+      {checkoutElement}
       {/* Header */}
       <Section className="pt-16 sm:pt-24 pb-8">
         <div className="max-w-3xl">
@@ -335,13 +337,19 @@ function Packages() {
                   <CheckList items={[...p.includes]} />
                 </div>
                 <div className="mt-6">
-                  <CopperButton
-                    to="/contact"
-                    variant={p.featured ? "filled" : "outlined"}
-                    className="w-full"
+                  <button
+                    type="button"
+                    onClick={() => openCheckout({ priceId: p.priceId })}
+                    className={
+                      "w-full inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-medium transition-colors " +
+                      (p.featured
+                        ? "bg-copper text-copper-foreground hover:bg-copper/90 shadow-[0_10px_30px_-12px_rgba(194,79,52,0.5)]"
+                        : "border border-copper text-copper hover:bg-copper hover:text-copper-foreground")
+                    }
                   >
-                    {p.cta}
-                  </CopperButton>
+                    <span>{p.cta}</span>
+                    <ArrowRight className="h-4 w-4" />
+                  </button>
                 </div>
               </div>
             );
