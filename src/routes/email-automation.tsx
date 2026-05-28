@@ -95,7 +95,7 @@ const CONNECTIONS: { title: string; items: Tool[] }[] = [
 const PACKAGES = [
   {
     name: "Email Automation Setup",
-    price: "$1,000 – $1,500",
+    price: "Starting at $1,500",
     sub: "One-time setup",
     includes: [
       "Connect Gmail or Outlook",
@@ -106,13 +106,13 @@ const PACKAGES = [
       "SMS or Slack alerts for urgent emails",
       "Owner training and walkthrough",
     ],
-    cta: "Request Email Automation Setup",
+    cta: "Request Project Quote",
     featured: false,
     badge: null,
   },
   {
     name: "Email Automation + Dashboard Bundle",
-    price: "Starting at $2,000",
+    price: "Starting at $3,500",
     sub: "Best value — setup + visibility",
     includes: [
       "Everything in Email Automation Setup",
@@ -121,7 +121,7 @@ const PACKAGES = [
       "Response rate and follow-up metrics",
       "Monthly refinement of rules and sequences",
     ],
-    cta: "Request Bundle",
+    cta: "Request Bundle Quote",
     featured: true,
     badge: "Best Value",
   },
