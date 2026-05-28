@@ -435,6 +435,118 @@ function Packages() {
         </p>
       </Section>
 
+      {/* 3-MONTH WEBSITE CARE */}
+      <Section id="website-care" className="pt-4">
+        <div className="rounded-3xl border border-sand bg-card p-8 sm:p-12 shadow-[0_1px_2px_rgba(28,28,30,0.03),0_14px_36px_-22px_rgba(28,28,30,0.18)]">
+          <div className="max-w-2xl">
+            <p className="text-sm font-medium text-sage uppercase tracking-wider">
+              Included with every website package
+            </p>
+            <h2 className="mt-2 font-serif text-3xl sm:text-4xl">
+              3-Month <Accent color="sage">Website Care</Accent>
+            </h2>
+            <p className="mt-4 text-muted-foreground leading-relaxed">
+              For the first 3 months after your site goes live, we handle small
+              website updates and launch fixes so your site stays clean and
+              working properly — at no extra cost.
+            </p>
+          </div>
+
+          <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="rounded-2xl border border-sage/30 bg-sage/5 p-6">
+              <p className="text-xs font-semibold uppercase tracking-wider text-sage">
+                Included
+              </p>
+              <p className="mt-1 text-sm text-muted-foreground">
+                Up to 5 small edits per month
+              </p>
+              <ul className="mt-4 space-y-2 text-sm text-foreground/85">
+                {[
+                  "Text updates and typo fixes",
+                  "Image swaps",
+                  "Button & link updates",
+                  "Contact info, hours, testimonials",
+                  "Form routing corrections",
+                  "Broken link fixes",
+                  "Basic launch bug fixes",
+                  "Minor spacing & mobile fixes",
+                  "Small SEO title/meta updates",
+                  "Updating one existing section with provided content",
+                ].map((t) => (
+                  <li key={t} className="flex gap-2.5">
+                    <Check className="h-4 w-4 mt-0.5 text-sage shrink-0" strokeWidth={2.5} />
+                    <span>{t}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="rounded-2xl border border-sand bg-cream/40 p-6">
+              <p className="text-xs font-semibold uppercase tracking-wider text-foreground/60">
+                Not included — quoted separately
+              </p>
+              <p className="mt-1 text-sm text-muted-foreground">
+                Larger work or ongoing scope
+              </p>
+              <ul className="mt-4 space-y-2 text-sm text-foreground/85">
+                {[
+                  "New pages or full redesigns",
+                  "New brand direction or logo concepts",
+                  "New integrations or automations",
+                  "Dashboards or client portals",
+                  "Blog writing or major copy rewrites",
+                  "Ongoing SEO campaigns or paid ads",
+                  "Major layout changes",
+                  "Ecommerce setup",
+                  "Custom code features",
+                  "Platform migration",
+                ].map((t) => (
+                  <li key={t} className="flex gap-2.5 text-foreground/70">
+                    <span className="mt-0.5 inline-block h-4 w-4 shrink-0 text-center leading-4">–</span>
+                    <span>{t}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+
+          <div className="mt-8 overflow-hidden rounded-2xl border border-sand">
+            <table className="w-full text-sm">
+              <thead className="bg-cream/60 text-left text-xs uppercase tracking-wider text-foreground/60">
+                <tr>
+                  <th className="px-4 py-3 font-semibold">Edit type</th>
+                  <th className="px-4 py-3 font-semibold">Examples</th>
+                  <th className="px-4 py-3 font-semibold">Included?</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-sand">
+                <tr>
+                  <td className="px-4 py-3 font-medium">Small</td>
+                  <td className="px-4 py-3 text-foreground/80">Text, image swap, typo, link, button</td>
+                  <td className="px-4 py-3 text-sage font-medium">Yes, during care</td>
+                </tr>
+                <tr>
+                  <td className="px-4 py-3 font-medium">Medium</td>
+                  <td className="px-4 py-3 text-foreground/80">Rework existing section, new form field, single-section layout change</td>
+                  <td className="px-4 py-3 text-foreground/70">Limited / may be quoted</td>
+                </tr>
+                <tr>
+                  <td className="px-4 py-3 font-medium">Large</td>
+                  <td className="px-4 py-3 text-foreground/80">New page, redesign, new feature, integration, or automation</td>
+                  <td className="px-4 py-3 text-copper font-medium">Quoted separately</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p className="mt-6 text-xs text-muted-foreground italic">
+            Automation packages: website care covers website edits only.
+            Automation, workflow, chatbot, and email-sequence changes are scoped
+            separately or handled through a monthly support plan.
+          </p>
+        </div>
+      </Section>
+
       {/* KEEP IT RUNNING — retainers */}
       <Section id="keep-running" className="pt-4">
         <div className="mb-10 max-w-2xl">
