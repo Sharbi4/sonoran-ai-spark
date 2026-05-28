@@ -25,10 +25,10 @@ const PRACTICES = [
 ];
 
 const ATTORNEYS = [
-  { name: "Margaret R. Ellison, Esq.", role: "Managing Partner", bar: "AZ Bar · 2002", focus: "Personal Injury · Trial", quote: "Every case is personal. Every client matters." },
-  { name: "David Chen, J.D.", role: "Senior Partner", bar: "AZ + CA Bar", focus: "Business · Commercial Litigation", quote: "Prepared. Persistent. Unflinching at trial." },
-  { name: "Sofia Vega, Esq.", role: "Partner", bar: "AZ Bar · 2011", focus: "Family Law · Mediation", quote: "Resolution over conflict, when possible." },
-  { name: "James A. Whitlock", role: "Of Counsel", bar: "AZ Bar · 1989", focus: "Estate Planning · Probate", quote: "Plan once. Protect for generations." },
+  { name: "Margaret R. Ellison, Esq.", role: "Managing Partner", bar: "AZ Bar · 2002", focus: "Personal Injury · Trial", quote: "Every case is personal. Every client matters.", photo: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80" },
+  { name: "David Chen, J.D.", role: "Senior Partner", bar: "AZ + CA Bar", focus: "Business · Commercial Litigation", quote: "Prepared. Persistent. Unflinching at trial.", photo: "https://images.unsplash.com/photo-1556157382-97eda2d62296?auto=format&fit=crop&w=800&q=80" },
+  { name: "Sofia Vega, Esq.", role: "Partner", bar: "AZ Bar · 2011", focus: "Family Law · Mediation", quote: "Resolution over conflict, when possible.", photo: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=800&q=80" },
+  { name: "James A. Whitlock", role: "Of Counsel", bar: "AZ Bar · 1989", focus: "Estate Planning · Probate", quote: "Plan once. Protect for generations.", photo: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=800&q=80" },
 ];
 
 const RESULTS = [
@@ -174,9 +174,9 @@ export default function LawFirmsDemo() {
             {ATTORNEYS.map((a) => (
               <Reveal key={a.name}>
                 <div className="bg-white border border-gray-200 rounded-md overflow-hidden">
-                  <div className="aspect-[4/5] bg-gradient-to-br from-slate-700 to-slate-900 relative">
-                    <div className="absolute inset-0 -z-10 opacity-30" style={{ backgroundImage: "radial-gradient(circle at 50% 30%, rgba(255,255,255,0.4) 0%, transparent 60%)" }} />
-                    <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/80 to-transparent h-1/2" />
+                  <div className="aspect-[4/5] bg-slate-800 relative overflow-hidden">
+                    <img src={a.photo} alt={a.name} className="absolute inset-0 h-full w-full object-cover grayscale" loading="lazy" />
+                    <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent h-3/5" />
                     <div className="absolute bottom-4 left-4 right-4 text-white">
                       <p className="text-[10px] uppercase tracking-wider text-blue-200">{a.role}</p>
                       <p className="mt-1 text-base font-semibold leading-tight" style={{ fontFamily: theme.fontHeading }}>{a.name}</p>

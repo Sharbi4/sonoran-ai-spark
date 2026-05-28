@@ -71,8 +71,9 @@ export default function ConsultantsCoachesDemo() {
           </Reveal>
           <Reveal delay={0.15}>
             <div className="relative">
-              <div className="aspect-[4/5] rounded-[2rem] bg-gradient-to-br from-indigo-500 via-purple-600 to-indigo-900 shadow-2xl relative overflow-hidden">
-                <div className="absolute inset-0 -z-10 opacity-30" style={{ backgroundImage: "radial-gradient(circle at 30% 30%, rgba(255,255,255,0.4), transparent 50%)" }} />
+              <div className="aspect-[4/5] rounded-[2rem] shadow-2xl relative overflow-hidden bg-indigo-900">
+                <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=1200&q=80" alt="Founder coaching session" className="absolute inset-0 h-full w-full object-cover" />
+                <div className="absolute inset-0 bg-gradient-to-br from-indigo-900/70 via-indigo-900/30 to-purple-900/60" />
                 <button className="absolute inset-0 flex items-center justify-center">
                   <span className="h-20 w-20 rounded-full bg-white/95 flex items-center justify-center shadow-2xl">
                     <Play className="h-7 w-7 text-indigo-700 ml-1" />

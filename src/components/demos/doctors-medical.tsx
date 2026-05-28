@@ -25,10 +25,10 @@ const SERVICES = [
 ];
 
 const PROVIDERS = [
-  { name: "Dr. Anita Reyes, MD", title: "Internal Medicine", years: "Practicing since 2008", accepting: true },
-  { name: "Dr. James O'Brien, DO", title: "Family Medicine", years: "Practicing since 2012", accepting: true },
-  { name: "Dr. Lin Chen, MD", title: "Pediatrics", years: "Practicing since 2015", accepting: false },
-  { name: "Sarah Patel, NP", title: "Women's Health NP", years: "Practicing since 2017", accepting: true },
+  { name: "Dr. Anita Reyes, MD", title: "Internal Medicine", years: "Practicing since 2008", accepting: true, photo: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=600&q=80" },
+  { name: "Dr. James O'Brien, DO", title: "Family Medicine", years: "Practicing since 2012", accepting: true, photo: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&w=600&q=80" },
+  { name: "Dr. Lin Chen, MD", title: "Pediatrics", years: "Practicing since 2015", accepting: false, photo: "https://images.unsplash.com/photo-1594824476967-48c8b964273f?auto=format&fit=crop&w=600&q=80" },
+  { name: "Sarah Patel, NP", title: "Women's Health NP", years: "Practicing since 2017", accepting: true, photo: "https://images.unsplash.com/photo-1607746882042-944635dfe10e?auto=format&fit=crop&w=600&q=80" },
 ];
 
 export default function DoctorsMedicalDemo() {
@@ -133,7 +133,9 @@ export default function DoctorsMedicalDemo() {
             {PROVIDERS.map(p => (
               <Reveal key={p.name}>
                 <div className="rounded-2xl overflow-hidden bg-white border border-sky-100 shadow-sm hover:shadow-xl transition-shadow">
-                  <div className="aspect-square bg-gradient-to-br from-sky-300 via-sky-500 to-sky-800" />
+                  <div className="aspect-square overflow-hidden">
+                    <img src={p.photo} alt={p.name} className="h-full w-full object-cover" loading="lazy" />
+                  </div>
                   <div className="p-5">
                     <p className="text-base font-semibold text-sky-950" style={{ fontFamily: theme.fontHeading }}>{p.name}</p>
                     <p className="text-xs text-sky-700 mt-1 uppercase tracking-wider font-semibold">{p.title}</p>
