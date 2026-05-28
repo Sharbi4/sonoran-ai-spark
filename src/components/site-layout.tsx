@@ -6,11 +6,25 @@ import { LogoLockup } from "./logo";
 
 const NAV = [
   { to: "/", label: "Home" },
-  { to: "/services", label: "Services" },
   { to: "/packages", label: "Packages" },
   { to: "/case-studies", label: "Case Studies" },
   { to: "/about", label: "About" },
   { to: "/contact", label: "Contact" },
+];
+
+const CORE_SERVICES = [
+  { slug: "ai-consulting", label: "AI Consulting" },
+  { slug: "websites", label: "Website Design" },
+  { slug: "brand", label: "Brand & Logo Design" },
+  { slug: "workflow", label: "Workflow Automation" },
+  { slug: "chatbots", label: "AI Chatbots & Voice Agents" },
+];
+
+const ADVANCED_SERVICES = [
+  { slug: "dashboards", label: "Business Intelligence Dashboards" },
+  { slug: "email", label: "Email Automation" },
+  { slug: "lead-capture", label: "Lead Capture & Follow-Up" },
+  { slug: "dashboards", label: "Industry Dashboards" },
 ];
 
 function HeaderBrand() {
@@ -18,6 +32,73 @@ function HeaderBrand() {
     <Link to="/" aria-label="Sonoran Systems & AI home">
       <LogoLockup />
     </Link>
+  );
+}
+
+function ServicesMegaMenu() {
+  return (
+    <div className="relative group">
+      <Link
+        to="/services"
+        className="text-sm font-medium text-foreground/75 hover:text-copper transition-colors inline-flex items-center gap-1"
+        activeProps={{ className: "text-copper" }}
+      >
+        Services
+      </Link>
+      <div
+        className="invisible opacity-0 translate-y-1 group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 focus-within:visible focus-within:opacity-100 focus-within:translate-y-0 transition-all duration-150 absolute left-1/2 -translate-x-1/2 top-full pt-3 z-50"
+      >
+        <div className="w-[640px] rounded-2xl bg-card border border-sand shadow-[0_20px_50px_-20px_rgba(31,31,31,0.25)] overflow-hidden">
+          <div className="grid grid-cols-2 gap-8 p-7">
+            <div>
+              <p className="text-[10px] font-semibold tracking-[0.22em] uppercase text-muted-foreground mb-3">
+                Core Services
+              </p>
+              <ul className="space-y-2">
+                {CORE_SERVICES.map((s) => (
+                  <li key={s.slug}>
+                    <a
+                      href={`/services#${s.slug}`}
+                      className="block text-sm text-foreground/85 hover:text-copper"
+                    >
+                      {s.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <p className="text-[10px] font-semibold tracking-[0.22em] uppercase text-muted-foreground mb-3">
+                Advanced Systems
+              </p>
+              <ul className="space-y-2">
+                {ADVANCED_SERVICES.map((s) => (
+                  <li key={s.slug + s.label}>
+                    <a
+                      href={`/services#${s.slug}`}
+                      className="block text-sm text-foreground/85 hover:text-copper"
+                    >
+                      {s.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+          <div className="bg-sand/70 px-7 py-4 flex items-center justify-between gap-4">
+            <p className="text-sm font-medium text-foreground">
+              Start with an <span className="text-copper">AI Business Audit</span> — $297
+            </p>
+            <Link
+              to="/ai-audit"
+              className="inline-flex items-center gap-1.5 rounded-full bg-copper text-copper-foreground px-4 py-2 text-xs font-medium hover:bg-copper/90"
+            >
+              Book Your Audit <ArrowRight className="h-3.5 w-3.5" />
+            </Link>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
 
@@ -30,7 +111,15 @@ export function SiteLayout({ children }: { children: React.ReactNode }) {
         <div className="mx-auto max-w-7xl px-5 sm:px-8 h-[72px] flex items-center justify-between">
           <HeaderBrand />
           <nav className="hidden md:flex items-center gap-7">
-            {NAV.map((n) => (
+            <Link
+              to="/"
+              className="text-sm font-medium text-foreground/75 hover:text-copper transition-colors"
+              activeProps={{ className: "text-copper" }}
+            >
+              Home
+            </Link>
+            <ServicesMegaMenu />
+            {NAV.filter((n) => n.to !== "/").map((n) => (
               <Link
                 key={n.to}
                 to={n.to}
@@ -61,7 +150,35 @@ export function SiteLayout({ children }: { children: React.ReactNode }) {
         {open && (
           <div className="md:hidden border-t border-sand bg-background">
             <div className="px-5 py-4 flex flex-col gap-1">
-              {NAV.map((n) => (
+              <Link
+                to="/"
+                onClick={() => setOpen(false)}
+                className="py-2.5 text-base font-medium text-foreground/80"
+                activeProps={{ className: "text-copper" }}
+              >
+                Home
+              </Link>
+              <Link
+                to="/services"
+                onClick={() => setOpen(false)}
+                className="py-2.5 text-base font-medium text-foreground/80"
+                activeProps={{ className: "text-copper" }}
+              >
+                Services
+              </Link>
+              <div className="pl-3 pb-2 flex flex-col gap-1.5">
+                {[...CORE_SERVICES, ...ADVANCED_SERVICES.slice(0, 3)].map((s) => (
+                  <a
+                    key={s.slug + s.label}
+                    href={`/services#${s.slug}`}
+                    onClick={() => setOpen(false)}
+                    className="text-sm text-muted-foreground hover:text-copper"
+                  >
+                    {s.label}
+                  </a>
+                ))}
+              </div>
+              {NAV.filter((n) => n.to !== "/").map((n) => (
                 <Link
                   key={n.to}
                   to={n.to}
