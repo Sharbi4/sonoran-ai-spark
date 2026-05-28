@@ -1,7 +1,20 @@
 import { createFileRoute, notFound } from "@tanstack/react-router";
+import { lazy, Suspense } from "react";
 import { DemoTemplate } from "@/components/demo-template";
 import { DEMO_CONFIGS } from "@/lib/demo-content";
 import type { IndustrySlug } from "@/lib/industries-content";
+
+const RestaurantsDemo = lazy(() => import("@/components/demos/restaurants"));
+const LawFirmsDemo = lazy(() => import("@/components/demos/law-firms"));
+const ContractorsDemo = lazy(() => import("@/components/demos/contractors"));
+const SalonsWellnessDemo = lazy(() => import("@/components/demos/salons-wellness"));
+
+const CUSTOM_DEMOS: Partial<Record<IndustrySlug, React.LazyExoticComponent<() => JSX.Element>>> = {
+  restaurants: RestaurantsDemo,
+  "law-firms": LawFirmsDemo,
+  contractors: ContractorsDemo,
+  "salons-wellness": SalonsWellnessDemo,
+};
 
 const VALID_SLUGS = Object.keys(DEMO_CONFIGS);
 
@@ -38,7 +51,16 @@ export const Route = createFileRoute("/demo/$slug")({
 
 function DemoPage() {
   const { slug } = Route.useParams();
-  const config = DEMO_CONFIGS[slug as IndustrySlug];
+  const slugTyped = slug as IndustrySlug;
+  const Custom = CUSTOM_DEMOS[slugTyped];
+  if (Custom) {
+    return (
+      <Suspense fallback={<div className="min-h-screen" />}>
+        <Custom />
+      </Suspense>
+    );
+  }
+  const config = DEMO_CONFIGS[slugTyped];
   if (!config) return null;
   return <DemoTemplate config={config} />;
 }
