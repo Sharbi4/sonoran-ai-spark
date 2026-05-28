@@ -1,7 +1,7 @@
 @import "tailwindcss" source(none);
 @source "../src";
 @import "tw-animate-css";
-@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,500;1,600;1,700&family=Inter:wght@400;500;600;700&family=DM+Sans:wght@500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Instrument+Sans:wght@500;600;700&family=DM+Sans:opsz,wght@9..40,500;9..40,600;9..40,700;9..40,800&display=swap");
 
 @custom-variant dark (&:is(.dark *));
 
@@ -53,9 +53,9 @@
   --color-cream: var(--cream);
   --color-sage: var(--sage);
   --color-rose: var(--rose);
-  --font-serif: "Playfair Display", ui-serif, Georgia, serif;
-  --font-sans: "Inter", "DM Sans", ui-sans-serif, system-ui, sans-serif;
-  --font-display: "Playfair Display", ui-serif, Georgia, serif;
+  --font-serif: "DM Sans", "Instrument Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "DM Sans", "Instrument Sans", ui-sans-serif, system-ui, sans-serif;
 }
 
 :root {
@@ -116,9 +116,9 @@
 
   h1, h2, h3, h4, h5 {
     font-family: var(--font-serif);
-    letter-spacing: -0.015em;
-    font-weight: 600;
-    line-height: 1.1;
+    letter-spacing: -0.032em;
+    font-weight: 700;
+    line-height: 1.05;
   }
 }
 
