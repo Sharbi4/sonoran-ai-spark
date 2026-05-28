@@ -5,9 +5,11 @@ import { Menu, X, ArrowRight, Instagram, Linkedin, MapPin } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { LogoLockup } from "./logo";
 import { Reveal } from "./motion/primitives";
+import { INDUSTRY_NAV } from "@/lib/industries-content";
 
 const NAV = [
   { to: "/services", label: "Services" },
+  { to: "/industries", label: "Industries" },
   { to: "/packages", label: "Packages" },
   { to: "/about", label: "About" },
   { to: "/case-studies", label: "Case Studies" },
@@ -96,6 +98,51 @@ function ServicesMegaMenu() {
   );
 }
 
+function IndustriesMenu() {
+  return (
+    <div className="relative group">
+      <Link
+        to="/industries"
+        className="text-sm font-medium text-foreground/80 hover:text-copper transition-colors inline-flex items-center gap-1"
+        activeProps={{ className: "text-copper" }}
+      >
+        Industries
+      </Link>
+      <div className="invisible opacity-0 translate-y-1 group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 focus-within:visible focus-within:opacity-100 focus-within:translate-y-0 transition-all duration-200 absolute left-1/2 -translate-x-1/2 top-full pt-3 z-50">
+        <div className="w-[320px] rounded-3xl glass-card overflow-hidden">
+          <div className="p-6">
+            <p className="text-[10px] font-semibold tracking-[0.24em] uppercase text-sage mb-4">
+              Industries we serve
+            </p>
+            <ul className="space-y-2.5">
+              {INDUSTRY_NAV.map((i) => (
+                <li key={i.slug}>
+                  <Link
+                    to="/industries/$slug"
+                    params={{ slug: i.slug }}
+                    className="group/link flex items-center gap-2 text-sm text-foreground/85 hover:text-copper transition-colors"
+                  >
+                    <span>{i.label}</span>
+                    <ArrowRight className="h-3 w-3 opacity-0 -translate-x-1 group-hover/link:opacity-100 group-hover/link:translate-x-0 transition-all" />
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="bg-sand/60 px-6 py-4 border-t border-sand">
+            <Link
+              to="/industries"
+              className="inline-flex items-center gap-1.5 text-xs font-semibold tracking-wide text-foreground hover:text-copper transition-colors"
+            >
+              View all industries <ArrowRight className="h-3.5 w-3.5" />
+            </Link>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export function SiteLayout({ children }: { children: React.ReactNode }) {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -123,7 +170,8 @@ export function SiteLayout({ children }: { children: React.ReactNode }) {
           </Link>
           <nav className="hidden md:flex items-center gap-8">
             <ServicesMegaMenu />
-            {NAV.filter((n) => n.to !== "/services").map((n) => (
+            <IndustriesMenu />
+            {NAV.filter((n) => n.to !== "/services" && n.to !== "/industries").map((n) => (
               <Link
                 key={n.to}
                 to={n.to}
@@ -224,6 +272,7 @@ function SiteFooter() {
             { to: "/about", label: "About" },
             { to: "/case-studies", label: "Case Studies" },
             { to: "/packages", label: "Packages" },
+            { to: "/industries", label: "Industries" },
             { to: "/contact", label: "Contact" },
           ]}
         />
