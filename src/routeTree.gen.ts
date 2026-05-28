@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as PackagesRouteImport } from './routes/packages'
+import { Route as EmailAutomationRouteImport } from './routes/email-automation'
 import { Route as DashboardsRouteImport } from './routes/dashboards'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CaseStudiesRouteImport } from './routes/case-studies'
@@ -26,6 +27,11 @@ const ServicesRoute = ServicesRouteImport.update({
 const PackagesRoute = PackagesRouteImport.update({
   id: '/packages',
   path: '/packages',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EmailAutomationRoute = EmailAutomationRouteImport.update({
+  id: '/email-automation',
+  path: '/email-automation',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DashboardsRoute = DashboardsRouteImport.update({
@@ -66,6 +72,7 @@ export interface FileRoutesByFullPath {
   '/case-studies': typeof CaseStudiesRoute
   '/contact': typeof ContactRoute
   '/dashboards': typeof DashboardsRoute
+  '/email-automation': typeof EmailAutomationRoute
   '/packages': typeof PackagesRoute
   '/services': typeof ServicesRoute
 }
@@ -76,6 +83,7 @@ export interface FileRoutesByTo {
   '/case-studies': typeof CaseStudiesRoute
   '/contact': typeof ContactRoute
   '/dashboards': typeof DashboardsRoute
+  '/email-automation': typeof EmailAutomationRoute
   '/packages': typeof PackagesRoute
   '/services': typeof ServicesRoute
 }
@@ -87,6 +95,7 @@ export interface FileRoutesById {
   '/case-studies': typeof CaseStudiesRoute
   '/contact': typeof ContactRoute
   '/dashboards': typeof DashboardsRoute
+  '/email-automation': typeof EmailAutomationRoute
   '/packages': typeof PackagesRoute
   '/services': typeof ServicesRoute
 }
@@ -99,6 +108,7 @@ export interface FileRouteTypes {
     | '/case-studies'
     | '/contact'
     | '/dashboards'
+    | '/email-automation'
     | '/packages'
     | '/services'
   fileRoutesByTo: FileRoutesByTo
@@ -109,6 +119,7 @@ export interface FileRouteTypes {
     | '/case-studies'
     | '/contact'
     | '/dashboards'
+    | '/email-automation'
     | '/packages'
     | '/services'
   id:
@@ -119,6 +130,7 @@ export interface FileRouteTypes {
     | '/case-studies'
     | '/contact'
     | '/dashboards'
+    | '/email-automation'
     | '/packages'
     | '/services'
   fileRoutesById: FileRoutesById
@@ -130,6 +142,7 @@ export interface RootRouteChildren {
   CaseStudiesRoute: typeof CaseStudiesRoute
   ContactRoute: typeof ContactRoute
   DashboardsRoute: typeof DashboardsRoute
+  EmailAutomationRoute: typeof EmailAutomationRoute
   PackagesRoute: typeof PackagesRoute
   ServicesRoute: typeof ServicesRoute
 }
@@ -148,6 +161,13 @@ declare module '@tanstack/react-router' {
       path: '/packages'
       fullPath: '/packages'
       preLoaderRoute: typeof PackagesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/email-automation': {
+      id: '/email-automation'
+      path: '/email-automation'
+      fullPath: '/email-automation'
+      preLoaderRoute: typeof EmailAutomationRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/dashboards': {
@@ -202,6 +222,7 @@ const rootRouteChildren: RootRouteChildren = {
   CaseStudiesRoute: CaseStudiesRoute,
   ContactRoute: ContactRoute,
   DashboardsRoute: DashboardsRoute,
+  EmailAutomationRoute: EmailAutomationRoute,
   PackagesRoute: PackagesRoute,
   ServicesRoute: ServicesRoute,
 }
