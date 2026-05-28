@@ -77,6 +77,13 @@ export default function RestaurantsDemo() {
               "radial-gradient(60% 50% at 80% 30%, rgba(183,84,31,0.35) 0%, transparent 60%), radial-gradient(50% 60% at 10% 80%, rgba(94,31,17,0.4) 0%, transparent 65%), linear-gradient(180deg, #2A140A 0%, #1A0A04 100%)",
           }}
         />
+        <img
+          aria-hidden
+          src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1900&q=80"
+          alt=""
+          className="absolute inset-0 -z-10 h-full w-full object-cover opacity-40"
+        />
+        <div aria-hidden className="absolute inset-0 -z-10" style={{ background: "linear-gradient(110deg, rgba(20,8,4,0.92) 0%, rgba(20,8,4,0.55) 55%, rgba(20,8,4,0.25) 100%)" }} />
         <div className="mx-auto max-w-7xl px-5 sm:px-8 pt-20 sm:pt-28 pb-24 text-white">
           <Reveal>
             <p className="text-xs uppercase tracking-[0.4em] text-amber-300/90">Est. 2018 · James Beard Semifinalist</p>
