@@ -60,8 +60,8 @@ export default function LawFirmsDemo() {
     >
       {/* HERO */}
       <section className="relative">
-        <div aria-hidden className="absolute inset-0 -z-10" style={{ background: "linear-gradient(135deg, #0A1D3D 0%, #1B3A6B 60%, #2C5588 100%)" }} />
-        <div className="absolute inset-0 -z-10 opacity-20" style={{ backgroundImage: "url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><path d='M0 50h100M50 0v100' stroke='white' stroke-opacity='0.05'/></svg>\")", backgroundSize: "40px 40px" }} />
+        <div aria-hidden className="absolute inset-0" style={{ background: "linear-gradient(135deg, #0A1D3D 0%, #1B3A6B 60%, #2C5588 100%)" }} />
+        <div className="absolute inset-0 opacity-20" style={{ backgroundImage: "url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><path d='M0 50h100M50 0v100' stroke='white' stroke-opacity='0.05'/></svg>\")", backgroundSize: "40px 40px" }} />
         <div className="mx-auto max-w-7xl px-5 sm:px-8 pt-20 sm:pt-28 pb-24 text-white grid lg:grid-cols-[1.2fr_1fr] gap-14 items-center">
           <Reveal>
             <p className="text-xs uppercase tracking-[0.4em] text-blue-200">Tucson · Phoenix · Established 2002</p>

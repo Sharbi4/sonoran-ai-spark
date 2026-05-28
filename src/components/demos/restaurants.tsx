@@ -71,7 +71,7 @@ export default function RestaurantsDemo() {
       <section className="relative overflow-hidden">
         <div
           aria-hidden
-          className="absolute inset-0 -z-10"
+          className="absolute inset-0"
           style={{
             background:
               "radial-gradient(60% 50% at 80% 30%, rgba(183,84,31,0.35) 0%, transparent 60%), radial-gradient(50% 60% at 10% 80%, rgba(94,31,17,0.4) 0%, transparent 65%), linear-gradient(180deg, #2A140A 0%, #1A0A04 100%)",

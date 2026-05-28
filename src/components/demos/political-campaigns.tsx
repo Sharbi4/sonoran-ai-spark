@@ -44,8 +44,8 @@ export default function PoliticalCampaignsDemo() {
     >
       {/* HERO */}
       <section className="relative overflow-hidden">
-        <div aria-hidden className="absolute inset-0 -z-10 bg-gradient-to-br from-red-700 via-red-800 to-blue-900" />
-        <div aria-hidden className="absolute inset-0 -z-10 opacity-15" style={{ backgroundImage: "repeating-linear-gradient(90deg, white 0px, white 1px, transparent 1px, transparent 60px), repeating-linear-gradient(0deg, white 0px, white 1px, transparent 1px, transparent 60px)" }} />
+        <div aria-hidden className="absolute inset-0 bg-gradient-to-br from-red-700 via-red-800 to-blue-900" />
+        <div aria-hidden className="absolute inset-0 opacity-15" style={{ backgroundImage: "repeating-linear-gradient(90deg, white 0px, white 1px, transparent 1px, transparent 60px), repeating-linear-gradient(0deg, white 0px, white 1px, transparent 1px, transparent 60px)" }} />
         <div className="mx-auto max-w-7xl px-5 sm:px-8 pt-20 pb-24 text-white">
           <Reveal>
             <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/15 text-white text-xs font-bold uppercase tracking-wider">Vote Nov 5 · Early Voting Oct 9</span>
