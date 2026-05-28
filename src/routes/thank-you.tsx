@@ -12,7 +12,7 @@ const CALENDLY_60_MIN =
   '&background_color=fbf7f2&text_color=1f1f1f&primary_color=c24f34';
 
 // Which paid items unlock the post-payment scheduler.
-const BOOKING_PRICE_IDS = new Set(['strategy_call_250', 'ai_audit_497']);
+const BOOKING_PRICE_IDS = new Set(['strategy_call_60min', 'ai_audit_497']);
 
 export const Route = createFileRoute('/thank-you')({
   validateSearch: (search: Record<string, unknown>): { session_id?: string } => ({
@@ -63,7 +63,7 @@ function ThankYou() {
           {session_id && isError && (
             <Empty
               title="We couldn't verify your payment."
-              body="If you were charged, please email hello@sonoransystems.ai with your receipt and we'll sort it out right away."
+              body="If you were charged, please reach out via our contact page with your receipt and we'll sort it out right away."
               error
             />
           )}
