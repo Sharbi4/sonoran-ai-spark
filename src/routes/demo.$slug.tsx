@@ -1,5 +1,5 @@
 import { createFileRoute, notFound } from "@tanstack/react-router";
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, type ComponentType } from "react";
 import { DemoTemplate } from "@/components/demo-template";
 import { DEMO_CONFIGS } from "@/lib/demo-content";
 import type { IndustrySlug } from "@/lib/industries-content";
@@ -8,12 +8,24 @@ const RestaurantsDemo = lazy(() => import("@/components/demos/restaurants"));
 const LawFirmsDemo = lazy(() => import("@/components/demos/law-firms"));
 const ContractorsDemo = lazy(() => import("@/components/demos/contractors"));
 const SalonsWellnessDemo = lazy(() => import("@/components/demos/salons-wellness"));
+const RealEstateDemo = lazy(() => import("@/components/demos/real-estate"));
+const ConsultantsCoachesDemo = lazy(() => import("@/components/demos/consultants-coaches"));
+const DoctorsMedicalDemo = lazy(() => import("@/components/demos/doctors-medical"));
+const FinancialAdvisorsDemo = lazy(() => import("@/components/demos/financial-advisors"));
+const PoliticalCampaignsDemo = lazy(() => import("@/components/demos/political-campaigns"));
+const SmallBusinessTeamsDemo = lazy(() => import("@/components/demos/small-business-teams"));
 
-const CUSTOM_DEMOS: Partial<Record<IndustrySlug, React.LazyExoticComponent<() => JSX.Element>>> = {
+const CUSTOM_DEMOS: Partial<Record<IndustrySlug, ComponentType>> = {
   restaurants: RestaurantsDemo,
   "law-firms": LawFirmsDemo,
   contractors: ContractorsDemo,
   "salons-wellness": SalonsWellnessDemo,
+  "real-estate": RealEstateDemo,
+  "consultants-coaches": ConsultantsCoachesDemo,
+  "doctors-medical": DoctorsMedicalDemo,
+  "financial-advisors": FinancialAdvisorsDemo,
+  "political-campaigns": PoliticalCampaignsDemo,
+  "small-business-teams": SmallBusinessTeamsDemo,
 };
 
 const VALID_SLUGS = Object.keys(DEMO_CONFIGS);
