@@ -1,7 +1,7 @@
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { z } from "zod";
-import { Mail, Phone, MapPin, CalendarCheck2, CheckCircle2 } from "lucide-react";
+import { Phone, MapPin, CalendarCheck2, CheckCircle2 } from "lucide-react";
 import { SiteLayout, Section, Accent } from "@/components/site-layout";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -133,8 +133,8 @@ function Contact() {
             Let's <Accent>talk</Accent> about your <Accent color="sage">business</Accent>.
           </h1>
           <p className="mt-5 text-lg text-muted-foreground leading-relaxed">
-            Book a free phone consultation — fill out the short form below and pick a time that
-            works for you.
+            Tell us about your business. We'll review your details and reach out within one
+            business day to schedule your free consultation.
           </p>
         </div>
       </Section>
@@ -325,27 +325,27 @@ function Contact() {
           <aside className="space-y-6">
             <div className="rounded-3xl bg-gradient-to-br from-cream to-sand/60 border border-sand p-7">
               <CalendarCheck2 className="h-6 w-6 text-copper" strokeWidth={1.5} />
-              <h3 className="mt-3 font-serif text-xl">Pick a time</h3>
+              <h3 className="mt-3 font-serif text-xl">What happens next</h3>
               <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
-                After submitting, you'll see our calendar to book a 30-minute phone consultation
-                right away.
+                We'll review your inquiry and reach out within one business day to schedule a free
+                30-minute consultation at a time that works for you.
               </p>
-              <CalendlyEmbed />
+              <p className="mt-3 text-xs text-muted-foreground leading-relaxed">
+                Want to lock in a time today? Book a paid{" "}
+                <a href="/ai-audit" className="text-copper hover:underline">
+                  Strategy Call
+                </a>{" "}
+                and our calendar opens right after checkout.
+              </p>
             </div>
 
             <div className="rounded-3xl bg-card border border-sand p-7">
               <h3 className="font-serif text-xl">Get in touch</h3>
               <ul className="mt-5 space-y-4 text-sm">
                 <li className="flex gap-3">
-                  <Mail className="h-5 w-5 text-copper mt-0.5" strokeWidth={1.5} />
-                  <a href="mailto:hello@sonoransystems.ai" className="hover:text-copper">
-                    hello@sonoransystems.ai
-                  </a>
-                </li>
-                <li className="flex gap-3">
                   <Phone className="h-5 w-5 text-copper mt-0.5" strokeWidth={1.5} />
-                  <a href="tel:+15205550100" className="hover:text-copper">
-                    (520) 555-0100
+                  <a href="tel:+15205511113" className="hover:text-copper">
+                    (520) 551-1113
                   </a>
                 </li>
                 <li className="flex gap-3">
@@ -385,35 +385,5 @@ function Field({
         </p>
       )}
     </div>
-  );
-}
-
-function CalendlyEmbed() {
-  const ref = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const SCRIPT_SRC = "https://assets.calendly.com/assets/external/widget.js";
-    const existing = document.querySelector(`script[src="${SCRIPT_SRC}"]`);
-    if (!existing) {
-      const s = document.createElement("script");
-      s.src = SCRIPT_SRC;
-      s.async = true;
-      document.body.appendChild(s);
-    }
-  }, []);
-
-  // Brand colors (hex without #): copper accent, charcoal text, cream background
-  const url =
-    "https://calendly.com/sharbin-sonoransystemsai/30min" +
-    "?hide_event_type_details=0&hide_gdpr_banner=1" +
-    "&background_color=fbf7f2&text_color=1f1f1f&primary_color=c24f34";
-
-  return (
-    <div
-      ref={ref}
-      className="calendly-inline-widget mt-5 rounded-xl overflow-hidden border border-sand"
-      data-url={url}
-      style={{ minWidth: "320px", height: "700px" }}
-    />
   );
 }

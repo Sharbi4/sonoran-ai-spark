@@ -28,7 +28,7 @@ const START_HERE = [
     icon: Compass,
     name: "Business Systems Strategy Call",
     price: "$250",
-    priceId: "strategy_call_250",
+    priceId: "strategy_call_60min",
     unit: "per 60-min session",
     tagline: "Live advisory. No deliverable — just clear answers.",
     includes: [
