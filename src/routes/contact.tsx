@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { z } from "zod";
 import { Mail, Phone, MapPin, CalendarCheck2, CheckCircle2 } from "lucide-react";
@@ -330,10 +330,7 @@ function Contact() {
                 After submitting, you'll see our calendar to book a 30-minute phone consultation
                 right away.
               </p>
-              <div className="mt-5 rounded-xl border border-dashed border-copper/40 bg-card/60 p-5 text-center text-sm text-muted-foreground">
-                Calendar booking widget
-                <div className="text-xs mt-1">(connects after submission)</div>
-              </div>
+              <CalendlyEmbed />
             </div>
 
             <div className="rounded-3xl bg-card border border-sand p-7">
@@ -388,5 +385,35 @@ function Field({
         </p>
       )}
     </div>
+  );
+}
+
+function CalendlyEmbed() {
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const SCRIPT_SRC = "https://assets.calendly.com/assets/external/widget.js";
+    const existing = document.querySelector(`script[src="${SCRIPT_SRC}"]`);
+    if (!existing) {
+      const s = document.createElement("script");
+      s.src = SCRIPT_SRC;
+      s.async = true;
+      document.body.appendChild(s);
+    }
+  }, []);
+
+  // Brand colors (hex without #): copper accent, charcoal text, cream background
+  const url =
+    "https://calendly.com/sharbin-sonoransystemsai/30min" +
+    "?hide_event_type_details=0&hide_gdpr_banner=1" +
+    "&background_color=fbf7f2&text_color=1f1f1f&primary_color=c24f34";
+
+  return (
+    <div
+      ref={ref}
+      className="calendly-inline-widget mt-5 rounded-xl overflow-hidden border border-sand"
+      data-url={url}
+      style={{ minWidth: "320px", height: "700px" }}
+    />
   );
 }
