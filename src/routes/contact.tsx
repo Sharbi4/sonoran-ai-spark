@@ -95,6 +95,8 @@ function Contact() {
   const [form, setForm] = useState<FormState>(EMPTY);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   function update<K extends keyof FormState>(key: K, val: FormState[K]) {
     setForm((f) => ({ ...f, [key]: val }));
@@ -109,7 +111,7 @@ function Contact() {
     }));
   }
 
-  function onSubmit(e: React.FormEvent) {
+  async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
     const result = schema.safeParse(form);
     if (!result.success) {
@@ -121,7 +123,28 @@ function Contact() {
       return;
     }
     setErrors({});
-    setSubmitted(true);
+    setSubmitError(null);
+    setSubmitting(true);
+    try {
+      const res = await fetch("/api/public/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(result.data),
+      });
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data?.error || "Submission failed");
+      }
+      setSubmitted(true);
+    } catch (err) {
+      setSubmitError(
+        err instanceof Error
+          ? err.message
+          : "Something went wrong. Please call (520) 551-1113.",
+      );
+    } finally {
+      setSubmitting(false);
+    }
   }
 
   return (
@@ -311,11 +334,15 @@ function Contact() {
                   </Field>
                 </div>
 
+                {submitError && (
+                  <p className="text-sm text-destructive">{submitError}</p>
+                )}
                 <button
                   type="submit"
-                  className="w-full sm:w-auto inline-flex items-center justify-center rounded-full bg-copper px-7 py-3.5 text-sm font-medium text-copper-foreground hover:bg-copper/90 transition-colors"
+                  disabled={submitting}
+                  className="w-full sm:w-auto inline-flex items-center justify-center rounded-full bg-copper px-7 py-3.5 text-sm font-medium text-copper-foreground hover:bg-copper/90 transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
                 >
-                  Send & Book My Consultation
+                  {submitting ? "Sending…" : "Send Inquiry"}
                 </button>
               </form>
             )}
