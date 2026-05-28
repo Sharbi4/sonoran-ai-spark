@@ -52,8 +52,8 @@ export function StartHereCards({
           <Card
             icon={PhoneCall}
             title="Book Strategy Call"
-            price="$250/hr"
-            description="A paid one-on-one advisory session. Direct expert guidance on your specific business challenges, tools, and AI opportunities."
+            price="$250 · 2 hr"
+            description="A paid 2-hour one-on-one advisory session. Direct expert guidance on your specific business challenges, tools, and AI opportunities."
             bestFor="You want direct consulting guidance now."
             badge={
               <span className="inline-flex items-center rounded-full bg-sand px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-foreground/70">
