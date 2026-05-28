@@ -5,7 +5,6 @@ import { Menu, X, ArrowRight, Instagram, Linkedin, MapPin } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { LogoLockup } from "./logo";
 import { Reveal } from "./motion/primitives";
-import { PaymentTestModeBanner } from "./PaymentTestModeBanner";
 
 const NAV = [
   { to: "/services", label: "Services" },
@@ -110,7 +109,6 @@ export function SiteLayout({ children }: { children: React.ReactNode }) {
 
   return (
     <div className="min-h-screen flex flex-col bg-background text-foreground">
-      <PaymentTestModeBanner />
       <header
         className={cn(
           "sticky top-0 z-40 glass-header border-b transition-all duration-300",
