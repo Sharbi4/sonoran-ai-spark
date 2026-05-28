@@ -401,6 +401,12 @@ function Packages() {
                           <p className="mt-2 text-sm text-foreground/80 leading-relaxed">
                             {item.tagline}
                           </p>
+                          {item.care && (
+                            <p className="mt-3 inline-flex items-center gap-1.5 text-[11px] font-medium text-sage">
+                              <Check className="h-3.5 w-3.5" strokeWidth={2.5} />
+                              Includes 3-Month Website Care
+                            </p>
+                          )}
                         </div>
                       </div>
                       <div className="mt-5 pt-5 border-t border-sand flex items-center justify-between gap-3">
