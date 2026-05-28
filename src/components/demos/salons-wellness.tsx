@@ -73,7 +73,7 @@ export default function SalonsWellnessDemo() {
       theme={theme}
     >
       {/* HERO */}
-      <section className="relative overflow-hidden">
+      <section className="relative isolate overflow-hidden">
         <div aria-hidden className="absolute inset-0 -z-10" style={{ background: "linear-gradient(135deg, #FCE7F3 0%, #FBCFE8 30%, #F9A8D4 60%, #FBCFE8 100%)" }} />
         <div aria-hidden className="absolute inset-0 -z-10 opacity-40" style={{ backgroundImage: "radial-gradient(circle at 80% 30%, rgba(244,114,182,0.4) 0%, transparent 50%), radial-gradient(circle at 20% 80%, rgba(157,23,77,0.3) 0%, transparent 50%)" }} />
         <div className="mx-auto max-w-7xl px-5 sm:px-8 pt-20 sm:pt-28 pb-24 grid lg:grid-cols-[1.2fr_1fr] gap-12 items-center">

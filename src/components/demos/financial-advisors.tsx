@@ -41,7 +41,7 @@ export default function FinancialAdvisorsDemo() {
       theme={theme}
     >
       {/* HERO */}
-      <section className="relative overflow-hidden bg-slate-900 text-white">
+      <section className="relative isolate overflow-hidden bg-slate-900 text-white">
         <div aria-hidden className="absolute inset-0 -z-0 opacity-30" style={{ backgroundImage: "radial-gradient(circle at 20% 30%, rgba(201,162,74,0.3), transparent 50%), radial-gradient(circle at 80% 70%, rgba(122,94,26,0.3), transparent 50%)" }} />
         <div className="relative mx-auto max-w-7xl px-5 sm:px-8 pt-24 pb-24 grid lg:grid-cols-[1.2fr_1fr] gap-12 items-center">
           <Reveal>

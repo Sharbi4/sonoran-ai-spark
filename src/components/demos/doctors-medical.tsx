@@ -52,7 +52,7 @@ export default function DoctorsMedicalDemo() {
       theme={theme}
     >
       {/* HERO */}
-      <section className="relative overflow-hidden">
+      <section className="relative isolate overflow-hidden">
         <div aria-hidden className="absolute inset-0 -z-10 bg-gradient-to-br from-sky-50 via-white to-cyan-50" />
         <div className="mx-auto max-w-7xl px-5 sm:px-8 pt-20 sm:pt-24 pb-20 grid lg:grid-cols-[1.2fr_1fr] gap-12 items-center">
           <Reveal>

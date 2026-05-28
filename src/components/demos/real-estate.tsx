@@ -56,7 +56,7 @@ export default function RealEstateDemo() {
       theme={theme}
     >
       {/* HERO with smart search */}
-      <section className="relative overflow-hidden">
+      <section className="relative isolate overflow-hidden">
         <div aria-hidden className="absolute inset-0 -z-10 bg-gradient-to-br from-emerald-900 via-emerald-800 to-teal-900" />
         <div aria-hidden className="absolute inset-0 -z-10 opacity-30" style={{ backgroundImage: "radial-gradient(circle at 20% 20%, rgba(255,255,255,0.3), transparent 50%)" }} />
         <div className="mx-auto max-w-7xl px-5 sm:px-8 pt-20 sm:pt-28 pb-24">

@@ -68,7 +68,7 @@ export default function RestaurantsDemo() {
       theme={theme}
     >
       {/* HERO */}
-      <section className="relative overflow-hidden">
+      <section className="relative isolate overflow-hidden">
         <div
           aria-hidden
           className="absolute inset-0 -z-10"

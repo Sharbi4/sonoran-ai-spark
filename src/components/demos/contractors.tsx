@@ -64,7 +64,7 @@ export default function ContractorsDemo() {
       theme={theme}
     >
       {/* HERO */}
-      <section className="relative overflow-hidden">
+      <section className="relative isolate overflow-hidden">
         <div aria-hidden className="absolute inset-0 -z-10" style={{ background: "linear-gradient(135deg, #1A0F08 0%, #2B1810 50%, #4A2510 100%)" }} />
         <div aria-hidden className="absolute inset-0 -z-10 opacity-30" style={{ backgroundImage: "url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 80'><path d='M0 80L80 0M-20 60L60 -20M20 100L100 20' stroke='%23EA580C' stroke-width='1'/></svg>\")", backgroundSize: "80px 80px" }} />
         <div className="mx-auto max-w-7xl px-5 sm:px-8 pt-20 sm:pt-28 pb-24 text-white grid lg:grid-cols-[1.3fr_1fr] gap-12 items-center">
