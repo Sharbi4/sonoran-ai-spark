@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { z } from "zod";
-import { Mail, Phone, MapPin, CalendarCheck2, CheckCircle2 } from "lucide-react";
+import { Phone, MapPin, CalendarCheck2, CheckCircle2 } from "lucide-react";
 import { SiteLayout, Section, Accent } from "@/components/site-layout";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -337,15 +337,9 @@ function Contact() {
               <h3 className="font-serif text-xl">Get in touch</h3>
               <ul className="mt-5 space-y-4 text-sm">
                 <li className="flex gap-3">
-                  <Mail className="h-5 w-5 text-copper mt-0.5" strokeWidth={1.5} />
-                  <a href="mailto:hello@sonoransystems.ai" className="hover:text-copper">
-                    hello@sonoransystems.ai
-                  </a>
-                </li>
-                <li className="flex gap-3">
                   <Phone className="h-5 w-5 text-copper mt-0.5" strokeWidth={1.5} />
-                  <a href="tel:+15205550100" className="hover:text-copper">
-                    (520) 555-0100
+                  <a href="tel:+15205511113" className="hover:text-copper">
+                    (520) 551-1113
                   </a>
                 </li>
                 <li className="flex gap-3">
