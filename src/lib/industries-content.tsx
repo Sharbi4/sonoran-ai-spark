@@ -3,11 +3,15 @@ import type { DashboardSpec } from "@/components/mockups";
 
 export const INDUSTRY_SLUGS = [
   "law-firms",
-  "restaurants",
   "contractors",
+  "restaurants",
   "salons-wellness",
   "real-estate",
   "consultants-coaches",
+  "doctors-medical",
+  "financial-advisors",
+  "political-campaigns",
+  "small-business-teams",
 ] as const;
 
 export type IndustrySlug = (typeof INDUSTRY_SLUGS)[number];
@@ -166,6 +170,110 @@ export const INDUSTRY_MOCKUPS: Record<IndustrySlug, DashboardSpec> = {
         { primary: "Invoice · Northstar Q3", secondary: "Auto-sent · net 15", tag: "Sent" },
         { primary: "Onboarding · new client", secondary: "Portal live · kickoff Thu", tag: "Live" },
         { primary: "AI knowledge assistant", secondary: "12 client questions drafted", tag: "Draft" },
+      ],
+    },
+  },
+  "doctors-medical": {
+    appName: "Sonoran · Practice Hub",
+    view: "Dr. Chen & Associates · today",
+    kpis: [
+      { label: "Today's appts", value: "34", delta: "2 walk-ins", positive: true },
+      { label: "Check-ins", value: "28", delta: "82%", positive: true },
+      { label: "Follow-ups due", value: "12", delta: "3 overdue", positive: false },
+      { label: "Patient NPS", value: "92", delta: "4 pts", positive: true },
+    ],
+    chart: { title: "Patient volume · last 14 days", data: [28, 32, 30, 35, 33, 38, 36, 34, 40, 42, 38, 44, 41, 46], accent: "sage" },
+    rows: [
+      { label: "Primary care", value: 88, max: 100, accent: "copper" },
+      { label: "Follow-ups", value: 72, max: 100, accent: "copper" },
+      { label: "New patients", value: 54, max: 100, accent: "sage" },
+      { label: "Telehealth", value: 32, max: 100, accent: "sage" },
+    ],
+    list: {
+      title: "Today's queue",
+      items: [
+        { primary: "9:00 · Sarah Martinez", secondary: "Annual physical · Room 2", tag: "Checked in" },
+        { primary: "9:30 · Robert Kim", secondary: "Follow-up · Labs reviewed", tag: "Waiting" },
+        { primary: "10:00 · New patient intake", secondary: "Forms completed online · auto-imported", tag: "New" },
+        { primary: "Reminder batch · 2pm", secondary: "18 tomorrow's patients · auto-text", tag: "Queued" },
+      ],
+    },
+  },
+  "financial-advisors": {
+    appName: "Sonoran · Wealth OS",
+    view: "Advisory team · this quarter",
+    kpis: [
+      { label: "AUM", value: "$42.8M", delta: "$2.1M", positive: true },
+      { label: "Active clients", value: "186", delta: "8 new", positive: true },
+      { label: "Meetings this week", value: "14", delta: "3 reviews", positive: true },
+      { label: "Revenue YTD", value: "$312K", delta: "18%", positive: true },
+    ],
+    chart: { title: "Revenue · last 14 days", data: [18, 22, 20, 26, 24, 30, 28, 34, 32, 38, 36, 42, 40, 48], accent: "copper" },
+    rows: [
+      { label: "Annual reviews", value: 78, max: 100, accent: "copper" },
+      { label: "Financial plans", value: 62, max: 100, accent: "copper" },
+      { label: "New client onboarding", value: 44, max: 100, accent: "sage" },
+      { label: "Referral meetings", value: 28, max: 100, accent: "sage" },
+    ],
+    list: {
+      title: "Client activity",
+      items: [
+        { primary: "Annual review · Thompson family", secondary: "Portfolio rebalance recommended", tag: "Mon" },
+        { primary: "New client · Patel", secondary: "Onboarding docs 80% complete", tag: "Pending" },
+        { primary: "Document request · Williams trust", secondary: "Secure upload link sent", tag: "Sent" },
+        { primary: "AI summary · Market brief", secondary: "Weekly client-facing draft ready", tag: "Draft" },
+      ],
+    },
+  },
+  "political-campaigns": {
+    appName: "Sonoran · Campaign HQ",
+    view: "District 7 · this cycle",
+    kpis: [
+      { label: "Donations", value: "$284K", delta: "$18K this week", positive: true },
+      { label: "Volunteers", value: "342", delta: "28 new", positive: true },
+      { label: "Doors knocked", value: "8,420", delta: "1,240 this wk", positive: true },
+      { label: "Email open rate", value: "34%", delta: "6 pts", positive: true },
+    ],
+    chart: { title: "Donations · last 14 days", data: [4, 6, 5, 8, 12, 10, 15, 18, 14, 22, 20, 28, 24, 32], accent: "copper" },
+    rows: [
+      { label: "Door-to-door", value: 92, max: 100, accent: "copper" },
+      { label: "Phone banking", value: 68, max: 100, accent: "copper" },
+      { label: "Digital outreach", value: 84, max: 100, accent: "sage" },
+      { label: "Events", value: 56, max: 100, accent: "sage" },
+    ],
+    list: {
+      title: "Campaign activity",
+      items: [
+        { primary: "Town hall · Fri 6pm", secondary: "142 RSVPs · venue confirmed", tag: "Fri" },
+        { primary: "Email blast · policy update", secondary: "Draft reviewed · 12,400 recipients", tag: "Send" },
+        { primary: "Volunteer shift · Sat canvass", secondary: "38 confirmed · 4 precincts", tag: "Sat" },
+        { primary: "Donation surge · $8.2K today", secondary: "142 donors · avg $58", tag: "Live" },
+      ],
+    },
+  },
+  "small-business-teams": {
+    appName: "Sonoran · Team OS",
+    view: "Your team · this week",
+    kpis: [
+      { label: "Revenue", value: "$24.8K", delta: "14%", positive: true },
+      { label: "Active leads", value: "42", delta: "9 new", positive: true },
+      { label: "Tasks completed", value: "87", delta: "12 today", positive: true },
+      { label: "Response time", value: "18 min", delta: "42% faster", positive: true },
+    ],
+    chart: { title: "Revenue · last 14 days", data: [1.2, 1.4, 1.6, 1.8, 2.0, 2.2, 1.9, 2.4, 2.6, 2.8, 3.0, 2.7, 3.2, 3.4], accent: "sage" },
+    rows: [
+      { label: "Leads in pipeline", value: 76, max: 100, accent: "copper" },
+      { label: "Projects active", value: 58, max: 100, accent: "copper" },
+      { label: "Invoices sent", value: 42, max: 100, accent: "sage" },
+      { label: "Support tickets", value: 24, max: 100, accent: "sage" },
+    ],
+    list: {
+      title: "Team feed",
+      items: [
+        { primary: "New lead · website form", secondary: "Auto-assigned to Sarah · reply drafted", tag: "New" },
+        { primary: "Invoice #1047 paid", secondary: "$3,200 · auto-reconciled", tag: "Paid" },
+        { primary: "Project milestone · Atlas Co", secondary: "Phase 2 deliverables due Thu", tag: "Thu" },
+        { primary: "AI weekly digest", secondary: "Revenue up 14% · 3 leads need follow-up", tag: "AI" },
       ],
     },
   },
@@ -380,6 +488,157 @@ export const INDUSTRIES: Record<IndustrySlug, IndustryContent> = {
       name: "Phoenix strategy consultant",
       result:
         "Reduced proposal-to-signature time from 9 days to under 48 hours. Recovered roughly 6 hours a week of admin time.",
+    },
+  },
+  "doctors-medical": {
+    label: "Doctors & Medical Practices",
+    title: (
+      <>
+        Modern concierge systems for <span className="text-terracotta">medical practices.</span>
+      </>
+    ),
+    intro:
+      "Patient intake, appointment scheduling, follow-up reminders, billing — your practice runs on a dozen disconnected tools. We connect them into one intelligent system so your staff focuses on patients, not paperwork.",
+    pains: [
+      "Patient intake forms still on clipboards or clunky PDFs",
+      "No-shows costing thousands per month with no automated reminders",
+      "Follow-up care falling through the cracks after discharge",
+      "Staff spending hours on phone calls that could be automated",
+      "No single view of daily schedule, billing, and patient satisfaction",
+    ],
+    systems: [
+      { title: "Patient intake automation", body: "Digital forms patients complete on their phone before arrival — auto-imported into your EHR with zero data entry." },
+      { title: "Smart scheduling & reminders", body: "Automated appointment confirmations, reminders at 48h/24h/2h, and waitlist management to fill cancellations." },
+      { title: "Practice dashboard", body: "Daily appointments, check-ins, follow-up reminders, billing overview, staff schedule, and patient satisfaction in one screen." },
+      { title: "AI daily office summary", body: "A morning brief with today's patient load, outstanding follow-ups, billing flags, and staff availability." },
+      { title: "Follow-up automation", body: "Post-visit check-ins, prescription reminders, and care plan follow-ups sent automatically in your practice's voice." },
+      { title: "Secure messaging", body: "HIPAA-aware patient communication with auto-responses for common questions and smart routing to the right staff member." },
+    ],
+    tools: ["Athenahealth", "eClinicalWorks", "DrChrono", "Jane App", "SimplePractice", "Google Business", "Twilio"],
+    workflow: [
+      "Patient books online or calls — appointment confirmed instantly via text.",
+      "24 hours before: intake forms sent digitally, completed on patient's phone.",
+      "Check-in: front desk sees completed forms, insurance verified, room assigned.",
+      "Post-visit: follow-up instructions sent automatically with care plan reminders.",
+      "Dashboard updates: patient volume, billing status, satisfaction score, and staff load.",
+    ],
+    caseStudy: {
+      name: "Tucson family practice (4 providers)",
+      result:
+        "Reduced no-shows by 34% with automated reminders. Front desk saves 2+ hours daily on intake processing. Patient satisfaction score rose to 92.",
+    },
+  },
+  "financial-advisors": {
+    label: "Financial Advisors",
+    title: (
+      <>
+        Modern wealth management <span className="text-terracotta">systems that scale.</span>
+      </>
+    ),
+    intro:
+      "Client onboarding, document collection, meeting scheduling, portfolio reviews — your practice should run on systems, not memory. We build the back office that lets you focus on advice.",
+    pains: [
+      "Client onboarding that takes weeks of back-and-forth emails",
+      "Secure document collection still happening via email attachments",
+      "No dashboard showing pipeline, AUM, and revenue at a glance",
+      "Follow-ups after meetings forgotten or sent days late",
+      "Annual reviews scheduled manually — easy to miss",
+    ],
+    systems: [
+      { title: "Client onboarding automation", body: "Digital intake → risk assessment → document checklist → e-signatures → welcome sequence, fully automated." },
+      { title: "Secure document portal", body: "Branded upload portal with encryption, auto-filing, and notifications when clients submit documents." },
+      { title: "Wealth dashboard", body: "Client pipeline, AUM overview, upcoming meetings, revenue trends, and goal tracking in one beautiful view." },
+      { title: "Meeting prep AI", body: "Before every client meeting, AI generates a summary: portfolio changes, market context, talking points, and action items." },
+      { title: "Automated follow-up", body: "Post-meeting summaries, action items, and next-steps sent to clients within hours — drafted by AI, reviewed by you." },
+      { title: "Annual review scheduler", body: "Automatic reminders to book annual reviews based on client anniversary dates, with one-click scheduling." },
+    ],
+    tools: ["Wealthbox", "Redtail", "Riskalyze", "MoneyGuidePro", "DocuSign", "Calendly", "Stripe", "Outlook"],
+    workflow: [
+      "Prospect fills out discovery form on your website.",
+      "AI qualifies the lead and schedules an intro call automatically.",
+      "After the call, onboarding sequence launches: docs, risk assessment, e-sign.",
+      "Client portal goes live with portfolio view, documents, and meeting history.",
+      "Dashboard updates: new AUM, revenue projection, and next review date.",
+    ],
+    caseStudy: {
+      name: "Scottsdale independent RIA (3 advisors)",
+      result:
+        "Client onboarding time dropped from 3 weeks to 4 days. AUM visibility went from quarterly spreadsheets to real-time dashboard.",
+    },
+  },
+  "political-campaigns": {
+    label: "Political Campaigns",
+    title: (
+      <>
+        High-energy operations for <span className="text-terracotta">winning campaigns.</span>
+      </>
+    ),
+    intro:
+      "Volunteers, donations, events, voter outreach, email blasts — campaigns run on speed and data. We build the connected systems that give your team a real-time view of everything happening on the ground.",
+    pains: [
+      "Volunteer signups scattered across Google Forms, texts, and walk-ins",
+      "Donation tracking disconnected from outreach and events",
+      "No real-time view of canvassing progress or voter contacts",
+      "Email campaigns sent blind — no idea what's working",
+      "Event logistics managed in spreadsheets with no automation",
+    ],
+    systems: [
+      { title: "Campaign dashboard", body: "Donation totals, volunteer activity, event attendance, outreach metrics, email performance, and geographic engagement in one HQ view." },
+      { title: "Volunteer management", body: "Online signup → auto-assignment to shifts → text reminders → post-shift thank-you, all automated." },
+      { title: "Donation tracking & CRM", body: "Every donation linked to donor profile, outreach history, and event attendance for smarter fundraising." },
+      { title: "SMS & email outreach", body: "Segmented campaigns by precinct, donor level, or issue area with real-time performance tracking." },
+      { title: "Event management", body: "RSVP tracking, automated reminders, check-in via QR code, and post-event follow-up sequences." },
+      { title: "Voter contact workflows", body: "Door-to-door canvassing tracked in real-time with turf assignments, scripts, and response logging." },
+    ],
+    tools: ["ActBlue", "NGP VAN", "Action Network", "Twilio", "Mailchimp", "Google Sheets", "Zapier"],
+    workflow: [
+      "Volunteer signs up on campaign website — auto-assigned to next available shift.",
+      "Canvassing day: volunteers get turf maps, scripts, and check-in via mobile.",
+      "Donation comes in via ActBlue — donor profile updated, thank-you sent instantly.",
+      "Event created → RSVPs tracked → reminders at 48h/2h → QR check-in at door.",
+      "Dashboard updates: donations, doors knocked, emails sent, volunteer hours — all live.",
+    ],
+    caseStudy: {
+      name: "Arizona state legislature campaign",
+      result:
+        "Volunteer retention doubled with automated shift reminders. Donation tracking gave the team real-time fundraising visibility for the first time.",
+    },
+  },
+  "small-business-teams": {
+    label: "Small Business Teams",
+    title: (
+      <>
+        One system for teams that <span className="text-terracotta">wear every hat.</span>
+      </>
+    ),
+    intro:
+      "You're the owner, the sales team, the marketing department, and the customer service desk. We build the connected system that handles the busywork so your small team can focus on growth.",
+    pains: [
+      "Leads coming in from 5 places with no unified view",
+      "Invoices, proposals, and follow-ups managed in your head",
+      "No idea which marketing efforts are actually driving revenue",
+      "Customer questions answered the same way over and over",
+      "Team communication scattered across text, email, and Slack",
+    ],
+    systems: [
+      { title: "Team command center", body: "Revenue, leads, tasks, invoices, and support tickets in one dashboard everyone on the team can see." },
+      { title: "Lead capture & routing", body: "Website forms, social DMs, and phone calls all land in one inbox with auto-assignment and instant reply." },
+      { title: "Invoice & payment automation", body: "Send invoices, track payments, and auto-follow-up on overdue accounts without manual effort." },
+      { title: "AI customer assistant", body: "Trained on your business to answer common questions, draft replies, and route complex issues to the right person." },
+      { title: "Weekly AI digest", body: "Every Monday: revenue trends, lead pipeline health, overdue tasks, and what needs attention this week." },
+    ],
+    tools: ["QuickBooks", "Stripe", "HubSpot", "Notion", "Slack", "Google Workspace", "Zapier", "Twilio"],
+    workflow: [
+      "New lead comes in from any channel — auto-captured and assigned.",
+      "AI drafts a response in your voice — team member reviews and sends.",
+      "Proposal sent → follow-up sequence starts automatically.",
+      "Job completed → invoice generated → payment link sent → reminder if overdue.",
+      "Monday AI digest summarizes the week: revenue, pipeline, and action items.",
+    ],
+    caseStudy: {
+      name: "Tucson 5-person service company",
+      result:
+        "Response time to leads dropped from 6 hours to 18 minutes. Owner recovered 8+ hours per week from manual admin tasks.",
     },
   },
 };
