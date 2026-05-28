@@ -258,7 +258,12 @@ function SiteFooter() {
       <div className="relative border-t border-cream/10">
         <div className="mx-auto max-w-7xl px-5 sm:px-8 py-5 text-xs text-cream/55 flex flex-col sm:flex-row justify-between gap-2">
           <span>© 2026 Sonoran Systems &amp; AI. All rights reserved.</span>
-          <span>Built in Tucson, Arizona.</span>
+          <span className="flex items-center gap-4">
+            <Link to="/terms" className="hover:text-copper transition-colors">
+              Terms &amp; Fine Print
+            </Link>
+            <span>Built in Tucson, Arizona.</span>
+          </span>
         </div>
       </div>
     </footer>
