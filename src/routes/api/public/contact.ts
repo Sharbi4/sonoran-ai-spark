@@ -1,6 +1,13 @@
+import * as React from 'react';
+import { render } from '@react-email/components';
 import { createFileRoute } from '@tanstack/react-router';
 import { z } from 'zod';
 import { supabaseAdmin } from '@/integrations/supabase/client.server';
+import { TEMPLATES } from '@/lib/email-templates/registry';
+
+const SITE_NAME = 'Sonoran Systems & AI';
+const SENDER_DOMAIN = 'notify.sonoransystemsai.com';
+const FROM_DOMAIN = 'notify.sonoransystemsai.com';
 
 const schema = z.object({
   firstName: z.string().trim().min(1).max(80),
@@ -72,6 +79,62 @@ export const Route = createFileRoute('/api/public/contact')({
             status: 500,
             headers: { 'Content-Type': 'application/json' },
           });
+        }
+
+        // Fire off owner notification email (non-blocking failure)
+        try {
+          const tpl = TEMPLATES['contact-notification'];
+          if (tpl) {
+            const data = {
+              firstName: d.firstName,
+              lastName: d.lastName,
+              email: d.email,
+              phone: d.phone,
+              businessName: d.businessName,
+              city: d.city,
+              website: d.website,
+              businessType: d.businessType,
+              helpWith: d.helpWith,
+              challenge: d.challenge,
+              repetitive: d.repetitive,
+              tools: d.tools,
+              timeline: d.timeline,
+              budget: d.budget,
+            };
+            const element = React.createElement(tpl.component, data);
+            const html = await render(element);
+            const text = await render(element, { plainText: true });
+            const subject =
+              typeof tpl.subject === 'function' ? tpl.subject(data) : tpl.subject;
+            const messageId = crypto.randomUUID();
+            const to = tpl.to!;
+
+            await supabaseAdmin.rpc('enqueue_email', {
+              queue_name: 'transactional_emails',
+              payload: {
+                message_id: messageId,
+                to,
+                from: `${SITE_NAME} <noreply@${FROM_DOMAIN}>`,
+                sender_domain: SENDER_DOMAIN,
+                subject,
+                html,
+                text,
+                purpose: 'transactional',
+                label: 'contact-notification',
+                idempotency_key: `contact-${messageId}`,
+                queued_at: new Date().toISOString(),
+              },
+            });
+
+            await supabaseAdmin.from('email_send_log').insert({
+              message_id: messageId,
+              template_name: 'contact-notification',
+              recipient_email: to,
+              status: 'pending',
+            });
+          }
+        } catch (e) {
+          console.error('contact email enqueue failed', e);
         }
 
         return new Response(JSON.stringify({ ok: true }), {
