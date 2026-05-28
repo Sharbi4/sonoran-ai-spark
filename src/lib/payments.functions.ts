@@ -35,11 +35,10 @@ export const createCheckoutSession = createServerFn({ method: 'POST' })
         payment_intent_data: { description: product.name },
         ...(data.customerEmail && { customer_email: data.customerEmail }),
         metadata: { priceId: data.priceId, productId },
-        // Consulting/professional-services tax codes are not eligible for
-        // full compliance handling, so we use automatic tax calculation +
-        // collection. The seller files and remits taxes themselves; Stripe
-        // flags new registration obligations as they appear.
-        automatic_tax: { enabled: true },
+        // No tax automation: full compliance handling rejected the
+        // consulting-services tax code, and automatic_tax requires a head
+        // office address configured in Stripe Tax. Re-enable one of those
+        // later once the seller chooses a tax setup.
       } as any);
 
       return { clientSecret: session.client_secret ?? '' };
