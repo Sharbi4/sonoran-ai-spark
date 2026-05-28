@@ -57,8 +57,8 @@ export default function RealEstateDemo() {
     >
       {/* HERO with smart search */}
       <section className="relative overflow-hidden">
-        <div aria-hidden className="absolute inset-0 bg-gradient-to-br from-emerald-900 via-emerald-800 to-teal-900" />
-        <div aria-hidden className="absolute inset-0 opacity-30" style={{ backgroundImage: "radial-gradient(circle at 20% 20%, rgba(255,255,255,0.3), transparent 50%)" }} />
+        <div aria-hidden className="absolute inset-0 -z-10 bg-gradient-to-br from-emerald-900 via-emerald-800 to-teal-900" />
+        <div aria-hidden className="absolute inset-0 -z-10 opacity-30" style={{ backgroundImage: "radial-gradient(circle at 20% 20%, rgba(255,255,255,0.3), transparent 50%)" }} />
         <div className="mx-auto max-w-7xl px-5 sm:px-8 pt-20 sm:pt-28 pb-24">
           <Reveal>
             <p className="text-xs uppercase tracking-[0.4em] text-emerald-200 font-medium">Phoenix · Scottsdale · Paradise Valley</p>
@@ -117,7 +117,7 @@ export default function RealEstateDemo() {
               <Reveal key={l.addr}>
                 <div className="group bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-xl transition-all">
                   <div className={cn("aspect-[4/3] bg-gradient-to-br relative", l.grad)}>
-                    <div className="absolute inset-0 opacity-30" style={{ backgroundImage: "radial-gradient(circle at 30% 40%, rgba(0,0,0,0.4), transparent 60%)" }} />
+                    <div className="absolute inset-0 -z-10 opacity-30" style={{ backgroundImage: "radial-gradient(circle at 30% 40%, rgba(0,0,0,0.4), transparent 60%)" }} />
                     <span className="absolute top-3 left-3 bg-white text-emerald-800 text-[10px] font-bold uppercase tracking-wider px-2 py-1 rounded">{l.tag}</span>
                     <button className="absolute top-3 right-3 h-9 w-9 bg-white/90 rounded-full flex items-center justify-center hover:bg-white">
                       <Heart className="h-4 w-4 text-emerald-700" />

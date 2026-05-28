@@ -65,8 +65,8 @@ export default function ContractorsDemo() {
     >
       {/* HERO */}
       <section className="relative overflow-hidden">
-        <div aria-hidden className="absolute inset-0" style={{ background: "linear-gradient(135deg, #1A0F08 0%, #2B1810 50%, #4A2510 100%)" }} />
-        <div aria-hidden className="absolute inset-0 opacity-30" style={{ backgroundImage: "url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 80'><path d='M0 80L80 0M-20 60L60 -20M20 100L100 20' stroke='%23EA580C' stroke-width='1'/></svg>\")", backgroundSize: "80px 80px" }} />
+        <div aria-hidden className="absolute inset-0 -z-10" style={{ background: "linear-gradient(135deg, #1A0F08 0%, #2B1810 50%, #4A2510 100%)" }} />
+        <div aria-hidden className="absolute inset-0 -z-10 opacity-30" style={{ backgroundImage: "url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 80'><path d='M0 80L80 0M-20 60L60 -20M20 100L100 20' stroke='%23EA580C' stroke-width='1'/></svg>\")", backgroundSize: "80px 80px" }} />
         <div className="mx-auto max-w-7xl px-5 sm:px-8 pt-20 sm:pt-28 pb-24 text-white grid lg:grid-cols-[1.3fr_1fr] gap-12 items-center">
           <Reveal>
             <div className="inline-flex items-center gap-2 rounded-full bg-orange-600/20 border border-orange-400/30 px-3 py-1 text-xs text-orange-200">
@@ -95,7 +95,7 @@ export default function ContractorsDemo() {
           <Reveal delay={0.15}>
             <div className="relative">
               <div className="aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl bg-gradient-to-br from-orange-500 via-orange-700 to-red-900 relative">
-                <div className="absolute inset-0 opacity-50" style={{ backgroundImage: "linear-gradient(45deg, rgba(0,0,0,0.3) 25%, transparent 25%, transparent 50%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.3) 75%, transparent 75%)", backgroundSize: "40px 40px" }} />
+                <div className="absolute inset-0 -z-10 opacity-50" style={{ backgroundImage: "linear-gradient(45deg, rgba(0,0,0,0.3) 25%, transparent 25%, transparent 50%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.3) 75%, transparent 75%)", backgroundSize: "40px 40px" }} />
                 <div className="absolute bottom-6 left-6 right-6 rounded-xl bg-white/95 backdrop-blur p-4">
                   <p className="text-[10px] uppercase tracking-wider text-orange-700 font-bold">Featured Project</p>
                   <p className="mt-1 font-semibold text-gray-900">Catalina Foothills Kitchen Remodel</p>
@@ -153,7 +153,7 @@ export default function ContractorsDemo() {
               <Reveal key={p.title} delay={i * 0.04}>
                 <div className="group bg-white rounded-xl overflow-hidden border border-gray-200 hover:shadow-xl transition-all">
                   <div className="aspect-[4/3] relative overflow-hidden bg-gradient-to-br from-orange-200 via-amber-300 to-red-400">
-                    <div className="absolute inset-0 opacity-30" style={{ backgroundImage: "radial-gradient(circle at 30% 40%, rgba(0,0,0,0.4), transparent 50%)" }} />
+                    <div className="absolute inset-0 -z-10 opacity-30" style={{ backgroundImage: "radial-gradient(circle at 30% 40%, rgba(0,0,0,0.4), transparent 50%)" }} />
                     <div className="absolute top-3 left-3 bg-white/90 backdrop-blur px-2 py-1 rounded-md text-[10px] font-bold text-gray-900 uppercase">
                       {i % 2 === 0 ? "Before/After" : "Build Process"}
                     </div>

@@ -74,8 +74,8 @@ export default function SalonsWellnessDemo() {
     >
       {/* HERO */}
       <section className="relative overflow-hidden">
-        <div aria-hidden className="absolute inset-0" style={{ background: "linear-gradient(135deg, #FCE7F3 0%, #FBCFE8 30%, #F9A8D4 60%, #FBCFE8 100%)" }} />
-        <div aria-hidden className="absolute inset-0 opacity-40" style={{ backgroundImage: "radial-gradient(circle at 80% 30%, rgba(244,114,182,0.4) 0%, transparent 50%), radial-gradient(circle at 20% 80%, rgba(157,23,77,0.3) 0%, transparent 50%)" }} />
+        <div aria-hidden className="absolute inset-0 -z-10" style={{ background: "linear-gradient(135deg, #FCE7F3 0%, #FBCFE8 30%, #F9A8D4 60%, #FBCFE8 100%)" }} />
+        <div aria-hidden className="absolute inset-0 -z-10 opacity-40" style={{ backgroundImage: "radial-gradient(circle at 80% 30%, rgba(244,114,182,0.4) 0%, transparent 50%), radial-gradient(circle at 20% 80%, rgba(157,23,77,0.3) 0%, transparent 50%)" }} />
         <div className="mx-auto max-w-7xl px-5 sm:px-8 pt-20 sm:pt-28 pb-24 grid lg:grid-cols-[1.2fr_1fr] gap-12 items-center">
           <Reveal>
             <p className="text-xs uppercase tracking-[0.4em] text-rose-700 font-medium">Est. 2016 · Award-Winning · Scottsdale's Best 2024</p>
@@ -102,7 +102,7 @@ export default function SalonsWellnessDemo() {
           <Reveal delay={0.15}>
             <div className="relative">
               <div className="aspect-[4/5] rounded-[2.5rem] overflow-hidden shadow-2xl bg-gradient-to-br from-rose-400 via-pink-500 to-fuchsia-600 relative">
-                <div className="absolute inset-0 opacity-30" style={{ backgroundImage: "radial-gradient(circle at 50% 30%, rgba(255,255,255,0.5), transparent 50%)" }} />
+                <div className="absolute inset-0 -z-10 opacity-30" style={{ backgroundImage: "radial-gradient(circle at 50% 30%, rgba(255,255,255,0.5), transparent 50%)" }} />
               </div>
               <div className="absolute -bottom-6 -left-6 rounded-2xl bg-white shadow-xl p-4 max-w-[200px]">
                 <p className="text-[10px] uppercase tracking-wider text-rose-600 font-bold">Most Booked</p>
@@ -218,7 +218,7 @@ export default function SalonsWellnessDemo() {
               <Reveal key={s.name}>
                 <div className="rounded-3xl overflow-hidden bg-white border border-rose-100 shadow-sm hover:shadow-xl transition-shadow">
                   <div className="aspect-[4/5] bg-gradient-to-br from-rose-200 via-pink-300 to-fuchsia-400 relative">
-                    <div className="absolute inset-0 opacity-30" style={{ backgroundImage: "radial-gradient(circle at 50% 30%, rgba(255,255,255,0.5), transparent 60%)" }} />
+                    <div className="absolute inset-0 -z-10 opacity-30" style={{ backgroundImage: "radial-gradient(circle at 50% 30%, rgba(255,255,255,0.5), transparent 60%)" }} />
                   </div>
                   <div className="p-5">
                     <p className="text-lg text-rose-950" style={{ fontFamily: theme.fontHeading }}>{s.name}</p>
@@ -252,7 +252,7 @@ export default function SalonsWellnessDemo() {
                   i % 4 === 2 ? "from-pink-200 to-rose-400" :
                   "from-rose-400 to-fuchsia-500",
                 )}>
-                  <div className="absolute inset-0 opacity-30" style={{ backgroundImage: "radial-gradient(circle at 30% 40%, rgba(0,0,0,0.3), transparent 50%)" }} />
+                  <div className="absolute inset-0 -z-10 opacity-30" style={{ backgroundImage: "radial-gradient(circle at 30% 40%, rgba(0,0,0,0.3), transparent 50%)" }} />
                   <div className="absolute bottom-2 right-2 text-[9px] bg-white/90 px-1.5 py-0.5 rounded text-rose-700 font-bold">B/A</div>
                 </div>
               </Reveal>

@@ -49,7 +49,7 @@ export default function ConsultantsCoachesDemo() {
     >
       {/* HERO */}
       <section className="relative overflow-hidden">
-        <div aria-hidden className="absolute inset-0 bg-gradient-to-br from-indigo-50 via-white to-purple-50" />
+        <div aria-hidden className="absolute inset-0 -z-10 bg-gradient-to-br from-indigo-50 via-white to-purple-50" />
         <div className="mx-auto max-w-7xl px-5 sm:px-8 pt-24 pb-20 grid lg:grid-cols-[1.2fr_1fr] gap-12 items-center">
           <Reveal>
             <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-indigo-100 text-indigo-700 text-xs font-semibold"><Sparkles className="h-3 w-3" /> 200+ founders coached since 2019</span>
@@ -71,7 +71,7 @@ export default function ConsultantsCoachesDemo() {
           <Reveal delay={0.15}>
             <div className="relative">
               <div className="aspect-[4/5] rounded-[2rem] bg-gradient-to-br from-indigo-500 via-purple-600 to-indigo-900 shadow-2xl relative overflow-hidden">
-                <div className="absolute inset-0 opacity-30" style={{ backgroundImage: "radial-gradient(circle at 30% 30%, rgba(255,255,255,0.4), transparent 50%)" }} />
+                <div className="absolute inset-0 -z-10 opacity-30" style={{ backgroundImage: "radial-gradient(circle at 30% 30%, rgba(255,255,255,0.4), transparent 50%)" }} />
                 <button className="absolute inset-0 flex items-center justify-center">
                   <span className="h-20 w-20 rounded-full bg-white/95 flex items-center justify-center shadow-2xl">
                     <Play className="h-7 w-7 text-indigo-700 ml-1" />

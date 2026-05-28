@@ -46,8 +46,8 @@ export default function SmallBusinessTeamsDemo() {
     >
       {/* HERO */}
       <section className="relative overflow-hidden">
-        <div aria-hidden className="absolute inset-0 bg-gradient-to-br from-violet-50 via-white to-fuchsia-50" />
-        <div aria-hidden className="absolute inset-0 opacity-40" style={{ backgroundImage: "radial-gradient(circle at 10% 20%, rgba(139,92,246,0.2), transparent 50%), radial-gradient(circle at 90% 80%, rgba(76,29,149,0.15), transparent 50%)" }} />
+        <div aria-hidden className="absolute inset-0 -z-10 bg-gradient-to-br from-violet-50 via-white to-fuchsia-50" />
+        <div aria-hidden className="absolute inset-0 -z-10 opacity-40" style={{ backgroundImage: "radial-gradient(circle at 10% 20%, rgba(139,92,246,0.2), transparent 50%), radial-gradient(circle at 90% 80%, rgba(76,29,149,0.15), transparent 50%)" }} />
         <div className="mx-auto max-w-7xl px-5 sm:px-8 pt-20 sm:pt-24 pb-20">
           <Reveal>
             <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-violet-100 text-violet-800 text-xs font-semibold"><Sparkles className="h-3 w-3" /> AI-native · Replaces 6 tools</span>
