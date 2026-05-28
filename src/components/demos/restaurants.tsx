@@ -77,6 +77,13 @@ export default function RestaurantsDemo() {
               "radial-gradient(60% 50% at 80% 30%, rgba(183,84,31,0.35) 0%, transparent 60%), radial-gradient(50% 60% at 10% 80%, rgba(94,31,17,0.4) 0%, transparent 65%), linear-gradient(180deg, #2A140A 0%, #1A0A04 100%)",
           }}
         />
+        <img
+          aria-hidden
+          src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1900&q=80"
+          alt=""
+          className="absolute inset-0 -z-10 h-full w-full object-cover opacity-40"
+        />
+        <div aria-hidden className="absolute inset-0 -z-10" style={{ background: "linear-gradient(110deg, rgba(20,8,4,0.92) 0%, rgba(20,8,4,0.55) 55%, rgba(20,8,4,0.25) 100%)" }} />
         <div className="mx-auto max-w-7xl px-5 sm:px-8 pt-20 sm:pt-28 pb-24 text-white">
           <Reveal>
             <p className="text-xs uppercase tracking-[0.4em] text-amber-300/90">Est. 2018 · James Beard Semifinalist</p>
@@ -119,6 +126,35 @@ export default function RestaurantsDemo() {
 
       {/* MENU */}
       <section id="menu" className="py-24">
+        {/* On The Pass — editorial photo strip */}
+        <div className="mx-auto max-w-7xl px-5 sm:px-8 mb-20">
+          <Reveal>
+            <div className="flex items-end justify-between mb-6">
+              <div>
+                <SectionLabel color={theme.accentText}>On The Pass</SectionLabel>
+                <h3 className="text-3xl sm:text-4xl text-gray-900" style={{ fontFamily: theme.fontHeading }}>This week, from the wood fire.</h3>
+              </div>
+              <p className="hidden sm:block text-xs text-gray-500 max-w-xs text-right">Photography updated weekly by our pastry chef.</p>
+            </div>
+          </Reveal>
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
+            {[
+              { src: "https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&w=900&q=80", label: "Carne Asada · 48h Marinade" },
+              { src: "https://images.unsplash.com/photo-1565299543923-37dd37887442?auto=format&fit=crop&w=900&q=80", label: "Prickly Pear Margarita" },
+              { src: "https://images.unsplash.com/photo-1565299585323-38d6b0865b47?auto=format&fit=crop&w=900&q=80", label: "Mesquite Wood Fire" },
+              { src: "https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&w=900&q=80", label: "Tres Leches · Burnt Sugar" },
+            ].map((p, i) => (
+              <Reveal key={p.src} delay={i * 0.05}>
+                <figure className="group relative overflow-hidden rounded-2xl aspect-[4/5]">
+                  <img src={p.src} alt={p.label} className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/0 to-black/0" />
+                  <figcaption className="absolute bottom-3 left-3 right-3 text-white text-xs font-medium tracking-wide" style={{ fontFamily: theme.fontHeading }}>{p.label}</figcaption>
+                </figure>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+
         <div className="mx-auto max-w-6xl px-5 sm:px-8">
           <Reveal>
             <div className="text-center max-w-2xl mx-auto mb-10">
@@ -266,8 +302,9 @@ export default function RestaurantsDemo() {
             </div>
           </Reveal>
           <Reveal delay={0.1}>
-            <div className="aspect-[4/3] rounded-3xl overflow-hidden bg-gradient-to-br from-amber-200 via-orange-300 to-rose-400 relative">
-              <div className="absolute inset-0 -z-10 opacity-30" style={{ backgroundImage: "radial-gradient(circle at 30% 40%, rgba(0,0,0,0.3) 0%, transparent 50%), radial-gradient(circle at 70% 70%, rgba(0,0,0,0.2) 0%, transparent 50%)" }} />
+            <div className="aspect-[4/3] rounded-3xl overflow-hidden relative shadow-2xl">
+              <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1400&q=80" alt="Copper Canyon Grill courtyard" className="absolute inset-0 h-full w-full object-cover" loading="lazy" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
               <div className="absolute bottom-4 left-4 right-4 rounded-xl bg-white/95 backdrop-blur px-4 py-3 text-sm text-gray-800 flex items-center justify-between">
                 <span>412 N 4th Ave</span>
                 <a href="#" className="text-amber-700 font-medium">Get Directions →</a>

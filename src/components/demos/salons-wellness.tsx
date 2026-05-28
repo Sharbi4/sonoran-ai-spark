@@ -38,10 +38,10 @@ const SERVICES = [
 ];
 
 const STYLISTS = [
-  { name: "Sienna Rivera", title: "Master Colorist", specialty: "Balayage · Dimensional Color", books: "Booking 3 weeks out" },
-  { name: "Maya Thornton", title: "Lead Stylist", specialty: "Precision Cuts · Curls", books: "Booking 1 week out" },
-  { name: "Dr. Lena Park", title: "Lead Esthetician", specialty: "Anti-aging · Acne", books: "Booking 2 weeks out" },
-  { name: "Ava Kohler", title: "Lash Specialist", specialty: "Volume · Wispy Sets", books: "Booking 5 days out" },
+  { name: "Sienna Rivera", title: "Master Colorist", specialty: "Balayage · Dimensional Color", books: "Booking 3 weeks out", img: "https://images.unsplash.com/photo-1580618672591-eb180b1a973f?auto=format&fit=crop&w=600&q=80" },
+  { name: "Maya Thornton", title: "Lead Stylist", specialty: "Precision Cuts · Curls", books: "Booking 1 week out", img: "https://images.unsplash.com/photo-1614287859820-7d3eeae8d29d?auto=format&fit=crop&w=600&q=80" },
+  { name: "Dr. Lena Park", title: "Lead Esthetician", specialty: "Anti-aging · Acne", books: "Booking 2 weeks out", img: "https://images.unsplash.com/photo-1592621385612-4d7129426394?auto=format&fit=crop&w=600&q=80" },
+  { name: "Ava Kohler", title: "Lash Specialist", specialty: "Volume · Wispy Sets", books: "Booking 5 days out", img: "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=crop&w=600&q=80" },
 ];
 
 const MEMBERSHIPS = [
@@ -101,8 +101,9 @@ export default function SalonsWellnessDemo() {
           </Reveal>
           <Reveal delay={0.15}>
             <div className="relative">
-              <div className="aspect-[4/5] rounded-[2.5rem] overflow-hidden shadow-2xl bg-gradient-to-br from-rose-400 via-pink-500 to-fuchsia-600 relative">
-                <div className="absolute inset-0 -z-10 opacity-30" style={{ backgroundImage: "radial-gradient(circle at 50% 30%, rgba(255,255,255,0.5), transparent 50%)" }} />
+              <div className="aspect-[4/5] rounded-[2.5rem] overflow-hidden shadow-2xl relative">
+                <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=900&q=85" alt="Oasis Studio interior" className="absolute inset-0 h-full w-full object-cover" />
+                <div className="absolute inset-0 bg-gradient-to-t from-rose-900/30 via-transparent to-transparent" />
               </div>
               <div className="absolute -bottom-6 -left-6 rounded-2xl bg-white shadow-xl p-4 max-w-[200px]">
                 <p className="text-[10px] uppercase tracking-wider text-rose-600 font-bold">Most Booked</p>
@@ -217,8 +218,9 @@ export default function SalonsWellnessDemo() {
             {STYLISTS.map((s) => (
               <Reveal key={s.name}>
                 <div className="rounded-3xl overflow-hidden bg-white border border-rose-100 shadow-sm hover:shadow-xl transition-shadow">
-                  <div className="aspect-[4/5] bg-gradient-to-br from-rose-200 via-pink-300 to-fuchsia-400 relative">
-                    <div className="absolute inset-0 -z-10 opacity-30" style={{ backgroundImage: "radial-gradient(circle at 50% 30%, rgba(255,255,255,0.5), transparent 60%)" }} />
+                  <div className="aspect-[4/5] relative overflow-hidden">
+                    <img src={s.img} alt={s.name} className="absolute inset-0 h-full w-full object-cover" loading="lazy" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-rose-950/40 to-transparent" />
                   </div>
                   <div className="p-5">
                     <p className="text-lg text-rose-950" style={{ fontFamily: theme.fontHeading }}>{s.name}</p>
@@ -243,16 +245,17 @@ export default function SalonsWellnessDemo() {
             </div>
           </Reveal>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
-            {Array(12).fill(0).map((_, i) => (
-              <Reveal key={i} delay={(i % 6) * 0.04}>
-                <div className={cn(
-                  "aspect-square rounded-2xl bg-gradient-to-br relative overflow-hidden",
-                  i % 4 === 0 ? "from-rose-300 to-pink-500" :
-                  i % 4 === 1 ? "from-fuchsia-400 to-rose-600" :
-                  i % 4 === 2 ? "from-pink-200 to-rose-400" :
-                  "from-rose-400 to-fuchsia-500",
-                )}>
-                  <div className="absolute inset-0 -z-10 opacity-30" style={{ backgroundImage: "radial-gradient(circle at 30% 40%, rgba(0,0,0,0.3), transparent 50%)" }} />
+            {[
+              "photo-1522337360788-8b13dee7a37e","photo-1487412947147-5cebf100ffc2",
+              "photo-1560869713-7d0a29430803","photo-1571019613454-1cb2f99b2d8b",
+              "photo-1595476108010-b4d1f102b1b1","photo-1503951914875-452162b0f3f1",
+              "photo-1559599101-f09722fb4948","photo-1633681926022-84852f3a6ba9",
+              "photo-1559599076-9c61d8e1b77c","photo-1605497788044-5a32c7078486",
+              "photo-1610992015732-2449b76344bc","photo-1562322140-8baeececf3df",
+            ].map((id, i) => (
+              <Reveal key={id} delay={(i % 6) * 0.04}>
+                <div className="aspect-square rounded-2xl relative overflow-hidden group">
+                  <img src={`https://images.unsplash.com/${id}?auto=format&fit=crop&w=500&q=75`} alt="" className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-110" loading="lazy" />
                   <div className="absolute bottom-2 right-2 text-[9px] bg-white/90 px-1.5 py-0.5 rounded text-rose-700 font-bold">B/A</div>
                 </div>
               </Reveal>
