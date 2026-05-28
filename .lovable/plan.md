@@ -1,64 +1,78 @@
-# Sonoran Systems & AI — Premium Redesign Plan
+## Goal
 
-You already have routes scaffolded (Home, Services, Packages, AI Audit, About, Case Studies, Contact, Dashboards, Email Automation). This plan upgrades the *feel* of the site to Awwwards-level: warm desert editorial + satin glassmorphism + Framer Motion + Lenis smooth scroll, with the exact page script you outlined.
+Give visitors two clear ways to pay: **buy now (Stripe)** for fixed-price products, or **book a call (Calendly)** for custom-scoped work.
 
-## What I'll build
+## Step 1 — Enable Lovable's built-in Stripe Payments
 
-### 1. Foundation
-- Install `framer-motion` and `lenis`.
-- Update `src/styles.css`:
-  - Lock in the brand palette exactly: terracotta `#C24F34`, adobe rose `#E07A6B`, sand `#E9DFCF`, sage `#8BA395`, charcoal `#1F1F1F`, cream `#FBF7F2`.
-  - Swap heading font to **Space Grotesk** (geometric sans), body **Inter**.
-  - Add glass utilities (`.glass-card`, `.glass-header`, satin gradients, soft shadow tokens, diagonal-band background).
-- Add `src/components/lenis-provider.tsx` mounted in `__root.tsx` for site-wide smooth scroll (client-only to avoid hydration issues).
-- Add motion primitives in `src/components/motion/`:
-  - `Reveal` (fade + rise on scroll, spring)
-  - `StaggerGroup` / `StaggerItem`
-  - `ParallaxLayer` (scroll-linked y transform)
-  - `MagneticButton`, `HoverLift` card wrapper
-  - `AccentWord` (animated colored words in headlines)
-- Fix the current SSR hydration warning in the footer at the same time.
+Run `enable_stripe_payments`. This provisions a test environment immediately (no Stripe account or API keys required to start). Going live later requires claiming the account.
 
-### 2. Global chrome
-- Rebuild `site-layout.tsx` header as **satin glass** (translucent cream, backdrop blur, sand hairline, shadow on scroll), Linear-style mega menu with the exact two-column Core / Advanced split + "$297 audit" bottom strip.
-- Mobile: slide-in glass drawer, full-width terracotta CTA.
-- Footer: charcoal variant with warm accents, organized columns, social icons, hover micro-interactions.
+Tax handling: **Tax calculation & collection only (+0.5%)** — best fit for an Arizona-based studio selling mostly to US customers. You stay responsible for filing, but Stripe calculates correct tax at checkout and alerts you when you hit nexus thresholds.
 
-### 3. Home page (full rewrite to your script)
-1. **Hero** — cream rounded container, headline "AI **systems** for **businesses** that are ready to move **smarter**." with animated colored words, two CTAs, trust + location row. Right side: diagonal terracotta/rose/sand/sage/charcoal bands with parallax + three floating glass cards (AI Assistant, Workflow, Daily Summary) drifting at different speeds.
-2. **Services Preview** — 4 glass cards, sage line icons, staggered reveal, hover lift, arrow glides.
-3. **Sticky "Working System"** — left sticky headline, right scroll-through 5 cards snapping into place with animated connector dots between them; background tint shifts cream → sand → faint sage via scroll progress.
-4. **Dashboard Preview** — large satin glass dashboard mock with sidebar, metric tiles that count up on enter, animated SVG chart line that draws on scroll, terracotta data, sage highlights, floating mini cards with parallax.
-5. **Packages Preview** — full-bleed charcoal satin section, glass pricing card for Growth Systems Package, sage check list, terracotta CTA.
-6. **Industry Use Cases** — 6 cards, horizontal drag/scroll on desktop, hover changes accent.
-7. **Founder / Local** — warm editorial split, abstract geometric side panel with "Tucson, Arizona" tag.
-8. **Final CTA** — large rounded cream container, satin glass feel.
+## Step 2 — Product catalog (pay upfront via Stripe)
 
-### 4. Inner pages
-- **Services**: alternating left/right sections for all 8 services with mini glass UI visuals, scroll reveals, and brand diagonal accents.
-- **Packages**: 6 glass pricing cards, terracotta "featured" state on Growth Systems, sage checks.
-- **AI Audit**: focused single-offer page, glass price card, what's included checklist, single CTA.
-- **About**: warm editorial founder/local story.
-- **Case Studies**: keep structure, restyle with glass + reveals.
-- **Contact**: 2-column — form left (all fields you listed, select with all service options), side card with Arizona service area.
-- Keep existing `dashboards.tsx` and `email-automation.tsx`, restyle headers/cards to match new glass language.
+Create these as Stripe products:
+
+| Product | Price | Type |
+|---|---|---|
+| AI Business Audit | $297 | one-time |
+| Website System Launch — deposit | $750 (50% of $1,500) | one-time |
+| Brand + Web Launch — deposit | $1,250 (50% of $2,500) | one-time |
+| Workflow Automation — deposit | $750 (50% of $1,500) | one-time |
+| Email Automation Starter — setup | $1,000 | one-time |
+| AI Support Partner — 5hr | $500/mo | subscription |
+| AI Support Partner — 12hr | $1,000/mo | subscription |
+| Dashboard Hosting & Maintenance | $150/mo | subscription |
+
+Deposits let bigger projects start with a real commitment without forcing full payment before scope is locked. Final balance invoiced on delivery.
+
+## Step 3 — Book-a-call only (Calendly, no Stripe)
+
+These stay consultative — pricing depends on scope:
+- Full Suite Dashboards (Law Firm, Restaurant, Contractor Command Center)
+- Growth Systems / custom integrations
+- Anything where the user isn't sure which package fits
+
+## Step 4 — UI changes
+
+**Packages page (`src/routes/packages.tsx`)**
+- AI Audit hero card: replace "Book Your Audit" with **Buy Now — $297** (Stripe Checkout) + small "Prefer to talk first? Book a call" Calendly link underneath.
+- Project package cards (Website, Brand+Web, Workflow): two buttons — **Reserve with Deposit** (Stripe) and **Book a Call** (Calendly).
+- AI Support Partner card: **Start Monthly Plan** (Stripe subscription) + secondary "Ask questions first" Calendly link.
+- Specialized solutions (dashboards): keep **Book a Call** only.
+
+**AI Audit page (`src/routes/ai-audit.tsx`)**
+- Primary CTA → **Buy Audit — $297** (Stripe).
+- Secondary → "Book a free 15-min intro call instead" (Calendly).
+
+**Email Automation page**
+- **Buy Setup — $1,000** (Stripe) + Calendly fallback.
+
+**Dashboards page**
+- **Book a Call** primary (Calendly). No Stripe — scope varies too much.
+
+**Thank-you page (new — `src/routes/thank-you.tsx`)**
+- Stripe Checkout `success_url` lands here.
+- Shows the order, then a Calendly inline embed: "Book your kickoff call so we can start within 48 hours."
+
+**Contact page**
+- Unchanged. Calendly embed stays as the discovery funnel.
+
+## Step 5 — Checkout wiring
+
+- Server function `createCheckoutSession` accepts a `priceId` + mode (`payment` or `subscription`), returns Stripe Checkout URL.
+- Webhook handler at `/api/public/stripe-webhook` verifies signature, marks orders fulfilled, and (for audits) emails the intake questionnaire.
+- All "Buy" buttons call the server fn and redirect.
 
 ## Technical notes
-- **Lenis** wired with `requestAnimationFrame` loop inside a `useEffect`; provider returns `null` SSR-side so no hydration drift.
-- **Framer Motion**: `useScroll` + `useTransform` for sticky/parallax; `whileInView` with `once: true, margin: "-15%"` for reveals; spring `{ stiffness: 120, damping: 20 }` as the default.
-- All colors flow through CSS variables already in `styles.css` — no hard-coded hex in components.
-- Respect `prefers-reduced-motion`: motion primitives short-circuit to opacity-only.
-- Mobile: sticky scroll sections collapse to normal stacked sections under `md`.
 
-## Out of scope (call out)
-- No backend / form submission wiring (form will POST to a stub handler and show a success state).
-- No real auth or data — dashboard numbers are static mock content.
-- No CMS for Insights — I'll only add the route if you want it; otherwise I'll keep nav to the 6 pages already there.
+- Use `payments--enable_stripe_payments` (seamless, no BYOK).
+- Tax mode: `automatic_tax: { enabled: true }` on every Checkout session.
+- Match every product to a Stripe tax code (consulting/SaaS codes for digital services).
+- Calendly stays as the existing inline widget — no changes to its setup.
 
-## Deliverables
-- Updated `styles.css`, new motion primitives, new Lenis provider.
-- Rewritten `site-layout.tsx`, `index.tsx`, `services.tsx`, `packages.tsx`, `ai-audit.tsx`, `contact.tsx`, `about.tsx`.
-- Restyled `case-studies.tsx`, `dashboards.tsx`, `email-automation.tsx`.
-- Hydration error fixed.
+## What I need from you to proceed
 
-Confirm and I'll build it. Want me to add an **Insights** route too, or skip it for now?
+1. Confirm the **deposit model (50% upfront, balance on delivery)** for the three project packages — or tell me you'd prefer "full payment upfront" or "book-a-call only" for those tiers.
+2. Confirm the **+0.5% tax calculation** option (vs. no tax automation).
+
+Once you approve, I'll enable Stripe, create the products, and wire up checkout + the thank-you page.
