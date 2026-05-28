@@ -26,12 +26,12 @@ const SERVICES = [
 ];
 
 const PROJECTS = [
-  { title: "Catalina Foothills Kitchen", scope: "Full remodel · 850 sqft", duration: "9 weeks" },
-  { title: "Sabino Canyon ADU", scope: "Detached casita · 720 sqft", duration: "14 weeks" },
-  { title: "Oro Valley Re-Roof", scope: "Tile-to-metal conversion · 4,200 sqft", duration: "12 days" },
-  { title: "Dove Mountain Pool Patio", scope: "Travertine + ramada + kitchen", duration: "6 weeks" },
-  { title: "Tanque Verde Master Suite", scope: "Addition + walk-in closet", duration: "11 weeks" },
-  { title: "Marana Solar Install", scope: "12 kW system + battery", duration: "4 days" },
+  { title: "Catalina Foothills Kitchen", scope: "Full remodel · 850 sqft", duration: "9 weeks", img: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=900&q=80" },
+  { title: "Sabino Canyon ADU", scope: "Detached casita · 720 sqft", duration: "14 weeks", img: "https://images.unsplash.com/photo-1448630360428-65456885c650?auto=format&fit=crop&w=900&q=80" },
+  { title: "Oro Valley Re-Roof", scope: "Tile-to-metal conversion · 4,200 sqft", duration: "12 days", img: "https://images.unsplash.com/photo-1632759145355-8b8f3ea6c5a3?auto=format&fit=crop&w=900&q=80" },
+  { title: "Dove Mountain Pool Patio", scope: "Travertine + ramada + kitchen", duration: "6 weeks", img: "https://images.unsplash.com/photo-1572331165267-854da2b10ccc?auto=format&fit=crop&w=900&q=80" },
+  { title: "Tanque Verde Master Suite", scope: "Addition + walk-in closet", duration: "11 weeks", img: "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&w=900&q=80" },
+  { title: "Marana Solar Install", scope: "12 kW system + battery", duration: "4 days", img: "https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=900&q=80" },
 ];
 
 const REVIEWS = [
@@ -96,8 +96,9 @@ export default function ContractorsDemo() {
           </Reveal>
           <Reveal delay={0.15}>
             <div className="relative">
-              <div className="aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl bg-gradient-to-br from-orange-500 via-orange-700 to-red-900 relative">
-                <div className="absolute inset-0 -z-10 opacity-50" style={{ backgroundImage: "linear-gradient(45deg, rgba(0,0,0,0.3) 25%, transparent 25%, transparent 50%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.3) 75%, transparent 75%)", backgroundSize: "40px 40px" }} />
+              <div className="aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl relative">
+                <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=1200&q=80" alt="Featured kitchen remodel" className="absolute inset-0 h-full w-full object-cover" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
                 <div className="absolute bottom-6 left-6 right-6 rounded-xl bg-white/95 backdrop-blur p-4">
                   <p className="text-[10px] uppercase tracking-wider text-orange-700 font-bold">Featured Project</p>
                   <p className="mt-1 font-semibold text-gray-900">Catalina Foothills Kitchen Remodel</p>
@@ -154,8 +155,9 @@ export default function ContractorsDemo() {
             {PROJECTS.map((p, i) => (
               <Reveal key={p.title} delay={i * 0.04}>
                 <div className="group bg-white rounded-xl overflow-hidden border border-gray-200 hover:shadow-xl transition-all">
-                  <div className="aspect-[4/3] relative overflow-hidden bg-gradient-to-br from-orange-200 via-amber-300 to-red-400">
-                    <div className="absolute inset-0 -z-10 opacity-30" style={{ backgroundImage: "radial-gradient(circle at 30% 40%, rgba(0,0,0,0.4), transparent 50%)" }} />
+                  <div className="aspect-[4/3] relative overflow-hidden bg-gray-200">
+                    <img src={p.img} alt={p.title} className="absolute inset-0 h-full w-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
                     <div className="absolute top-3 left-3 bg-white/90 backdrop-blur px-2 py-1 rounded-md text-[10px] font-bold text-gray-900 uppercase">
                       {i % 2 === 0 ? "Before/After" : "Build Process"}
                     </div>
