@@ -273,12 +273,12 @@ const DASHBOARD_PACKAGES = [
       "AI daily summary",
       "Owner walkthrough and training",
     ],
-    cta: "Request Starter Dashboard",
+    cta: "Request Project Quote",
     featured: false,
     badge: null,
   },
   {
-    name: "Business Intelligence Dashboard",
+    name: "Connected Business Dashboard",
     price: "Starting at $2,500",
     tagline: "Multiple sources, complete picture.",
     includes: [
@@ -291,12 +291,12 @@ const DASHBOARD_PACKAGES = [
       "Monthly data review call",
       "Owner and staff training",
     ],
-    cta: "Request Business Dashboard",
+    cta: "Request Project Quote",
     featured: true,
     badge: "Most Popular",
   },
   {
-    name: "Full Intelligence Suite",
+    name: "Full Intelligence Dashboard",
     price: "Starting at $4,500",
     tagline: "Everything connected, AI-powered.",
     includes: [
@@ -310,7 +310,7 @@ const DASHBOARD_PACKAGES = [
       "Monthly strategy call",
       "Priority support",
     ],
-    cta: "Request Full Suite",
+    cta: "Request Project Quote",
     featured: false,
     badge: null,
   },
