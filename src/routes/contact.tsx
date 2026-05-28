@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { z } from "zod";
 import { Mail, Phone, MapPin, CalendarCheck2, CheckCircle2 } from "lucide-react";
@@ -330,10 +330,7 @@ function Contact() {
                 After submitting, you'll see our calendar to book a 30-minute phone consultation
                 right away.
               </p>
-              <div className="mt-5 rounded-xl border border-dashed border-copper/40 bg-card/60 p-5 text-center text-sm text-muted-foreground">
-                Calendar booking widget
-                <div className="text-xs mt-1">(connects after submission)</div>
-              </div>
+              <CalendlyEmbed />
             </div>
 
             <div className="rounded-3xl bg-card border border-sand p-7">
