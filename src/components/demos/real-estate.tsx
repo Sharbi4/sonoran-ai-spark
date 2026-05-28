@@ -190,7 +190,9 @@ export default function RealEstateDemo() {
             {AGENTS.map(a => (
               <Reveal key={a.name}>
                 <div className="rounded-2xl overflow-hidden bg-white border border-gray-100 hover:shadow-lg transition-shadow">
-                  <div className="aspect-square bg-gradient-to-br from-emerald-300 via-emerald-500 to-teal-700" />
+                  <div className="aspect-square relative overflow-hidden">
+                    <img src={a.img} alt={a.name} className="absolute inset-0 h-full w-full object-cover" loading="lazy" />
+                  </div>
                   <div className="p-5">
                     <p className="text-lg font-bold text-emerald-950" style={{ fontFamily: theme.fontHeading }}>{a.name}</p>
                     <p className="text-xs text-emerald-700 uppercase tracking-wider mt-1 font-semibold">{a.title}</p>
