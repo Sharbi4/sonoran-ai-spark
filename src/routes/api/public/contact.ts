@@ -109,6 +109,25 @@ export const Route = createFileRoute('/api/public/contact')({
             const messageId = crypto.randomUUID();
             const to = tpl.to!;
 
+            // Ensure an unsubscribe token exists for the recipient
+            let unsubscribeToken: string | null = null;
+            const { data: existing } = await supabaseAdmin
+              .from('email_unsubscribe_tokens')
+              .select('token')
+              .eq('email', to)
+              .maybeSingle();
+            if (existing?.token) {
+              unsubscribeToken = existing.token;
+            } else {
+              const newToken = crypto.randomUUID().replace(/-/g, '') + crypto.randomUUID().replace(/-/g, '');
+              const { data: inserted } = await supabaseAdmin
+                .from('email_unsubscribe_tokens')
+                .insert({ email: to, token: newToken })
+                .select('token')
+                .single();
+              unsubscribeToken = inserted?.token ?? newToken;
+            }
+
             await supabaseAdmin.rpc('enqueue_email', {
               queue_name: 'transactional_emails',
               payload: {
@@ -122,6 +141,7 @@ export const Route = createFileRoute('/api/public/contact')({
                 purpose: 'transactional',
                 label: 'contact-notification',
                 idempotency_key: `contact-${messageId}`,
+                unsubscribe_token: unsubscribeToken,
                 queued_at: new Date().toISOString(),
               },
             });
