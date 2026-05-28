@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as UnsubscribeRouteImport } from './routes/unsubscribe'
 import { Route as ThankYouRouteImport } from './routes/thank-you'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as ServicesRouteImport } from './routes/services'
@@ -34,6 +35,11 @@ import { Route as LovableEmailTransactionalPreviewRouteImport } from './routes/l
 import { Route as LovableEmailQueueProcessRouteImport } from './routes/lovable/email/queue/process'
 import { Route as ApiPublicPaymentsWebhookRouteImport } from './routes/api/public/payments/webhook'
 
+const UnsubscribeRoute = UnsubscribeRouteImport.update({
+  id: '/unsubscribe',
+  path: '/unsubscribe',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ThankYouRoute = ThankYouRouteImport.update({
   id: '/thank-you',
   path: '/thank-you',
@@ -173,6 +179,7 @@ export interface FileRoutesByFullPath {
   '/services': typeof ServicesRoute
   '/terms': typeof TermsRoute
   '/thank-you': typeof ThankYouRoute
+  '/unsubscribe': typeof UnsubscribeRoute
   '/dashboard/$slug': typeof DashboardSlugRoute
   '/demo/$slug': typeof DemoSlugRoute
   '/email/unsubscribe': typeof EmailUnsubscribeRoute
@@ -198,6 +205,7 @@ export interface FileRoutesByTo {
   '/services': typeof ServicesRoute
   '/terms': typeof TermsRoute
   '/thank-you': typeof ThankYouRoute
+  '/unsubscribe': typeof UnsubscribeRoute
   '/dashboard/$slug': typeof DashboardSlugRoute
   '/demo/$slug': typeof DemoSlugRoute
   '/email/unsubscribe': typeof EmailUnsubscribeRoute
@@ -225,6 +233,7 @@ export interface FileRoutesById {
   '/services': typeof ServicesRoute
   '/terms': typeof TermsRoute
   '/thank-you': typeof ThankYouRoute
+  '/unsubscribe': typeof UnsubscribeRoute
   '/dashboard/$slug': typeof DashboardSlugRoute
   '/demo/$slug': typeof DemoSlugRoute
   '/email/unsubscribe': typeof EmailUnsubscribeRoute
@@ -253,6 +262,7 @@ export interface FileRouteTypes {
     | '/services'
     | '/terms'
     | '/thank-you'
+    | '/unsubscribe'
     | '/dashboard/$slug'
     | '/demo/$slug'
     | '/email/unsubscribe'
@@ -278,6 +288,7 @@ export interface FileRouteTypes {
     | '/services'
     | '/terms'
     | '/thank-you'
+    | '/unsubscribe'
     | '/dashboard/$slug'
     | '/demo/$slug'
     | '/email/unsubscribe'
@@ -304,6 +315,7 @@ export interface FileRouteTypes {
     | '/services'
     | '/terms'
     | '/thank-you'
+    | '/unsubscribe'
     | '/dashboard/$slug'
     | '/demo/$slug'
     | '/email/unsubscribe'
@@ -331,6 +343,7 @@ export interface RootRouteChildren {
   ServicesRoute: typeof ServicesRoute
   TermsRoute: typeof TermsRoute
   ThankYouRoute: typeof ThankYouRoute
+  UnsubscribeRoute: typeof UnsubscribeRoute
   DashboardSlugRoute: typeof DashboardSlugRoute
   DemoSlugRoute: typeof DemoSlugRoute
   EmailUnsubscribeRoute: typeof EmailUnsubscribeRoute
@@ -344,6 +357,13 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/unsubscribe': {
+      id: '/unsubscribe'
+      path: '/unsubscribe'
+      fullPath: '/unsubscribe'
+      preLoaderRoute: typeof UnsubscribeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/thank-you': {
       id: '/thank-you'
       path: '/thank-you'
@@ -543,6 +563,7 @@ const rootRouteChildren: RootRouteChildren = {
   ServicesRoute: ServicesRoute,
   TermsRoute: TermsRoute,
   ThankYouRoute: ThankYouRoute,
+  UnsubscribeRoute: UnsubscribeRoute,
   DashboardSlugRoute: DashboardSlugRoute,
   DemoSlugRoute: DemoSlugRoute,
   EmailUnsubscribeRoute: EmailUnsubscribeRoute,
