@@ -649,6 +649,14 @@ function Packages() {
       <Section className="py-10">
         <div className="max-w-3xl mx-auto text-center border-t border-sand pt-10">
           <p className="text-sm text-muted-foreground leading-relaxed">
+            Website packages include 3 months of post-launch website care
+            covering up to 5 small edits per month (text changes, image swaps,
+            typo/link fixes, form routing corrections, minor layout
+            adjustments). New pages, redesigns, new sections, integrations,
+            automation/dashboard work, ecommerce, and major copy rewrites are
+            quoted separately.
+          </p>
+          <p className="mt-4 text-sm text-muted-foreground leading-relaxed">
             Payment terms, revisions, third-party fees, and AI disclaimers are
             detailed in our{" "}
             <a href="/terms" className="text-copper hover:underline">
