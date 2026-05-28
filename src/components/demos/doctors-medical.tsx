@@ -52,8 +52,9 @@ export default function DoctorsMedicalDemo() {
       theme={theme}
     >
       {/* HERO */}
-      <section className="relative overflow-hidden">
+      <section className="relative isolate overflow-hidden">
         <div aria-hidden className="absolute inset-0 -z-10 bg-gradient-to-br from-sky-50 via-white to-cyan-50" />
+        <img aria-hidden src="https://images.unsplash.com/photo-1631815589968-fdb09a223b1e?auto=format&fit=crop&w=1800&q=80" alt="" className="absolute right-0 top-0 -z-10 hidden lg:block h-full w-1/2 object-cover opacity-90" style={{ maskImage: "linear-gradient(to left, black 60%, transparent)", WebkitMaskImage: "linear-gradient(to left, black 60%, transparent)" }} />
         <div className="mx-auto max-w-7xl px-5 sm:px-8 pt-20 sm:pt-24 pb-20 grid lg:grid-cols-[1.2fr_1fr] gap-12 items-center">
           <Reveal>
             <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-sky-100 text-sky-800 text-xs font-semibold">Accepting new patients · Most insurance accepted</span>

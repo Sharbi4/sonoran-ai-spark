@@ -68,7 +68,7 @@ export default function RestaurantsDemo() {
       theme={theme}
     >
       {/* HERO */}
-      <section className="relative overflow-hidden">
+      <section className="relative isolate overflow-hidden">
         <div
           aria-hidden
           className="absolute inset-0 -z-10"
@@ -267,7 +267,7 @@ export default function RestaurantsDemo() {
           </Reveal>
           <Reveal delay={0.1}>
             <div className="aspect-[4/3] rounded-3xl overflow-hidden bg-gradient-to-br from-amber-200 via-orange-300 to-rose-400 relative">
-              <div className="absolute inset-0 opacity-30" style={{ backgroundImage: "radial-gradient(circle at 30% 40%, rgba(0,0,0,0.3) 0%, transparent 50%), radial-gradient(circle at 70% 70%, rgba(0,0,0,0.2) 0%, transparent 50%)" }} />
+              <div className="absolute inset-0 -z-10 opacity-30" style={{ backgroundImage: "radial-gradient(circle at 30% 40%, rgba(0,0,0,0.3) 0%, transparent 50%), radial-gradient(circle at 70% 70%, rgba(0,0,0,0.2) 0%, transparent 50%)" }} />
               <div className="absolute bottom-4 left-4 right-4 rounded-xl bg-white/95 backdrop-blur px-4 py-3 text-sm text-gray-800 flex items-center justify-between">
                 <span>412 N 4th Ave</span>
                 <a href="#" className="text-amber-700 font-medium">Get Directions →</a>

@@ -41,8 +41,10 @@ export default function FinancialAdvisorsDemo() {
       theme={theme}
     >
       {/* HERO */}
-      <section className="relative overflow-hidden bg-slate-900 text-white">
-        <div aria-hidden className="absolute inset-0 -z-0 opacity-30" style={{ backgroundImage: "radial-gradient(circle at 20% 30%, rgba(201,162,74,0.3), transparent 50%), radial-gradient(circle at 80% 70%, rgba(122,94,26,0.3), transparent 50%)" }} />
+      <section className="relative isolate overflow-hidden bg-slate-900 text-white">
+        <img aria-hidden src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1800&q=80" alt="" className="absolute inset-0 -z-10 h-full w-full object-cover opacity-25" />
+        <div aria-hidden className="absolute inset-0 -z-10 bg-gradient-to-br from-slate-950/80 via-slate-900/70 to-slate-950/95" />
+        <div aria-hidden className="absolute inset-0 -z-10 opacity-40" style={{ backgroundImage: "radial-gradient(circle at 20% 30%, rgba(201,162,74,0.35), transparent 50%), radial-gradient(circle at 80% 70%, rgba(122,94,26,0.35), transparent 50%)" }} />
         <div className="relative mx-auto max-w-7xl px-5 sm:px-8 pt-24 pb-24 grid lg:grid-cols-[1.2fr_1fr] gap-12 items-center">
           <Reveal>
             <p className="text-xs uppercase tracking-[0.4em] text-amber-400 font-medium">Fee-Only · Fiduciary · CFP® · $850M AUM</p>
