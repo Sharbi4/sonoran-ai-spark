@@ -58,6 +58,8 @@ export default function RealEstateDemo() {
       {/* HERO with smart search */}
       <section className="relative isolate overflow-hidden">
         <div aria-hidden className="absolute inset-0 -z-10 bg-gradient-to-br from-emerald-900 via-emerald-800 to-teal-900" />
+        <img aria-hidden src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=1800&q=80" alt="" className="absolute inset-0 -z-10 h-full w-full object-cover opacity-30" />
+        <div aria-hidden className="absolute inset-0 -z-10 bg-gradient-to-br from-emerald-950/80 via-emerald-900/70 to-teal-950/90" />
         <div aria-hidden className="absolute inset-0 -z-10 opacity-30" style={{ backgroundImage: "radial-gradient(circle at 20% 20%, rgba(255,255,255,0.3), transparent 50%)" }} />
         <div className="mx-auto max-w-7xl px-5 sm:px-8 pt-20 sm:pt-28 pb-24">
           <Reveal>
