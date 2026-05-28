@@ -101,8 +101,9 @@ export default function SalonsWellnessDemo() {
           </Reveal>
           <Reveal delay={0.15}>
             <div className="relative">
-              <div className="aspect-[4/5] rounded-[2.5rem] overflow-hidden shadow-2xl bg-gradient-to-br from-rose-400 via-pink-500 to-fuchsia-600 relative">
-                <div className="absolute inset-0 -z-10 opacity-30" style={{ backgroundImage: "radial-gradient(circle at 50% 30%, rgba(255,255,255,0.5), transparent 50%)" }} />
+              <div className="aspect-[4/5] rounded-[2.5rem] overflow-hidden shadow-2xl relative">
+                <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=900&q=85" alt="Oasis Studio interior" className="absolute inset-0 h-full w-full object-cover" />
+                <div className="absolute inset-0 bg-gradient-to-t from-rose-900/30 via-transparent to-transparent" />
               </div>
               <div className="absolute -bottom-6 -left-6 rounded-2xl bg-white shadow-xl p-4 max-w-[200px]">
                 <p className="text-[10px] uppercase tracking-wider text-rose-600 font-bold">Most Booked</p>
