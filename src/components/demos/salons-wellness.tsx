@@ -245,16 +245,17 @@ export default function SalonsWellnessDemo() {
             </div>
           </Reveal>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
-            {Array(12).fill(0).map((_, i) => (
-              <Reveal key={i} delay={(i % 6) * 0.04}>
-                <div className={cn(
-                  "aspect-square rounded-2xl bg-gradient-to-br relative overflow-hidden",
-                  i % 4 === 0 ? "from-rose-300 to-pink-500" :
-                  i % 4 === 1 ? "from-fuchsia-400 to-rose-600" :
-                  i % 4 === 2 ? "from-pink-200 to-rose-400" :
-                  "from-rose-400 to-fuchsia-500",
-                )}>
-                  <div className="absolute inset-0 -z-10 opacity-30" style={{ backgroundImage: "radial-gradient(circle at 30% 40%, rgba(0,0,0,0.3), transparent 50%)" }} />
+            {[
+              "photo-1522337360788-8b13dee7a37e","photo-1487412947147-5cebf100ffc2",
+              "photo-1560869713-7d0a29430803","photo-1571019613454-1cb2f99b2d8b",
+              "photo-1595476108010-b4d1f102b1b1","photo-1503951914875-452162b0f3f1",
+              "photo-1559599101-f09722fb4948","photo-1633681926022-84852f3a6ba9",
+              "photo-1559599076-9c61d8e1b77c","photo-1605497788044-5a32c7078486",
+              "photo-1610992015732-2449b76344bc","photo-1562322140-8baeececf3df",
+            ].map((id, i) => (
+              <Reveal key={id} delay={(i % 6) * 0.04}>
+                <div className="aspect-square rounded-2xl relative overflow-hidden group">
+                  <img src={`https://images.unsplash.com/${id}?auto=format&fit=crop&w=500&q=75`} alt="" className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-110" loading="lazy" />
                   <div className="absolute bottom-2 right-2 text-[9px] bg-white/90 px-1.5 py-0.5 rounded text-rose-700 font-bold">B/A</div>
                 </div>
               </Reveal>
