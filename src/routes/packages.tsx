@@ -1,124 +1,239 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Check, Sparkles, Scale, Utensils, Hammer, Mail } from "lucide-react";
+import {
+  Check, Sparkles, Compass, FileSearch, Workflow, ClipboardCheck,
+  Monitor, PenTool, Magnet, Mail, MessageSquare, BarChart3, Database,
+  LifeBuoy, Repeat, Rocket, Crown,
+} from "lucide-react";
 import { SiteLayout, Section, CopperButton, Accent } from "@/components/site-layout";
 
 export const Route = createFileRoute("/packages")({
   head: () => ({
     meta: [
-      { title: "Packages & Pricing — Sonoran Systems & AI" },
+      { title: "Pricing & Packages — Sonoran Systems & AI" },
       {
         name: "description",
         content:
-          "Simple, honest pricing. AI Business Audit ($297), website and brand launches starting at $1,500, and a monthly AI Support Partner from $500/month.",
+          "Project inquiry is free. Strategy is paid. Implementation is scoped. Support is monthly. Start with a $250 Strategy Call, a $197 Readiness Review, a $297 Automation Map, or the $497 AI Business Systems Audit.",
       },
     ],
   }),
   component: Packages,
 });
 
-const AUDIT_INCLUDES = [
-  "60-minute phone consultation",
-  "Website review",
-  "Customer journey review",
-  "Workflow and tools review",
-  "AI opportunity map",
-  "Written action plan (delivered in 3 business days)",
+/* ---------- Start Here (direct purchase) ---------- */
+const START_HERE = [
+  {
+    icon: Compass,
+    name: "Business Systems Strategy Call",
+    price: "$250",
+    unit: "per 60-min session",
+    tagline: "Live advisory. No deliverable — just clear answers.",
+    includes: [
+      "60 minutes by phone or video",
+      "Bring any business systems question",
+      "Tool & workflow recommendations",
+      "Recording + 1-paragraph recap",
+    ],
+    cta: "Book a Strategy Call",
+    featured: false,
+  },
+  {
+    icon: FileSearch,
+    name: "Website + AI Readiness Review",
+    price: "$197",
+    unit: "one-time",
+    tagline: "A written diagnostic of your website and AI fit.",
+    includes: [
+      "Full website review (UX, conversion, SEO basics)",
+      "AI readiness assessment",
+      "Top 5 fix-it priorities",
+      "Written summary, no call required",
+    ],
+    cta: "Buy Review — $197",
+    featured: false,
+  },
+  {
+    icon: Workflow,
+    name: "Automation Opportunity Map",
+    price: "$297",
+    unit: "one-time",
+    tagline: "A written map of every workflow we'd automate.",
+    includes: [
+      "Intake-based — no live call required",
+      "Workflow diagram (mapped, not built)",
+      "Tool stack recommendations",
+      "Effort vs. impact ranking",
+    ],
+    cta: "Buy Map — $297",
+    featured: false,
+  },
+  {
+    icon: ClipboardCheck,
+    name: "AI Business Systems Audit",
+    price: "$497",
+    unit: "one-time · 3 business days",
+    tagline: "Our flagship paid diagnostic — the full picture.",
+    includes: [
+      "60-minute strategy call",
+      "Website + customer journey review",
+      "Workflow and tools review",
+      "AI opportunity map",
+      "Prioritized written action plan",
+      "Recommended project roadmap",
+    ],
+    cta: "Buy Audit — $497",
+    featured: true,
+  },
+] as const;
+
+/* ---------- Build the System (scoped, intake) ---------- */
+const BUILD_GROUPS: {
+  category: string;
+  accent: "copper" | "sage";
+  items: { icon: typeof Monitor; name: string; price: string; tagline: string }[];
+}[] = [
+  {
+    category: "Web & Brand",
+    accent: "copper",
+    items: [
+      {
+        icon: Monitor,
+        name: "Starter Website",
+        price: "Starting at $1,750",
+        tagline: "1–3 pages, contact form, mobile design.",
+      },
+      {
+        icon: Monitor,
+        name: "Website System Launch",
+        price: "Starting at $2,500",
+        tagline: "4–6 pages, lead capture, booking, copy, basic SEO.",
+      },
+      {
+        icon: PenTool,
+        name: "Brand Starter Kit",
+        price: "Starting at $1,000",
+        tagline: "Logo direction, colors, fonts, simple guide.",
+      },
+      {
+        icon: PenTool,
+        name: "Brand + Web Launch",
+        price: "Starting at $3,000",
+        tagline: "Brand identity + 4–6 page website.",
+      },
+    ],
+  },
+  {
+    category: "Automation & AI",
+    accent: "sage",
+    items: [
+      {
+        icon: Magnet,
+        name: "Lead Capture + Follow-Up System",
+        price: "Starting at $1,500",
+        tagline: "Forms, CRM routing, email/SMS follow-up sequence.",
+      },
+      {
+        icon: Workflow,
+        name: "Workflow Automation Setup",
+        price: "Starting at $1,750",
+        tagline: "Map, build, and test the work you do every week.",
+      },
+      {
+        icon: Mail,
+        name: "Email Automation System",
+        price: "Starting at $1,500",
+        tagline: "AI triage, draft replies, automated follow-up.",
+      },
+      {
+        icon: MessageSquare,
+        name: "AI Customer Response System",
+        price: "Starting at $2,000",
+        tagline: "Chat or voice agents with guardrails and handoff.",
+      },
+    ],
+  },
+  {
+    category: "Dashboards",
+    accent: "copper",
+    items: [
+      {
+        icon: BarChart3,
+        name: "Connected Business Dashboard",
+        price: "Starting at $2,500",
+        tagline: "1–3 live data sources, logins, live metrics.",
+      },
+      {
+        icon: Database,
+        name: "Full Intelligence Dashboard",
+        price: "Starting at $4,500",
+        tagline: "3–6 sources, role-based access, alerts, AI summaries.",
+      },
+    ],
+  },
 ];
 
-const PROJECTS = [
+/* ---------- Keep It Running (retainers) ---------- */
+const RETAINERS = [
   {
-    name: "Website System Launch",
-    price: "Starting at $1,500",
-    tagline: "A professional website built to capture leads.",
+    icon: LifeBuoy,
+    name: "AI Support Partner Lite",
+    price: "$500",
+    unit: "per month",
+    tagline: "For owners who need a steady hand, not a full team.",
     includes: [
-      "1–5 page website",
-      "Mobile-friendly design",
-      "Lead capture form",
-      "Booking system integration",
-      "AI-assisted copywriting",
-      "Basic local SEO",
-      "2 rounds of revisions included",
+      "Up to 3 small requests / month",
+      "One 30-minute monthly strategy call",
+      "Light website edits",
+      "Light automation adjustments",
+      "Does not include new builds",
     ],
-    filled: false,
-    badge: null,
+    overage: null,
   },
   {
-    name: "Brand + Web Launch",
-    price: "Starting at $2,500",
-    tagline: "A stronger identity and a website to match.",
+    icon: Repeat,
+    name: "AI Support Partner",
+    price: "$750",
+    unit: "per month · up to 5 hrs",
+    tagline: "Active monthly partnership for evolving systems.",
     includes: [
-      "Logo design (2 concepts)",
-      "Brand colors and font system",
-      "Messaging guide",
-      "1–5 page website",
-      "Social profile graphics",
-      "Lead capture form",
-      "Basic SEO setup",
-      "2 rounds of revisions included",
+      "Up to 5 hours of active work / month",
+      "Website + automation updates",
+      "Prompt and tool refinement",
+      "Monthly 30-min strategy call",
+      "Priority response time",
     ],
-    filled: true,
-    badge: "Most Complete",
+    overage: "Additional hours at $150/hr",
   },
   {
-    name: "Workflow Automation Setup",
-    price: "Starting at $1,500",
-    tagline: "Stop doing the same manual tasks every week.",
+    icon: Rocket,
+    name: "Growth Systems Partner",
+    price: "$1,500",
+    unit: "per month · up to 10 hrs",
+    tagline: "For businesses building real operational leverage.",
     includes: [
-      "Workflow audit and mapping",
-      "Intake form build",
-      "Email follow-up automation",
-      "Appointment reminder setup",
-      "AI chatbot or assistant setup",
-      "Internal tracker or dashboard",
-      "Owner walkthrough and training",
-      "2 rounds of revisions included",
+      "Up to 10 hours of active work / month",
+      "New automations + workflow expansion",
+      "Dashboard refinement",
+      "Monthly strategy + roadmap call",
+      "Priority response time",
     ],
-    filled: false,
-    badge: null,
-  },
-];
-
-const RETAINER_INCLUDES = [
-  "Up to 5 hours of active work per month",
-  "Website updates and improvements",
-  "Automation tweaks and new workflows",
-  "Monthly 30-minute strategy phone call",
-  "AI prompt and tool refinement",
-  "Priority response time",
-];
-
-const SPECIALIZED = [
-  {
-    icon: Scale,
-    name: "Law Firm Intelligence",
-    body:
-      "Connect Clio, MyCase, or PracticePanther to a custom dashboard showing cases, billing, deadlines, and revenue — with AI summaries every morning.",
-    price: "Starting at $2,500",
-    to: "/dashboards",
+    overage: "Additional hours at $150/hr",
+    featured: true,
   },
   {
-    icon: Utensils,
-    name: "Restaurant Analytics",
-    body:
-      "Connect Toast or Square to a dashboard showing daily sales, top menu items, busiest hours, staff performance, and AI-powered insights.",
-    price: "Starting at $1,500",
-    to: "/dashboards",
-  },
-  {
-    icon: Hammer,
-    name: "Contractor Command Center",
-    body:
-      "Connect Jobber or ServiceTitan with QuickBooks into one dashboard showing jobs, quotes, invoices, and revenue — with alerts when things need attention.",
-    price: "Starting at $2,000",
-    to: "/dashboards",
-  },
-  {
-    icon: Mail,
-    name: "Email Automation System",
-    body:
-      "Build an AI-powered email system that classifies incoming messages, drafts replies in your voice, and follows up automatically on every lead.",
-    price: "Starting at $1,000",
-    to: "/email-automation",
+    icon: Crown,
+    name: "Custom Systems Partner",
+    price: "$2,500+",
+    unit: "per month · custom",
+    tagline: "For multi-system operations with ongoing needs.",
+    includes: [
+      "Custom monthly scope",
+      "Dedicated systems oversight",
+      "Multi-team coordination",
+      "Quarterly business review",
+      "Custom SLAs",
+    ],
+    overage: "Custom",
   },
 ];
 
@@ -141,209 +256,270 @@ function Packages() {
       {/* Header */}
       <Section className="pt-16 sm:pt-24 pb-8">
         <div className="max-w-3xl">
-          <p className="text-sm font-medium text-copper uppercase tracking-wider">Packages</p>
+          <p className="text-sm font-medium text-copper uppercase tracking-wider">Pricing</p>
           <h1 className="mt-3 font-serif font-bold text-4xl sm:text-5xl leading-[1.05]">
-            Honest <Accent>pricing</Accent> built around what your business actually <Accent color="sage">needs</Accent>.
+            Project inquiry is <Accent>free</Accent>. Strategy is paid. Implementation is <Accent color="sage">scoped</Accent>.
           </h1>
           <p className="mt-6 text-lg text-muted-foreground leading-relaxed">
-            Every project starts with a conversation. You'll never be locked into something that
-            doesn't fit.
+            A consulting-firm model, in plain English. Start with a paid diagnostic. Move into a scoped build. Keep it running with a monthly partner.
           </p>
-        </div>
-      </Section>
-
-      {/* FEATURED AUDIT */}
-      <Section className="pt-4">
-        <div className="rounded-3xl bg-card border-2 border-copper/40 shadow-[0_4px_8px_rgba(28,28,30,0.04),0_24px_60px_-24px_rgba(181,101,29,0.35)] overflow-hidden">
-          <div className="grid md:grid-cols-2 gap-0">
-            <div className="p-8 sm:p-12 border-b md:border-b-0 md:border-r border-sand">
-              <span className="inline-flex items-center gap-1.5 rounded-full bg-copper px-3 py-1.5 text-xs font-semibold text-copper-foreground uppercase tracking-wider">
-                <Sparkles className="h-3.5 w-3.5" />
-                Most Popular Starting Point
-              </span>
-              <h2 className="mt-6 font-serif text-3xl sm:text-4xl">AI Business Audit</h2>
-              <p className="mt-3 text-muted-foreground text-lg leading-relaxed">
-                Get clarity on exactly where AI can help your business.
-              </p>
-              <div className="mt-8 flex items-baseline gap-2">
-                <span className="font-serif text-6xl sm:text-7xl text-copper font-semibold">
-                  $297
-                </span>
-                <span className="text-muted-foreground">flat</span>
-              </div>
-              <div className="mt-8">
-                <CopperButton to="/ai-audit">Book Your Audit — $297</CopperButton>
-              </div>
-              <p className="mt-5 text-xs text-muted-foreground italic max-w-sm">
-                The only package available for direct purchase. All other projects are scoped on a
-                call.
-              </p>
-            </div>
-            <div className="p-8 sm:p-12 bg-cream/60">
-              <p className="text-sm font-semibold text-foreground uppercase tracking-wider mb-5">
-                What's included
-              </p>
-              <CheckList items={AUDIT_INCLUDES} />
-            </div>
+          <div className="mt-6 flex flex-wrap gap-3 text-xs uppercase tracking-wider text-muted-foreground">
+            <a href="#start-here" className="rounded-full border border-sand bg-card px-4 py-2 hover:border-copper hover:text-copper transition">
+              01 · Start Here
+            </a>
+            <a href="#build" className="rounded-full border border-sand bg-card px-4 py-2 hover:border-copper hover:text-copper transition">
+              02 · Build the System
+            </a>
+            <a href="#keep-running" className="rounded-full border border-sand bg-card px-4 py-2 hover:border-copper hover:text-copper transition">
+              03 · Keep It Running
+            </a>
           </div>
         </div>
       </Section>
 
-      {/* PROJECT PACKAGES */}
-      <Section className="pt-0">
-        <div className="mb-10">
-          <p className="text-sm font-medium text-copper uppercase tracking-wider">Project packages</p>
-          <h2 className="mt-2 font-serif text-3xl sm:text-4xl">Built to ship</h2>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {PROJECTS.map((p) => (
-            <div
-              key={p.name}
-              className={
-                "relative rounded-2xl bg-card p-7 flex flex-col " +
-                (p.filled
-                  ? "border-2 border-copper shadow-[0_4px_8px_rgba(28,28,30,0.04),0_22px_50px_-22px_rgba(181,101,29,0.4)] md:-translate-y-2 md:scale-[1.02]"
-                  : "border border-sand shadow-[0_1px_2px_rgba(28,28,30,0.03),0_10px_30px_-18px_rgba(28,28,30,0.12)]")
-              }
-            >
-              {p.badge && (
-                <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-copper px-3 py-1 text-xs font-semibold text-copper-foreground uppercase tracking-wider whitespace-nowrap">
-                  {p.badge}
-                </span>
-              )}
-              <h3 className="font-serif text-2xl">{p.name}</h3>
-              <p className="mt-2 text-sm text-muted-foreground">{p.tagline}</p>
-              <div className="mt-5">
-                <div className="font-serif text-3xl text-copper font-semibold">{p.price}</div>
-              </div>
-              <div className="mt-6 flex-1">
-                <CheckList items={p.includes} />
-              </div>
-              <p className="mt-5 text-xs text-muted-foreground italic">
-                Additional revision rounds available at $75 each.
-              </p>
-              <div className="mt-6">
-                <CopperButton
-                  to="/contact"
-                  variant={p.filled ? "filled" : "outlined"}
-                  className="w-full"
-                >
-                  Request a Quote
-                </CopperButton>
-              </div>
-            </div>
-          ))}
-        </div>
-      </Section>
-
-      {/* MONTHLY RETAINER */}
-      <Section className="pt-0">
-        <div className="mb-8">
-          <p className="text-sm font-medium text-copper uppercase tracking-wider">Monthly retainer</p>
-          <h2 className="mt-2 font-serif text-3xl sm:text-4xl">Ongoing support</h2>
-        </div>
-        <div
-          className="rounded-3xl border border-sand p-8 sm:p-12 shadow-[0_1px_2px_rgba(28,28,30,0.03),0_18px_40px_-22px_rgba(28,28,30,0.18)]"
-          style={{ backgroundColor: "#E8DFC8" }}
-        >
-          <div className="grid md:grid-cols-2 gap-10 items-start">
-            <div>
-              <h3 className="font-serif text-3xl sm:text-4xl">AI Support Partner</h3>
-              <p className="mt-3 text-foreground/75 text-lg leading-relaxed">
-                Ongoing support without hiring someone.
-              </p>
-              <div className="mt-6 flex items-baseline gap-2">
-                <span className="font-serif text-5xl sm:text-6xl text-copper font-semibold">
-                  $500
-                </span>
-                <span className="text-foreground/70">/ month starting</span>
-              </div>
-              <p className="mt-5 text-sm text-foreground/70 leading-relaxed max-w-md">
-                Need more? Additional hours at $95/hour. Up to 12-hour plan available at
-                $1,000/month.
-              </p>
-              <div className="mt-7">
-                <CopperButton to="/contact">Ask About Monthly Support</CopperButton>
-              </div>
-            </div>
-            <div>
-              <p className="text-sm font-semibold text-foreground uppercase tracking-wider mb-4">
-                What's included
-              </p>
-              <CheckList items={RETAINER_INCLUDES} />
-            </div>
-          </div>
-        </div>
-      </Section>
-
-      {/* SPECIALIZED SOLUTIONS */}
-      <Section className="pt-4">
-        <div className="max-w-2xl mb-10">
+      {/* START HERE — direct purchase */}
+      <Section id="start-here" className="pt-4">
+        <div className="mb-10 max-w-2xl">
           <p className="text-sm font-medium text-copper uppercase tracking-wider">
-            Specialized solutions
+            01 · Start Here
           </p>
-          <h2 className="mt-3 font-serif text-3xl sm:text-4xl">
-            Industry-specific systems, <Accent color="sage">ready to build.</Accent>
+          <h2 className="mt-2 font-serif text-3xl sm:text-4xl">
+            Paid diagnostics you can <Accent>buy upfront.</Accent>
           </h2>
           <p className="mt-4 text-muted-foreground leading-relaxed">
-            Pre-scoped systems built around the tools your industry already uses.
+            Strategy time is paid time. Each of these is a fixed deliverable —
+            no proposal, no scoping call, just a clear outcome.
           </p>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-          {SPECIALIZED.map((s) => {
-            const Icon = s.icon;
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {START_HERE.map((p) => {
+            const Icon = p.icon;
             return (
               <div
-                key={s.name}
-                className="rounded-2xl bg-card border border-sand p-6 flex flex-col shadow-[0_1px_2px_rgba(28,28,30,0.03),0_14px_36px_-22px_rgba(28,28,30,0.18)]"
+                key={p.name}
+                className={
+                  "relative rounded-2xl bg-card p-7 flex flex-col " +
+                  (p.featured
+                    ? "border-2 border-copper shadow-[0_4px_8px_rgba(28,28,30,0.04),0_22px_50px_-22px_rgba(181,101,29,0.4)]"
+                    : "border border-sand shadow-[0_1px_2px_rgba(28,28,30,0.03),0_10px_30px_-18px_rgba(28,28,30,0.12)]")
+                }
               >
-                <div className="flex items-start gap-4">
+                {p.featured && (
+                  <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-copper px-3 py-1 text-xs font-semibold text-copper-foreground uppercase tracking-wider whitespace-nowrap inline-flex items-center gap-1.5">
+                    <Sparkles className="h-3.5 w-3.5" />
+                    Flagship
+                  </span>
+                )}
+                <div className="flex items-start justify-between gap-4">
                   <div className="h-11 w-11 rounded-full bg-copper/12 inline-flex items-center justify-center shrink-0">
                     <Icon className="h-5 w-5 text-copper" />
                   </div>
-                  <div className="flex-1">
-                    <h3 className="font-serif text-xl">{s.name}</h3>
-                    <p className="mt-2 text-sm text-foreground/80 leading-relaxed">{s.body}</p>
+                  <div className="text-right">
+                    <div className="font-serif text-3xl text-copper font-semibold leading-none">
+                      {p.price}
+                    </div>
+                    <p className="mt-1 text-[10px] uppercase tracking-wider text-muted-foreground">
+                      {p.unit}
+                    </p>
                   </div>
                 </div>
-                <div className="mt-5 pt-5 border-t border-sand flex items-center justify-between gap-3">
-                  <span className="font-serif text-lg text-copper font-semibold">{s.price}</span>
-                  <CopperButton to={s.to} variant="outlined" className="!py-2 !px-4 !text-xs">
-                    Learn More
+                <h3 className="mt-5 font-serif text-2xl">{p.name}</h3>
+                <p className="mt-2 text-sm text-muted-foreground">{p.tagline}</p>
+                <div className="mt-5 flex-1">
+                  <CheckList items={[...p.includes]} />
+                </div>
+                <div className="mt-6">
+                  <CopperButton
+                    to="/contact"
+                    variant={p.featured ? "filled" : "outlined"}
+                    className="w-full"
+                  >
+                    {p.cta}
                   </CopperButton>
                 </div>
               </div>
             );
           })}
         </div>
+        <p className="mt-6 text-xs text-muted-foreground italic max-w-2xl">
+          Paid advisory services do not include implementation, design, build,
+          or ongoing support unless specifically stated.
+        </p>
       </Section>
 
-      {/* REVISION POLICY */}
-      <Section className="py-10">
-        <div className="max-w-3xl mx-auto text-center border-t border-sand pt-10">
-          <p className="text-sm text-muted-foreground leading-relaxed">
-            All project packages include 2 rounds of revisions. Additional rounds are available at
-            $75 per round. We work closely with you throughout every project so revisions beyond
-            round 2 are rarely needed.
+      {/* BUILD THE SYSTEM — scoped */}
+      <Section id="build" className="pt-4">
+        <div className="mb-10 max-w-2xl">
+          <p className="text-sm font-medium text-copper uppercase tracking-wider">
+            02 · Build the System
+          </p>
+          <h2 className="mt-2 font-serif text-3xl sm:text-4xl">
+            Custom implementations, <Accent color="sage">scoped properly.</Accent>
+          </h2>
+          <p className="mt-4 text-muted-foreground leading-relaxed">
+            Real builds. Real integrations. Real timelines. Every project starts
+            with intake — no Buy Now buttons, no template scope.
           </p>
         </div>
+        <div className="space-y-12">
+          {BUILD_GROUPS.map((group) => (
+            <div key={group.category}>
+              <p className="text-[11px] font-semibold tracking-[0.22em] uppercase text-foreground/60 mb-5">
+                {group.category}
+              </p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                {group.items.map((item) => {
+                  const Icon = item.icon;
+                  return (
+                    <div
+                      key={item.name}
+                      className="rounded-2xl bg-card border border-sand p-6 flex flex-col shadow-[0_1px_2px_rgba(28,28,30,0.03),0_14px_36px_-22px_rgba(28,28,30,0.18)]"
+                    >
+                      <div className="flex items-start gap-4">
+                        <div className="h-11 w-11 rounded-full bg-copper/12 inline-flex items-center justify-center shrink-0">
+                          <Icon className="h-5 w-5 text-copper" />
+                        </div>
+                        <div className="flex-1">
+                          <h3 className="font-serif text-xl">{item.name}</h3>
+                          <p className="mt-2 text-sm text-foreground/80 leading-relaxed">
+                            {item.tagline}
+                          </p>
+                        </div>
+                      </div>
+                      <div className="mt-5 pt-5 border-t border-sand flex items-center justify-between gap-3">
+                        <span className="font-serif text-lg text-copper font-semibold">
+                          {item.price}
+                        </span>
+                        <CopperButton
+                          to="/contact"
+                          variant="outlined"
+                          className="!py-2 !px-4 !text-xs"
+                        >
+                          Request Project Quote
+                        </CopperButton>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          ))}
+        </div>
+        <p className="mt-8 text-xs text-muted-foreground italic max-w-2xl">
+          All build prices shown are starting prices. Final pricing depends on
+          scope, number of pages, integrations, data sources, automation
+          complexity, timeline, and third-party tools required.
+        </p>
+      </Section>
+
+      {/* KEEP IT RUNNING — retainers */}
+      <Section id="keep-running" className="pt-4">
+        <div className="mb-10 max-w-2xl">
+          <p className="text-sm font-medium text-copper uppercase tracking-wider">
+            03 · Keep It Running
+          </p>
+          <h2 className="mt-2 font-serif text-3xl sm:text-4xl">
+            Ongoing partnership, <Accent>application first.</Accent>
+          </h2>
+          <p className="mt-4 text-muted-foreground leading-relaxed">
+            Monthly retainers for businesses that want a steady hand on their
+            systems. Apply first — we keep our roster small on purpose.
+          </p>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+          {RETAINERS.map((r) => {
+            const Icon = r.icon;
+            const featured = "featured" in r && r.featured;
+            return (
+              <div
+                key={r.name}
+                className={
+                  "relative rounded-2xl bg-card p-6 flex flex-col " +
+                  (featured
+                    ? "border-2 border-copper shadow-[0_4px_8px_rgba(28,28,30,0.04),0_22px_50px_-22px_rgba(181,101,29,0.4)]"
+                    : "border border-sand shadow-[0_1px_2px_rgba(28,28,30,0.03),0_10px_30px_-18px_rgba(28,28,30,0.12)]")
+                }
+              >
+                {featured && (
+                  <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-copper px-3 py-1 text-xs font-semibold text-copper-foreground uppercase tracking-wider whitespace-nowrap">
+                    Most Popular
+                  </span>
+                )}
+                <div className="h-10 w-10 rounded-full bg-copper/12 inline-flex items-center justify-center">
+                  <Icon className="h-5 w-5 text-copper" />
+                </div>
+                <h3 className="mt-4 font-serif text-xl">{r.name}</h3>
+                <p className="mt-2 text-xs text-muted-foreground leading-relaxed">
+                  {r.tagline}
+                </p>
+                <div className="mt-4">
+                  <div className="font-serif text-3xl text-copper font-semibold">
+                    {r.price}
+                  </div>
+                  <p className="mt-1 text-[10px] uppercase tracking-wider text-muted-foreground">
+                    {r.unit}
+                  </p>
+                </div>
+                <div className="mt-5 flex-1">
+                  <CheckList items={r.includes} />
+                </div>
+                {r.overage && (
+                  <p className="mt-4 text-[11px] text-muted-foreground italic">
+                    {r.overage}
+                  </p>
+                )}
+                <div className="mt-5">
+                  <CopperButton
+                    to="/contact"
+                    variant={featured ? "filled" : "outlined"}
+                    className="w-full !text-xs"
+                  >
+                    Apply
+                  </CopperButton>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+        <p className="mt-6 text-xs text-muted-foreground italic max-w-2xl">
+          Retainers billed monthly in advance. Unused hours/requests do not roll
+          over. 30-day cancellation notice.
+        </p>
       </Section>
 
       {/* NOT SURE */}
       <Section className="pt-4">
         <div className="rounded-3xl bg-gradient-to-br from-cream via-card to-sand/60 border border-sand p-10 sm:p-16 text-center shadow-sm max-w-4xl mx-auto">
           <h2 className="font-serif text-3xl sm:text-4xl">
-            Not sure which package is right for you?
+            Not sure where you fit?
           </h2>
           <p className="mt-4 text-base sm:text-lg text-muted-foreground max-w-xl mx-auto">
-            That's exactly what the free consultation is for. We'll figure it out together on a
-            quick phone call.
+            Submit a free project inquiry. If we're a fit, we'll point you to the
+            right starting offer — or book a paid Strategy Call if you want
+            answers right away.
           </p>
-          <div className="mt-8">
-            <CopperButton to="/contact">Book a Free Call</CopperButton>
+          <div className="mt-8 flex flex-wrap gap-3 justify-center">
+            <CopperButton to="/contact">Submit a Free Inquiry</CopperButton>
+            <CopperButton to="/contact" variant="outlined">
+              Book a $250 Strategy Call
+            </CopperButton>
           </div>
           <p className="mt-5 text-xs text-muted-foreground">
-            No pressure. No obligation. Just a straightforward conversation about your business.
+            Project inquiry is free. Strategy is paid. Implementation is scoped.
+          </p>
+        </div>
+      </Section>
+
+      {/* Fine print teaser */}
+      <Section className="py-10">
+        <div className="max-w-3xl mx-auto text-center border-t border-sand pt-10">
+          <p className="text-sm text-muted-foreground leading-relaxed">
+            Payment terms, revisions, third-party fees, and AI disclaimers are
+            detailed in our{" "}
+            <a href="/terms" className="text-copper hover:underline">
+              Terms &amp; Fine Print
+            </a>
+            .
           </p>
         </div>
       </Section>
