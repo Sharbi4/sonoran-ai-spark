@@ -276,6 +276,48 @@ function Packages() {
         </div>
       </Section>
 
+      {/* SPECIALIZED SOLUTIONS */}
+      <Section className="pt-4">
+        <div className="max-w-2xl mb-10">
+          <p className="text-sm font-medium text-copper uppercase tracking-wider">
+            Specialized solutions
+          </p>
+          <h2 className="mt-3 font-serif text-3xl sm:text-4xl">
+            Industry-specific systems, <Accent color="sage">ready to build.</Accent>
+          </h2>
+          <p className="mt-4 text-muted-foreground leading-relaxed">
+            Pre-scoped systems built around the tools your industry already uses.
+          </p>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+          {SPECIALIZED.map((s) => {
+            const Icon = s.icon;
+            return (
+              <div
+                key={s.name}
+                className="rounded-2xl bg-card border border-sand p-6 flex flex-col shadow-[0_1px_2px_rgba(28,28,30,0.03),0_14px_36px_-22px_rgba(28,28,30,0.18)]"
+              >
+                <div className="flex items-start gap-4">
+                  <div className="h-11 w-11 rounded-full bg-copper/12 inline-flex items-center justify-center shrink-0">
+                    <Icon className="h-5 w-5 text-copper" />
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="font-serif text-xl">{s.name}</h3>
+                    <p className="mt-2 text-sm text-foreground/80 leading-relaxed">{s.body}</p>
+                  </div>
+                </div>
+                <div className="mt-5 pt-5 border-t border-sand flex items-center justify-between gap-3">
+                  <span className="font-serif text-lg text-copper font-semibold">{s.price}</span>
+                  <CopperButton to={s.to} variant="outlined" className="!py-2 !px-4 !text-xs">
+                    Learn More
+                  </CopperButton>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </Section>
+
       {/* REVISION POLICY */}
       <Section className="py-10">
         <div className="max-w-3xl mx-auto text-center border-t border-sand pt-10">
