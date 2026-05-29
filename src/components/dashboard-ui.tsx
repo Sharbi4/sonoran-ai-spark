@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils";
-import type { ReactNode, SVGProps } from "react";
+import type { ComponentType, ReactNode, SVGProps } from "react";
 
 /* ============================================================
    Primitives — flat, dense, serious SaaS look.
@@ -629,7 +629,7 @@ export function IconSquare({
   tone = "neutral",
   className,
 }: {
-  icon: (p: SVGProps<SVGSVGElement>) => JSX.Element;
+  icon: ComponentType<SVGProps<SVGSVGElement>>;
   tone?: "success" | "warn" | "danger" | "info" | "neutral";
   className?: string;
 }) {
