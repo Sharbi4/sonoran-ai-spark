@@ -36,6 +36,7 @@ import { Route as DemoSlugRouteImport } from './routes/demo.$slug'
 import { Route as DashboardSlugRouteImport } from './routes/dashboard.$slug'
 import { Route as LovableEmailSuppressionRouteImport } from './routes/lovable/email/suppression'
 import { Route as ApiPublicContactRouteImport } from './routes/api/public/contact'
+import { Route as ApiPublicCareersRouteImport } from './routes/api/public/careers'
 import { Route as LovableEmailTransactionalSendRouteImport } from './routes/lovable/email/transactional/send'
 import { Route as LovableEmailTransactionalPreviewRouteImport } from './routes/lovable/email/transactional/preview'
 import { Route as LovableEmailQueueProcessRouteImport } from './routes/lovable/email/queue/process'
@@ -176,6 +177,11 @@ const ApiPublicContactRoute = ApiPublicContactRouteImport.update({
   path: '/api/public/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiPublicCareersRoute = ApiPublicCareersRouteImport.update({
+  id: '/api/public/careers',
+  path: '/api/public/careers',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const LovableEmailTransactionalSendRoute =
   LovableEmailTransactionalSendRouteImport.update({
     id: '/lovable/email/transactional/send',
@@ -227,6 +233,7 @@ export interface FileRoutesByFullPath {
   '/email/unsubscribe': typeof EmailUnsubscribeRoute
   '/industries/$slug': typeof IndustriesSlugRoute
   '/industries/': typeof IndustriesIndexRoute
+  '/api/public/careers': typeof ApiPublicCareersRoute
   '/api/public/contact': typeof ApiPublicContactRoute
   '/lovable/email/suppression': typeof LovableEmailSuppressionRoute
   '/api/public/payments/webhook': typeof ApiPublicPaymentsWebhookRoute
@@ -259,6 +266,7 @@ export interface FileRoutesByTo {
   '/email/unsubscribe': typeof EmailUnsubscribeRoute
   '/industries/$slug': typeof IndustriesSlugRoute
   '/industries': typeof IndustriesIndexRoute
+  '/api/public/careers': typeof ApiPublicCareersRoute
   '/api/public/contact': typeof ApiPublicContactRoute
   '/lovable/email/suppression': typeof LovableEmailSuppressionRoute
   '/api/public/payments/webhook': typeof ApiPublicPaymentsWebhookRoute
@@ -293,6 +301,7 @@ export interface FileRoutesById {
   '/email/unsubscribe': typeof EmailUnsubscribeRoute
   '/industries/$slug': typeof IndustriesSlugRoute
   '/industries/': typeof IndustriesIndexRoute
+  '/api/public/careers': typeof ApiPublicCareersRoute
   '/api/public/contact': typeof ApiPublicContactRoute
   '/lovable/email/suppression': typeof LovableEmailSuppressionRoute
   '/api/public/payments/webhook': typeof ApiPublicPaymentsWebhookRoute
@@ -328,6 +337,7 @@ export interface FileRouteTypes {
     | '/email/unsubscribe'
     | '/industries/$slug'
     | '/industries/'
+    | '/api/public/careers'
     | '/api/public/contact'
     | '/lovable/email/suppression'
     | '/api/public/payments/webhook'
@@ -360,6 +370,7 @@ export interface FileRouteTypes {
     | '/email/unsubscribe'
     | '/industries/$slug'
     | '/industries'
+    | '/api/public/careers'
     | '/api/public/contact'
     | '/lovable/email/suppression'
     | '/api/public/payments/webhook'
@@ -393,6 +404,7 @@ export interface FileRouteTypes {
     | '/email/unsubscribe'
     | '/industries/$slug'
     | '/industries/'
+    | '/api/public/careers'
     | '/api/public/contact'
     | '/lovable/email/suppression'
     | '/api/public/payments/webhook'
@@ -425,6 +437,7 @@ export interface RootRouteChildren {
   DashboardSlugRoute: typeof DashboardSlugRoute
   DemoSlugRoute: typeof DemoSlugRoute
   EmailUnsubscribeRoute: typeof EmailUnsubscribeRoute
+  ApiPublicCareersRoute: typeof ApiPublicCareersRoute
   ApiPublicContactRoute: typeof ApiPublicContactRoute
   LovableEmailSuppressionRoute: typeof LovableEmailSuppressionRoute
   ApiPublicPaymentsWebhookRoute: typeof ApiPublicPaymentsWebhookRoute
@@ -624,6 +637,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiPublicContactRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/public/careers': {
+      id: '/api/public/careers'
+      path: '/api/public/careers'
+      fullPath: '/api/public/careers'
+      preLoaderRoute: typeof ApiPublicCareersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/lovable/email/transactional/send': {
       id: '/lovable/email/transactional/send'
       path: '/lovable/email/transactional/send'
@@ -693,6 +713,7 @@ const rootRouteChildren: RootRouteChildren = {
   DashboardSlugRoute: DashboardSlugRoute,
   DemoSlugRoute: DemoSlugRoute,
   EmailUnsubscribeRoute: EmailUnsubscribeRoute,
+  ApiPublicCareersRoute: ApiPublicCareersRoute,
   ApiPublicContactRoute: ApiPublicContactRoute,
   LovableEmailSuppressionRoute: LovableEmailSuppressionRoute,
   ApiPublicPaymentsWebhookRoute: ApiPublicPaymentsWebhookRoute,
