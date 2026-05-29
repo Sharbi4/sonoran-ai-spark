@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { INDUSTRY_NAV } from "@/lib/industries-content";
-import { BLOG_POSTS, type BlogPost } from "@/lib/blog/posts";
+import { INDUSTRY_NAV } from "../lib/industries-content";
+import { BLOG_POSTS, type BlogPost } from "../lib/blog/posts";
 
 const BASE_URL = "https://www.sonoransystemsai.com";
 
