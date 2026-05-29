@@ -251,6 +251,39 @@ export type Database = {
         }
         Relationships: []
       }
+      site_previews: {
+        Row: {
+          created_at: string
+          email: string | null
+          id: string
+          industry: string | null
+          ip_hash: string | null
+          mockup_url: string | null
+          report: Json | null
+          url: string
+        }
+        Insert: {
+          created_at?: string
+          email?: string | null
+          id?: string
+          industry?: string | null
+          ip_hash?: string | null
+          mockup_url?: string | null
+          report?: Json | null
+          url: string
+        }
+        Update: {
+          created_at?: string
+          email?: string | null
+          id?: string
+          industry?: string | null
+          ip_hash?: string | null
+          mockup_url?: string | null
+          report?: Json | null
+          url?: string
+        }
+        Relationships: []
+      }
       suppressed_emails: {
         Row: {
           created_at: string

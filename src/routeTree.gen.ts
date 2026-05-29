@@ -12,8 +12,11 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as UnsubscribeRouteImport } from './routes/unsubscribe'
 import { Route as ThankYouRouteImport } from './routes/thank-you'
 import { Route as TermsRouteImport } from './routes/terms'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as ResetPasswordRouteImport } from './routes/reset-password'
+import { Route as RefundPolicyRouteImport } from './routes/refund-policy'
+import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as PortalRouteImport } from './routes/portal'
 import { Route as PackagesRouteImport } from './routes/packages'
 import { Route as LoginRouteImport } from './routes/login'
@@ -22,17 +25,20 @@ import { Route as EmailAutomationRouteImport } from './routes/email-automation'
 import { Route as DashboardsRouteImport } from './routes/dashboards'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CaseStudiesRouteImport } from './routes/case-studies'
+import { Route as CareersRouteImport } from './routes/careers'
 import { Route as BlogRouteImport } from './routes/blog'
 import { Route as AiAuditRouteImport } from './routes/ai-audit'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as IndustriesIndexRouteImport } from './routes/industries.index'
+import { Route as PostsSlugRouteImport } from './routes/posts.$slug'
 import { Route as IndustriesSlugRouteImport } from './routes/industries.$slug'
 import { Route as EmailUnsubscribeRouteImport } from './routes/email/unsubscribe'
 import { Route as DemoSlugRouteImport } from './routes/demo.$slug'
 import { Route as DashboardSlugRouteImport } from './routes/dashboard.$slug'
 import { Route as LovableEmailSuppressionRouteImport } from './routes/lovable/email/suppression'
 import { Route as ApiPublicContactRouteImport } from './routes/api/public/contact'
+import { Route as ApiPublicCareersRouteImport } from './routes/api/public/careers'
 import { Route as LovableEmailTransactionalSendRouteImport } from './routes/lovable/email/transactional/send'
 import { Route as LovableEmailTransactionalPreviewRouteImport } from './routes/lovable/email/transactional/preview'
 import { Route as LovableEmailQueueProcessRouteImport } from './routes/lovable/email/queue/process'
@@ -53,6 +59,11 @@ const TermsRoute = TermsRouteImport.update({
   path: '/terms',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ServicesRoute = ServicesRouteImport.update({
   id: '/services',
   path: '/services',
@@ -61,6 +72,16 @@ const ServicesRoute = ServicesRouteImport.update({
 const ResetPasswordRoute = ResetPasswordRouteImport.update({
   id: '/reset-password',
   path: '/reset-password',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RefundPolicyRoute = RefundPolicyRouteImport.update({
+  id: '/refund-policy',
+  path: '/refund-policy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PortalRoute = PortalRouteImport.update({
@@ -103,6 +124,11 @@ const CaseStudiesRoute = CaseStudiesRouteImport.update({
   path: '/case-studies',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CareersRoute = CareersRouteImport.update({
+  id: '/careers',
+  path: '/careers',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const BlogRoute = BlogRouteImport.update({
   id: '/blog',
   path: '/blog',
@@ -127,6 +153,11 @@ const IndustriesIndexRoute = IndustriesIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => IndustriesRoute,
+} as any)
+const PostsSlugRoute = PostsSlugRouteImport.update({
+  id: '/posts/$slug',
+  path: '/posts/$slug',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const IndustriesSlugRoute = IndustriesSlugRouteImport.update({
   id: '/$slug',
@@ -156,6 +187,11 @@ const LovableEmailSuppressionRoute = LovableEmailSuppressionRouteImport.update({
 const ApiPublicContactRoute = ApiPublicContactRouteImport.update({
   id: '/api/public/contact',
   path: '/api/public/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiPublicCareersRoute = ApiPublicCareersRouteImport.update({
+  id: '/api/public/careers',
+  path: '/api/public/careers',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LovableEmailTransactionalSendRoute =
@@ -188,6 +224,7 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/ai-audit': typeof AiAuditRoute
   '/blog': typeof BlogRoute
+  '/careers': typeof CareersRoute
   '/case-studies': typeof CaseStudiesRoute
   '/contact': typeof ContactRoute
   '/dashboards': typeof DashboardsRoute
@@ -196,8 +233,11 @@ export interface FileRoutesByFullPath {
   '/login': typeof LoginRoute
   '/packages': typeof PackagesRoute
   '/portal': typeof PortalRoute
+  '/privacy': typeof PrivacyRoute
+  '/refund-policy': typeof RefundPolicyRoute
   '/reset-password': typeof ResetPasswordRoute
   '/services': typeof ServicesRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
   '/thank-you': typeof ThankYouRoute
   '/unsubscribe': typeof UnsubscribeRoute
@@ -205,7 +245,9 @@ export interface FileRoutesByFullPath {
   '/demo/$slug': typeof DemoSlugRoute
   '/email/unsubscribe': typeof EmailUnsubscribeRoute
   '/industries/$slug': typeof IndustriesSlugRoute
+  '/posts/$slug': typeof PostsSlugRoute
   '/industries/': typeof IndustriesIndexRoute
+  '/api/public/careers': typeof ApiPublicCareersRoute
   '/api/public/contact': typeof ApiPublicContactRoute
   '/lovable/email/suppression': typeof LovableEmailSuppressionRoute
   '/api/public/payments/webhook': typeof ApiPublicPaymentsWebhookRoute
@@ -218,6 +260,7 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/ai-audit': typeof AiAuditRoute
   '/blog': typeof BlogRoute
+  '/careers': typeof CareersRoute
   '/case-studies': typeof CaseStudiesRoute
   '/contact': typeof ContactRoute
   '/dashboards': typeof DashboardsRoute
@@ -225,8 +268,11 @@ export interface FileRoutesByTo {
   '/login': typeof LoginRoute
   '/packages': typeof PackagesRoute
   '/portal': typeof PortalRoute
+  '/privacy': typeof PrivacyRoute
+  '/refund-policy': typeof RefundPolicyRoute
   '/reset-password': typeof ResetPasswordRoute
   '/services': typeof ServicesRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
   '/thank-you': typeof ThankYouRoute
   '/unsubscribe': typeof UnsubscribeRoute
@@ -234,7 +280,9 @@ export interface FileRoutesByTo {
   '/demo/$slug': typeof DemoSlugRoute
   '/email/unsubscribe': typeof EmailUnsubscribeRoute
   '/industries/$slug': typeof IndustriesSlugRoute
+  '/posts/$slug': typeof PostsSlugRoute
   '/industries': typeof IndustriesIndexRoute
+  '/api/public/careers': typeof ApiPublicCareersRoute
   '/api/public/contact': typeof ApiPublicContactRoute
   '/lovable/email/suppression': typeof LovableEmailSuppressionRoute
   '/api/public/payments/webhook': typeof ApiPublicPaymentsWebhookRoute
@@ -248,6 +296,7 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/ai-audit': typeof AiAuditRoute
   '/blog': typeof BlogRoute
+  '/careers': typeof CareersRoute
   '/case-studies': typeof CaseStudiesRoute
   '/contact': typeof ContactRoute
   '/dashboards': typeof DashboardsRoute
@@ -256,8 +305,11 @@ export interface FileRoutesById {
   '/login': typeof LoginRoute
   '/packages': typeof PackagesRoute
   '/portal': typeof PortalRoute
+  '/privacy': typeof PrivacyRoute
+  '/refund-policy': typeof RefundPolicyRoute
   '/reset-password': typeof ResetPasswordRoute
   '/services': typeof ServicesRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
   '/thank-you': typeof ThankYouRoute
   '/unsubscribe': typeof UnsubscribeRoute
@@ -265,7 +317,9 @@ export interface FileRoutesById {
   '/demo/$slug': typeof DemoSlugRoute
   '/email/unsubscribe': typeof EmailUnsubscribeRoute
   '/industries/$slug': typeof IndustriesSlugRoute
+  '/posts/$slug': typeof PostsSlugRoute
   '/industries/': typeof IndustriesIndexRoute
+  '/api/public/careers': typeof ApiPublicCareersRoute
   '/api/public/contact': typeof ApiPublicContactRoute
   '/lovable/email/suppression': typeof LovableEmailSuppressionRoute
   '/api/public/payments/webhook': typeof ApiPublicPaymentsWebhookRoute
@@ -280,6 +334,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/ai-audit'
     | '/blog'
+    | '/careers'
     | '/case-studies'
     | '/contact'
     | '/dashboards'
@@ -288,8 +343,11 @@ export interface FileRouteTypes {
     | '/login'
     | '/packages'
     | '/portal'
+    | '/privacy'
+    | '/refund-policy'
     | '/reset-password'
     | '/services'
+    | '/sitemap.xml'
     | '/terms'
     | '/thank-you'
     | '/unsubscribe'
@@ -297,7 +355,9 @@ export interface FileRouteTypes {
     | '/demo/$slug'
     | '/email/unsubscribe'
     | '/industries/$slug'
+    | '/posts/$slug'
     | '/industries/'
+    | '/api/public/careers'
     | '/api/public/contact'
     | '/lovable/email/suppression'
     | '/api/public/payments/webhook'
@@ -310,6 +370,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/ai-audit'
     | '/blog'
+    | '/careers'
     | '/case-studies'
     | '/contact'
     | '/dashboards'
@@ -317,8 +378,11 @@ export interface FileRouteTypes {
     | '/login'
     | '/packages'
     | '/portal'
+    | '/privacy'
+    | '/refund-policy'
     | '/reset-password'
     | '/services'
+    | '/sitemap.xml'
     | '/terms'
     | '/thank-you'
     | '/unsubscribe'
@@ -326,7 +390,9 @@ export interface FileRouteTypes {
     | '/demo/$slug'
     | '/email/unsubscribe'
     | '/industries/$slug'
+    | '/posts/$slug'
     | '/industries'
+    | '/api/public/careers'
     | '/api/public/contact'
     | '/lovable/email/suppression'
     | '/api/public/payments/webhook'
@@ -339,6 +405,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/ai-audit'
     | '/blog'
+    | '/careers'
     | '/case-studies'
     | '/contact'
     | '/dashboards'
@@ -347,8 +414,11 @@ export interface FileRouteTypes {
     | '/login'
     | '/packages'
     | '/portal'
+    | '/privacy'
+    | '/refund-policy'
     | '/reset-password'
     | '/services'
+    | '/sitemap.xml'
     | '/terms'
     | '/thank-you'
     | '/unsubscribe'
@@ -356,7 +426,9 @@ export interface FileRouteTypes {
     | '/demo/$slug'
     | '/email/unsubscribe'
     | '/industries/$slug'
+    | '/posts/$slug'
     | '/industries/'
+    | '/api/public/careers'
     | '/api/public/contact'
     | '/lovable/email/suppression'
     | '/api/public/payments/webhook'
@@ -370,6 +442,7 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   AiAuditRoute: typeof AiAuditRoute
   BlogRoute: typeof BlogRoute
+  CareersRoute: typeof CareersRoute
   CaseStudiesRoute: typeof CaseStudiesRoute
   ContactRoute: typeof ContactRoute
   DashboardsRoute: typeof DashboardsRoute
@@ -378,14 +451,19 @@ export interface RootRouteChildren {
   LoginRoute: typeof LoginRoute
   PackagesRoute: typeof PackagesRoute
   PortalRoute: typeof PortalRoute
+  PrivacyRoute: typeof PrivacyRoute
+  RefundPolicyRoute: typeof RefundPolicyRoute
   ResetPasswordRoute: typeof ResetPasswordRoute
   ServicesRoute: typeof ServicesRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TermsRoute: typeof TermsRoute
   ThankYouRoute: typeof ThankYouRoute
   UnsubscribeRoute: typeof UnsubscribeRoute
   DashboardSlugRoute: typeof DashboardSlugRoute
   DemoSlugRoute: typeof DemoSlugRoute
   EmailUnsubscribeRoute: typeof EmailUnsubscribeRoute
+  PostsSlugRoute: typeof PostsSlugRoute
+  ApiPublicCareersRoute: typeof ApiPublicCareersRoute
   ApiPublicContactRoute: typeof ApiPublicContactRoute
   LovableEmailSuppressionRoute: typeof LovableEmailSuppressionRoute
   ApiPublicPaymentsWebhookRoute: typeof ApiPublicPaymentsWebhookRoute
@@ -417,6 +495,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TermsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/services': {
       id: '/services'
       path: '/services'
@@ -429,6 +514,20 @@ declare module '@tanstack/react-router' {
       path: '/reset-password'
       fullPath: '/reset-password'
       preLoaderRoute: typeof ResetPasswordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/refund-policy': {
+      id: '/refund-policy'
+      path: '/refund-policy'
+      fullPath: '/refund-policy'
+      preLoaderRoute: typeof RefundPolicyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/portal': {
@@ -487,6 +586,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CaseStudiesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/careers': {
+      id: '/careers'
+      path: '/careers'
+      fullPath: '/careers'
+      preLoaderRoute: typeof CareersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/blog': {
       id: '/blog'
       path: '/blog'
@@ -521,6 +627,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/industries/'
       preLoaderRoute: typeof IndustriesIndexRouteImport
       parentRoute: typeof IndustriesRoute
+    }
+    '/posts/$slug': {
+      id: '/posts/$slug'
+      path: '/posts/$slug'
+      fullPath: '/posts/$slug'
+      preLoaderRoute: typeof PostsSlugRouteImport
+      parentRoute: typeof rootRouteImport
     }
     '/industries/$slug': {
       id: '/industries/$slug'
@@ -562,6 +675,13 @@ declare module '@tanstack/react-router' {
       path: '/api/public/contact'
       fullPath: '/api/public/contact'
       preLoaderRoute: typeof ApiPublicContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/public/careers': {
+      id: '/api/public/careers'
+      path: '/api/public/careers'
+      fullPath: '/api/public/careers'
+      preLoaderRoute: typeof ApiPublicCareersRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/lovable/email/transactional/send': {
@@ -614,6 +734,7 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   AiAuditRoute: AiAuditRoute,
   BlogRoute: BlogRoute,
+  CareersRoute: CareersRoute,
   CaseStudiesRoute: CaseStudiesRoute,
   ContactRoute: ContactRoute,
   DashboardsRoute: DashboardsRoute,
@@ -622,14 +743,19 @@ const rootRouteChildren: RootRouteChildren = {
   LoginRoute: LoginRoute,
   PackagesRoute: PackagesRoute,
   PortalRoute: PortalRoute,
+  PrivacyRoute: PrivacyRoute,
+  RefundPolicyRoute: RefundPolicyRoute,
   ResetPasswordRoute: ResetPasswordRoute,
   ServicesRoute: ServicesRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
   TermsRoute: TermsRoute,
   ThankYouRoute: ThankYouRoute,
   UnsubscribeRoute: UnsubscribeRoute,
   DashboardSlugRoute: DashboardSlugRoute,
   DemoSlugRoute: DemoSlugRoute,
   EmailUnsubscribeRoute: EmailUnsubscribeRoute,
+  PostsSlugRoute: PostsSlugRoute,
+  ApiPublicCareersRoute: ApiPublicCareersRoute,
   ApiPublicContactRoute: ApiPublicContactRoute,
   LovableEmailSuppressionRoute: LovableEmailSuppressionRoute,
   ApiPublicPaymentsWebhookRoute: ApiPublicPaymentsWebhookRoute,
@@ -640,13 +766,3 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
