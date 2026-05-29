@@ -24,6 +24,7 @@ import { Route as EmailAutomationRouteImport } from './routes/email-automation'
 import { Route as DashboardsRouteImport } from './routes/dashboards'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CaseStudiesRouteImport } from './routes/case-studies'
+import { Route as CareersRouteImport } from './routes/careers'
 import { Route as BlogRouteImport } from './routes/blog'
 import { Route as AiAuditRouteImport } from './routes/ai-audit'
 import { Route as AboutRouteImport } from './routes/about'
@@ -115,6 +116,11 @@ const CaseStudiesRoute = CaseStudiesRouteImport.update({
   path: '/case-studies',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CareersRoute = CareersRouteImport.update({
+  id: '/careers',
+  path: '/careers',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const BlogRoute = BlogRouteImport.update({
   id: '/blog',
   path: '/blog',
@@ -200,6 +206,7 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/ai-audit': typeof AiAuditRoute
   '/blog': typeof BlogRoute
+  '/careers': typeof CareersRoute
   '/case-studies': typeof CaseStudiesRoute
   '/contact': typeof ContactRoute
   '/dashboards': typeof DashboardsRoute
@@ -232,6 +239,7 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/ai-audit': typeof AiAuditRoute
   '/blog': typeof BlogRoute
+  '/careers': typeof CareersRoute
   '/case-studies': typeof CaseStudiesRoute
   '/contact': typeof ContactRoute
   '/dashboards': typeof DashboardsRoute
@@ -264,6 +272,7 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/ai-audit': typeof AiAuditRoute
   '/blog': typeof BlogRoute
+  '/careers': typeof CareersRoute
   '/case-studies': typeof CaseStudiesRoute
   '/contact': typeof ContactRoute
   '/dashboards': typeof DashboardsRoute
@@ -298,6 +307,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/ai-audit'
     | '/blog'
+    | '/careers'
     | '/case-studies'
     | '/contact'
     | '/dashboards'
@@ -330,6 +340,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/ai-audit'
     | '/blog'
+    | '/careers'
     | '/case-studies'
     | '/contact'
     | '/dashboards'
@@ -361,6 +372,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/ai-audit'
     | '/blog'
+    | '/careers'
     | '/case-studies'
     | '/contact'
     | '/dashboards'
@@ -394,6 +406,7 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   AiAuditRoute: typeof AiAuditRoute
   BlogRoute: typeof BlogRoute
+  CareersRoute: typeof CareersRoute
   CaseStudiesRoute: typeof CaseStudiesRoute
   ContactRoute: typeof ContactRoute
   DashboardsRoute: typeof DashboardsRoute
@@ -527,6 +540,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CaseStudiesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/careers': {
+      id: '/careers'
+      path: '/careers'
+      fullPath: '/careers'
+      preLoaderRoute: typeof CareersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/blog': {
       id: '/blog'
       path: '/blog'
@@ -654,6 +674,7 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   AiAuditRoute: AiAuditRoute,
   BlogRoute: BlogRoute,
+  CareersRoute: CareersRoute,
   CaseStudiesRoute: CaseStudiesRoute,
   ContactRoute: ContactRoute,
   DashboardsRoute: DashboardsRoute,
