@@ -28,6 +28,7 @@ import {
   DiagonalBands,
 } from "@/components/site-layout";
 import { INDUSTRY_NAV } from "@/lib/industries-content";
+import { useStripeCheckout } from "@/hooks/useStripeCheckout";
 
 export const Route = createFileRoute("/services")({
   head: () => ({
@@ -64,6 +65,8 @@ type ServiceDetail = {
   includes: string[];
   whoFor: string;
   cta: string;
+  priceId: string;
+  priceLabel: string;
 };
 
 const SERVICES: ServiceDetail[] = [
@@ -88,7 +91,9 @@ const SERVICES: ServiceDetail[] = [
       "Follow-up support after the session",
     ],
     whoFor: "Business owners who want to use AI but aren't sure where to begin.",
-    cta: "Book an AI Audit",
+    cta: "Buy AI Audit",
+    priceId: "ai_audit_497",
+    priceLabel: "$497",
   },
   {
     slug: "websites",
@@ -113,7 +118,9 @@ const SERVICES: ServiceDetail[] = [
     ],
     whoFor:
       "Businesses with an outdated website or no website at all who are ready for a professional online presence.",
-    cta: "Request Website Package",
+    cta: "Buy Website + AI Review",
+    priceId: "website_ai_readiness_197",
+    priceLabel: "$197",
   },
   {
     slug: "brand",
@@ -137,7 +144,9 @@ const SERVICES: ServiceDetail[] = [
     ],
     whoFor:
       "New businesses launching or existing businesses that have outgrown their current brand.",
-    cta: "Request Brand Package",
+    cta: "Book Strategy Call",
+    priceId: "strategy_call_60min",
+    priceLabel: "$250",
   },
   {
     slug: "workflow",
@@ -162,7 +171,9 @@ const SERVICES: ServiceDetail[] = [
     ],
     whoFor:
       "Business owners drowning in repetitive admin work who know there has to be a better way.",
-    cta: "Book Workflow Consultation",
+    cta: "Buy Automation Map",
+    priceId: "automation_opportunity_297",
+    priceLabel: "$297",
   },
   {
     slug: "chatbots",
@@ -187,7 +198,9 @@ const SERVICES: ServiceDetail[] = [
     ],
     whoFor:
       "Businesses that get inquiries outside business hours or want to qualify leads automatically.",
-    cta: "Ask About AI Chatbots",
+    cta: "Buy Automation Map",
+    priceId: "automation_opportunity_297",
+    priceLabel: "$297",
   },
   {
     slug: "dashboards",
@@ -212,7 +225,9 @@ const SERVICES: ServiceDetail[] = [
     ],
     whoFor:
       "Business owners who want to stop piecing together reports from five different apps every morning.",
-    cta: "Request Dashboard Build",
+    cta: "Book Strategy Call",
+    priceId: "strategy_call_60min",
+    priceLabel: "$250",
   },
   {
     slug: "email",
@@ -237,7 +252,9 @@ const SERVICES: ServiceDetail[] = [
     ],
     whoFor:
       "Busy business owners who know they're losing leads to an unorganized inbox.",
-    cta: "Request Email Setup",
+    cta: "Buy Automation Map",
+    priceId: "automation_opportunity_297",
+    priceLabel: "$297",
   },
   {
     slug: "lead-capture",
@@ -261,7 +278,9 @@ const SERVICES: ServiceDetail[] = [
     ],
     whoFor:
       "Businesses that get inquiries but don't have a reliable system for following up consistently.",
-    cta: "Request Lead System Build",
+    cta: "Buy Automation Map",
+    priceId: "automation_opportunity_297",
+    priceLabel: "$297",
   },
 ];
 
@@ -299,12 +318,19 @@ const INDUSTRIES = [
 ];
 
 function ServicesPage() {
+  const { openCheckout, checkoutElement } = useStripeCheckout();
   return (
     <SiteLayout>
+      {checkoutElement}
       <ServicesHero />
       <div className="space-y-2">
         {SERVICES.map((s, i) => (
-          <ServiceDetailSection key={s.slug} service={s} flip={i % 2 === 1} />
+          <ServiceDetailSection
+            key={s.slug}
+            service={s}
+            flip={i % 2 === 1}
+            onBuy={() => openCheckout({ priceId: s.priceId })}
+          />
         ))}
       </div>
       <IndustrySpotlight />
@@ -353,9 +379,11 @@ function ServicesHero() {
 function ServiceDetailSection({
   service,
   flip,
+  onBuy,
 }: {
   service: ServiceDetail;
   flip: boolean;
+  onBuy: () => void;
 }) {
   const Icon = service.icon;
   const parts = service.name.split(service.accent);
@@ -404,8 +432,21 @@ function ServiceDetailSection({
             <p className="mt-6 italic text-sm text-muted-foreground">
               Who it's for: {service.whoFor}
             </p>
-            <div className="mt-7">
-              <PrimaryButton to="/contact">{service.cta}</PrimaryButton>
+            <div className="mt-7 flex flex-wrap items-center gap-4">
+              <button
+                type="button"
+                onClick={onBuy}
+                className="group inline-flex items-center justify-center gap-2 rounded-full bg-copper px-6 py-3 text-sm font-medium text-copper-foreground hover:bg-copper/90 transition-colors shadow-[0_10px_30px_-12px_rgba(194,79,52,0.5)]"
+              >
+                {service.cta} — {service.priceLabel}
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+              </button>
+              <Link
+                to="/contact"
+                className="text-sm text-muted-foreground hover:text-foreground underline-offset-4 hover:underline"
+              >
+                Or submit a free inquiry
+              </Link>
             </div>
           </div>
         </div>
