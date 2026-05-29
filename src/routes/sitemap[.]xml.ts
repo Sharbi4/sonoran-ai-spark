@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { INDUSTRY_NAV } from "@/lib/industries-content";
-import { BLOG_POSTS } from "@/lib/blog/posts";
+import { BLOG_POSTS, type BlogPost } from "@/lib/blog/posts";
 
 const BASE_URL = "https://www.sonoransystemsai.com";
 
@@ -35,13 +35,13 @@ export const Route = createFileRoute("/sitemap.xml")({
           { path: "/login", changefreq: "yearly", priority: "0.2" },
         ];
 
-        const industryPages: SitemapEntry[] = INDUSTRY_NAV.map((i) => ({
+        const industryPages: SitemapEntry[] = INDUSTRY_NAV.map((i: { slug: string }) => ({
           path: `/industries/${i.slug}`,
           changefreq: "monthly",
           priority: "0.7",
         }));
 
-        const blogPages: SitemapEntry[] = BLOG_POSTS.map((p) => ({
+        const blogPages: SitemapEntry[] = BLOG_POSTS.map((p: BlogPost) => ({
           path: `/posts/${p.slug}`,
           changefreq: "monthly",
           priority: "0.7",
