@@ -31,6 +31,7 @@ import { Route as AiAuditRouteImport } from './routes/ai-audit'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as IndustriesIndexRouteImport } from './routes/industries.index'
+import { Route as PostsSlugRouteImport } from './routes/posts.$slug'
 import { Route as IndustriesSlugRouteImport } from './routes/industries.$slug'
 import { Route as EmailUnsubscribeRouteImport } from './routes/email/unsubscribe'
 import { Route as DemoSlugRouteImport } from './routes/demo.$slug'
@@ -153,6 +154,11 @@ const IndustriesIndexRoute = IndustriesIndexRouteImport.update({
   path: '/',
   getParentRoute: () => IndustriesRoute,
 } as any)
+const PostsSlugRoute = PostsSlugRouteImport.update({
+  id: '/posts/$slug',
+  path: '/posts/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndustriesSlugRoute = IndustriesSlugRouteImport.update({
   id: '/$slug',
   path: '/$slug',
@@ -239,6 +245,7 @@ export interface FileRoutesByFullPath {
   '/demo/$slug': typeof DemoSlugRoute
   '/email/unsubscribe': typeof EmailUnsubscribeRoute
   '/industries/$slug': typeof IndustriesSlugRoute
+  '/posts/$slug': typeof PostsSlugRoute
   '/industries/': typeof IndustriesIndexRoute
   '/api/public/careers': typeof ApiPublicCareersRoute
   '/api/public/contact': typeof ApiPublicContactRoute
@@ -273,6 +280,7 @@ export interface FileRoutesByTo {
   '/demo/$slug': typeof DemoSlugRoute
   '/email/unsubscribe': typeof EmailUnsubscribeRoute
   '/industries/$slug': typeof IndustriesSlugRoute
+  '/posts/$slug': typeof PostsSlugRoute
   '/industries': typeof IndustriesIndexRoute
   '/api/public/careers': typeof ApiPublicCareersRoute
   '/api/public/contact': typeof ApiPublicContactRoute
@@ -309,6 +317,7 @@ export interface FileRoutesById {
   '/demo/$slug': typeof DemoSlugRoute
   '/email/unsubscribe': typeof EmailUnsubscribeRoute
   '/industries/$slug': typeof IndustriesSlugRoute
+  '/posts/$slug': typeof PostsSlugRoute
   '/industries/': typeof IndustriesIndexRoute
   '/api/public/careers': typeof ApiPublicCareersRoute
   '/api/public/contact': typeof ApiPublicContactRoute
@@ -346,6 +355,7 @@ export interface FileRouteTypes {
     | '/demo/$slug'
     | '/email/unsubscribe'
     | '/industries/$slug'
+    | '/posts/$slug'
     | '/industries/'
     | '/api/public/careers'
     | '/api/public/contact'
@@ -380,6 +390,7 @@ export interface FileRouteTypes {
     | '/demo/$slug'
     | '/email/unsubscribe'
     | '/industries/$slug'
+    | '/posts/$slug'
     | '/industries'
     | '/api/public/careers'
     | '/api/public/contact'
@@ -415,6 +426,7 @@ export interface FileRouteTypes {
     | '/demo/$slug'
     | '/email/unsubscribe'
     | '/industries/$slug'
+    | '/posts/$slug'
     | '/industries/'
     | '/api/public/careers'
     | '/api/public/contact'
@@ -450,6 +462,7 @@ export interface RootRouteChildren {
   DashboardSlugRoute: typeof DashboardSlugRoute
   DemoSlugRoute: typeof DemoSlugRoute
   EmailUnsubscribeRoute: typeof EmailUnsubscribeRoute
+  PostsSlugRoute: typeof PostsSlugRoute
   ApiPublicCareersRoute: typeof ApiPublicCareersRoute
   ApiPublicContactRoute: typeof ApiPublicContactRoute
   LovableEmailSuppressionRoute: typeof LovableEmailSuppressionRoute
@@ -615,6 +628,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndustriesIndexRouteImport
       parentRoute: typeof IndustriesRoute
     }
+    '/posts/$slug': {
+      id: '/posts/$slug'
+      path: '/posts/$slug'
+      fullPath: '/posts/$slug'
+      preLoaderRoute: typeof PostsSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/industries/$slug': {
       id: '/industries/$slug'
       path: '/$slug'
@@ -734,6 +754,7 @@ const rootRouteChildren: RootRouteChildren = {
   DashboardSlugRoute: DashboardSlugRoute,
   DemoSlugRoute: DemoSlugRoute,
   EmailUnsubscribeRoute: EmailUnsubscribeRoute,
+  PostsSlugRoute: PostsSlugRoute,
   ApiPublicCareersRoute: ApiPublicCareersRoute,
   ApiPublicContactRoute: ApiPublicContactRoute,
   LovableEmailSuppressionRoute: LovableEmailSuppressionRoute,
